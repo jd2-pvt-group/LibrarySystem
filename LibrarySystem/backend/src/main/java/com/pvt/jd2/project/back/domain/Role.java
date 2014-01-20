@@ -9,4 +9,8 @@ import java.io.Serializable;
  * Time: 16:48
  */
 public class Role implements Serializable {
+
+    public Role(){
+    }
+
 }
