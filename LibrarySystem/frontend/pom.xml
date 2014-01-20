@@ -11,7 +11,7 @@
   <artifactId>frontend</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>frontend Maven Webapp</name>
+  <name>library</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -20,8 +20,26 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>com.pvt.jd2.project.back</groupId>
+        <artifactId>backend</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <scope>provided</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>frontend</finalName>
+    <plugins>
+      <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>tomcat-maven-plugin</artifactId>
+          <configuration>
+              <url>http://localhost:8080/manager/text</url>
+              <username>tomcat</username>
+              <password>tomcat</password>
+              <path>/library</path>
+          </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
