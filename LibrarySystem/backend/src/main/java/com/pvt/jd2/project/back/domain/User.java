@@ -9,4 +9,8 @@ import java.io.Serializable;
  * Time: 16:45
 */
 public class User implements Serializable {
+
+    public User(){
+    }
+
 }
