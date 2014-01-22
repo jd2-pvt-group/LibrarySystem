@@ -4,20 +4,20 @@ package com.pvt.jd2.project.common.domain;
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 22.01.14
- * Time: 12:29
+ * Time: 16:08
  */
-public interface Attribute {
+public interface Publisher {
 
     void setId(Integer id);
 
     Integer getId();
 
-    void setCode(String code);
+    void setName(String name);
 
-    String getCode();
+    String getName();
 
-    void setDescription(String description);
+    void setAddress(Address address);
 
-    String getDescription();
+    Address getAddress();
 
 }

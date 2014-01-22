@@ -12,7 +12,42 @@ import java.io.Serializable;
  */
 public class AttributeImpl implements Serializable, Attribute {
 
+    private Integer id;
+
+    private String code;
+
+    private String description;
+
     public AttributeImpl(){
     }
 
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setCode(String s) {
+        this.code = code;
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
 }

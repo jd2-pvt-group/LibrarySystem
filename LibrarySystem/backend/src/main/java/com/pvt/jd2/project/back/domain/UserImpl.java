@@ -12,7 +12,51 @@ import java.io.Serializable;
 */
 public class UserImpl implements Serializable, User {
 
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String middleName;
+
     public UserImpl(){
     }
 
+    @Override
+    public void setId(Integer integer) {
+        this.id = id;
+    }
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Override
+    public String getFirstName() {
+        return firstName;
+    }
+
+    @Override
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Override
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    @Override
+    public String getMiddleName() {
+        return middleName;
+    }
 }

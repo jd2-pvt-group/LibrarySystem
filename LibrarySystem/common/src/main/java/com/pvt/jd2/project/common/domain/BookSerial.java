@@ -6,9 +6,9 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 22.01.14
- * Time: 12:28
+ * Time: 16:25
  */
-public interface Role {
+public interface BookSerial {
 
     void setId(Integer id);
 
@@ -18,12 +18,7 @@ public interface Role {
 
     String getName();
 
-    void setAttributes(List<Attribute> attributes);
+    void setBooks(List<Book> books);
 
-    List<Attribute> getAttributes();
-
-    void setUsers(List<User> users);
-
-    List<User> getUsers();
-
+    List<Book> getBooks();
 }
