@@ -1,4 +1,4 @@
-package com.pvt.jd2.project.common.domain.service;
+package com.pvt.jd2.project.common.service;
 
 /**
  * Created with IntelliJ IDEA.

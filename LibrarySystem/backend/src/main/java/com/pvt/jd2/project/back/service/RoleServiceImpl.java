@@ -1,6 +1,6 @@
-package com.pvt.jd2.project.back.domain.service;
+package com.pvt.jd2.project.back.service;
 
-import com.pvt.jd2.project.common.domain.service.RoleService;
+import com.pvt.jd2.project.common.service.RoleService;
 
 /**
  * Created with IntelliJ IDEA.

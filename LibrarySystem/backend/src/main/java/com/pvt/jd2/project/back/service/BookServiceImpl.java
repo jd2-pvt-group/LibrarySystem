@@ -1,6 +1,6 @@
-package com.pvt.jd2.project.back.domain.service;
+package com.pvt.jd2.project.back.service;
 
-import com.pvt.jd2.project.common.domain.service.BookService;
+import com.pvt.jd2.project.common.service.BookService;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,6 +1,6 @@
-package com.pvt.jd2.project.back.domain.dao;
+package com.pvt.jd2.project.back.dao;
 
-import com.pvt.jd2.project.common.domain.dao.UserDao;
+import com.pvt.jd2.project.common.dao.UserDao;
 
 /**
  * Created with IntelliJ IDEA.

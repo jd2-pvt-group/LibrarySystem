@@ -1,4 +1,4 @@
-package com.pvt.jd2.project.common.domain.dao;
+package com.pvt.jd2.project.common.dao;
 
 /**
  * Created with IntelliJ IDEA.

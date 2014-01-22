@@ -1,4 +1,4 @@
-package com.pvt.jd2.project.common.domain.service;
+package com.pvt.jd2.project.common.service;
 
 /**
  * Created with IntelliJ IDEA.
@@ -6,5 +6,5 @@ package com.pvt.jd2.project.common.domain.service;
  * Date: 22.01.14
  * Time: 15:39
  */
-public interface BookService {
+public interface RoleService {
 }
