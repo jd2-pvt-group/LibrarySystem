@@ -19,5 +19,6 @@
     <module>backend</module>
     <module>frontend</module>
     <module>common</module>
+      <module>common</module>
   </modules>
 </project>

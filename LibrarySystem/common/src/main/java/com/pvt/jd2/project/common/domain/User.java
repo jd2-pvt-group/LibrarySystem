@@ -7,4 +7,5 @@ package com.pvt.jd2.project.common.domain;
  * Time: 12:28
  */
 public interface User {
+
 }

@@ -1,16 +1,18 @@
 package com.pvt.jd2.project.back.domain;
 
+import com.pvt.jd2.project.common.domain.Role;
+
 import java.io.Serializable;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Oleg
+ * UserImpl: Oleg
  * Date: 20.01.14
  * Time: 16:48
  */
-public class Book implements Serializable {
+public class RoleImpl implements Serializable, Role {
 
-    public Book(){
+    public RoleImpl(){
     }
 
 }
