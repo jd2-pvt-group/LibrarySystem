@@ -12,7 +12,7 @@ import java.io.Serializable;
 */
 public class UserImpl implements Serializable, User {
 
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String middleName;
@@ -21,12 +21,12 @@ public class UserImpl implements Serializable, User {
     }
 
     @Override
-    public void setId(Integer integer) {
+    public void setId(Long integer) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

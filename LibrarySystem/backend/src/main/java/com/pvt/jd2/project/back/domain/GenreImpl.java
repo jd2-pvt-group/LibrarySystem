@@ -12,19 +12,19 @@ import java.io.Serializable;
  */
 public class GenreImpl implements Serializable, Genre {
 
-    private Integer id;
+    private Long id;
     private String name;
 
     public GenreImpl(){
     }
 
     @Override
-    public void setId(Integer integer) {
+    public void setId(Long integer) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

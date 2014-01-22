@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 public class AttributeImpl implements Serializable, Attribute {
 
-    private Integer id;
+    private Long id;
 
     private String code;
 
@@ -22,12 +22,12 @@ public class AttributeImpl implements Serializable, Attribute {
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

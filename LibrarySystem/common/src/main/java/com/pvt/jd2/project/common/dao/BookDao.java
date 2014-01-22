@@ -1,5 +1,10 @@
 package com.pvt.jd2.project.common.dao;
 
+import com.pvt.jd2.project.common.domain.Book;
+import com.pvt.jd2.project.common.exceptions.DatabaseException;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
@@ -7,4 +12,11 @@ package com.pvt.jd2.project.common.dao;
  * Time: 15:36
  */
 public interface BookDao {
+
+    boolean create(Book address) throws DatabaseException;
+
+    boolean delete(Book address) throws DatabaseException;
+
+    List<Book> list() throws DatabaseException;
+
 }

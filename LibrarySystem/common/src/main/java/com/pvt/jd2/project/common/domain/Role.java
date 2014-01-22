@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface Role {
 
-    void setId(Integer id);
+    void setId(Long id);
 
-    Integer getId();
+    Long getId();
 
     void setName(String name);
 

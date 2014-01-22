@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class BookImpl implements Serializable, Book {
 
-    private Integer id;
+    private Long id;
     private String isbn;
     private List<Genre> genres;
     private BookSerial bookSerial;
@@ -25,12 +25,12 @@ public class BookImpl implements Serializable, Book {
     }
 
     @Override
-    public void setId(Integer integer) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

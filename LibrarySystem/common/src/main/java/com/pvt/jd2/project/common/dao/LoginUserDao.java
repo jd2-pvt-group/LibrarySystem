@@ -1,5 +1,10 @@
 package com.pvt.jd2.project.common.dao;
 
+import com.pvt.jd2.project.common.domain.LoginUser;
+import com.pvt.jd2.project.common.exceptions.DatabaseException;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
@@ -7,4 +12,11 @@ package com.pvt.jd2.project.common.dao;
  * Time: 17:33
  */
 public interface LoginUserDao {
+
+    boolean create(LoginUser address) throws DatabaseException;
+
+    boolean delete(LoginUser address) throws DatabaseException;
+
+    List<LoginUser> list() throws DatabaseException;
+
 }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class BookSerialImpl implements Serializable, BookSerial {
 
-    private Integer id;
+    private Long id;
     private String name;
     private List<Book> books;
 
@@ -22,12 +22,12 @@ public class BookSerialImpl implements Serializable, BookSerial {
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

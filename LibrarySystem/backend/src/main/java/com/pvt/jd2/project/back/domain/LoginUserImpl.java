@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class LoginUserImpl extends UserImpl implements Serializable, LoginUser {
 
-    private Integer id;
     private String login;
     private String password;
     private List<Role> roles;

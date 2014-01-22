@@ -11,7 +11,7 @@ import com.pvt.jd2.project.common.domain.Publisher;
  */
 public class PublisherImpl implements Publisher {
 
-    private Integer id;
+    private Long id;
     private String name;
     private Address address;
 
@@ -19,12 +19,12 @@ public class PublisherImpl implements Publisher {
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

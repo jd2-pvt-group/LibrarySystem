@@ -8,9 +8,9 @@ package com.pvt.jd2.project.common.domain;
  */
 public interface Address {
 
-    void setId(Integer id);
+    void setId(Long id);
 
-    Integer getId();
+    Long getId();
 
     void setCountry(String country);
 
@@ -24,8 +24,8 @@ public interface Address {
 
     String getStreet();
 
-    void setApartment(String apartment);
+    void setApartment(Integer apartment);
 
-    String getApartment();
+    Integer getApartment();
 
 }

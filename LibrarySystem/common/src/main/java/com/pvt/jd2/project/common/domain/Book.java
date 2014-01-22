@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface Book {
 
-    void setId(Integer id);
+    void setId(Long id);
 
-    Integer getId();
+    Long getId();
 
     void setIsbn(String isbn);
 
     String getIsbn();
 
-    void setGenres(List<Genre> genre);
+    void setGenres(List<Genre> genres);
 
     List<Genre> getGenres();
 

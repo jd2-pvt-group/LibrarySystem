@@ -8,9 +8,9 @@ package com.pvt.jd2.project.common.domain;
  */
 public interface Attribute {
 
-    void setId(Integer id);
+    void setId(Long id);
 
-    Integer getId();
+    Long getId();
 
     void setCode(String code);
 

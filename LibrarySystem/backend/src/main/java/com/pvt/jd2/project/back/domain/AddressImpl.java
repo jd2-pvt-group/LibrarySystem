@@ -12,22 +12,22 @@ import java.io.Serializable;
  */
 public class AddressImpl implements Serializable, Address {
 
-    private Integer id;
+    private Long id;
     private String country;
     private String city;
     private String street;
-    private String apartment;
+    private Integer apartment;
 
     public AddressImpl(){
     }
 
     @Override
-    public void setId(Integer integer) {
+    public void setId(Long integer) {
         this.id = id;
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -62,12 +62,12 @@ public class AddressImpl implements Serializable, Address {
     }
 
     @Override
-    public void setApartment(String apartment) {
+    public void setApartment(Integer apartment) {
         this.apartment = apartment;
     }
 
     @Override
-    public String getApartment() {
+    public Integer getApartment() {
         return apartment;
     }
 }
