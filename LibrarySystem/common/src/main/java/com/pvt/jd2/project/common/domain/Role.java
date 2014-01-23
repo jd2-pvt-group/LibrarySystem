@@ -1,29 +1,53 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
- * Date: 22.01.14
- * Time: 12:28
+ * Date: 20.01.14
+ * Time: 16:48
  */
-public interface Role {
+public class Role implements Serializable {
 
-    void setId(Long id);
+    private Long id;
+    private String name;
+    private List<Attribute> attributes;
+    private List<User> users;
 
-    Long getId();
+    public Role(){
+    }
 
-    void setName(String name);
+    public void setId(Long integer) {
+        this.id = id;
+    }
 
-    String getName();
+    public Long getId() {
+        return id;
+    }
 
-    void setAttributes(List<Attribute> attributes);
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    List<Attribute> getAttributes();
+    public String getName() {
+        return name;
+    }
 
-    void setUsers(List<User> users);
+    public void setAttributes(List<Attribute> attributes) {
+        this.attributes = attributes;
+    }
 
-    List<User> getUsers();
+    public List<Attribute> getAttributes() {
+        return attributes;
+    }
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
 }

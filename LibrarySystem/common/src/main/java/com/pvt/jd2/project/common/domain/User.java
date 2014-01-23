@@ -1,27 +1,52 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
- * Date: 22.01.14
- * Time: 12:28
- */
-public interface User {
+ * Date: 20.01.14
+ * Time: 16:45
+*/
+public class User implements Serializable {
 
-    void setId(Long id);
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String middleName;
 
-    Long getId();
+    public User(){
+    }
 
-    void setFirstName(String firstName);
+    public void setId(Long integer) {
+        this.id = id;
+    }
 
-    String getFirstName();
+    public Long getId() {
+        return id;
+    }
 
-    void setLastName(String lastName);
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    String getLastName();
+    public String getFirstName() {
+        return firstName;
+    }
 
-    void setMiddleName(String middleName);
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    String getMiddleName();
+    public String getLastName() {
+        return lastName;
+    }
 
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
 }

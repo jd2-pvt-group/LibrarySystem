@@ -7,6 +7,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,42 +25,92 @@ public class AddressServiceImpl implements AddressService {
 
 
     @Override
-    public Address create(Address address) throws BusinessLogicException {
+    public void setAddressDao(AddressDao addressDao) {
+        this.addressDao = addressDao;
+    }
+
+    @Override
+    public AddressDao getAddressDao() {
+        return addressDao;
+    }
+
+    @Override
+    @Transactional
+    public Address findById(Long id) throws BusinessLogicException {
         try{
-            addressDao.create(address);
-            return address;
+            return addressDao.findById(id);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
     }
 
     @Override
-    public Address delete(Address address) throws BusinessLogicException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    @Transactional
+    public void create(Address address) throws BusinessLogicException {
+        try{
+            addressDao.create(address);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
     }
 
     @Override
+    @Transactional
+    public void delete(Address address) throws BusinessLogicException {
+        try{
+            addressDao.delete(address);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
+    }
+
+    @Override
+    @Transactional
     public List<Address> list() throws BusinessLogicException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try{
+            return addressDao.list();
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
     }
 
     @Override
+    @Transactional
     public List<Address> listByCountry(String countryName) throws BusinessLogicException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try{
+            return addressDao.findByPartOfCountryName(countryName);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
     }
 
     @Override
+    @Transactional
     public List<Address> listByCity(String cityName) throws BusinessLogicException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try{
+            return addressDao.findByPartOfCityName(cityName);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
     }
 
     @Override
+    @Transactional
     public List<Address> listByStreet(String streetName) throws BusinessLogicException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try{
+            return addressDao.findByPartOfStreetName(streetName);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
     }
 
     @Override
+    @Transactional
     public List<Address> listByApartment(Integer apartmentNumber) throws BusinessLogicException {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        try{
+            return addressDao.findByApartment(apartmentNumber);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.pvt.jd2.project.common.dao;
 
-import com.pvt.jd2.project.common.domain.BookSerial;
 import com.pvt.jd2.project.common.domain.Genre;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 

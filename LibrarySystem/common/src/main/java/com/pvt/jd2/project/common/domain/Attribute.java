@@ -1,23 +1,45 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
- * Date: 22.01.14
- * Time: 12:29
+ * Date: 20.01.14
+ * Time: 20:03
  */
-public interface Attribute {
+public class Attribute implements Serializable {
 
-    void setId(Long id);
+    private Long id;
 
-    Long getId();
+    private String code;
 
-    void setCode(String code);
+    private String description;
 
-    String getCode();
+    public Attribute(){
+    }
 
-    void setDescription(String description);
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    String getDescription();
+    public Long getId() {
+        return id;
+    }
 
+    public void setCode(String s) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

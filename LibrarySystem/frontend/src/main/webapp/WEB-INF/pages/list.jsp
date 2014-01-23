@@ -12,7 +12,7 @@
     <title>List of addresses</title>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/create" method="POST">
+    <form action="${pageContext.request.contextPath}/new" method="POST">
         <input type="submit" value="Create new address"/>
     </form>
     <table>
@@ -21,6 +21,7 @@
                 <th>City</th>
                 <th>Street</th>
                 <th>Apartment</th>
+                <th>Delete</th>
             </tr>
         <c:forEach var="address" items="${addresses}">
             <tr>
@@ -28,6 +29,11 @@
                 <td>${address.city}</td>
                 <td>${address.street}</td>
                 <td>${address.apartment}</td>
+                <td>
+                    <form action="${pageContext.request.contextPath}/delete/${address.id}">
+                        <input type="submit" value="Remove address"/>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

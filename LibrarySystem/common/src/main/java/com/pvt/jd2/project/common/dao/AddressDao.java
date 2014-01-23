@@ -2,6 +2,7 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Address;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -12,6 +13,10 @@ import java.util.List;
  * Time: 17:31
  */
 public interface AddressDao {
+
+    void setSessionFactory(SessionFactory sessionFactory);
+
+    SessionFactory getSessionFactory();
 
     void create(Address address) throws DatabaseException;
 

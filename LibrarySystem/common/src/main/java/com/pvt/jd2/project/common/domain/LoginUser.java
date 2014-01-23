@@ -1,25 +1,44 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 22.01.14
- * Time: 16:41
+ * Time: 17:24
  */
-public interface LoginUser extends User {
+public class LoginUser extends User implements Serializable {
 
-    void setLogin(String login);
+    private String login;
+    private String password;
+    private List<Role> roles;
 
-    String getLogin();
+    public LoginUser(){
+    }
 
-    void setPassword(String password);
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-    String getPassword();
+    public String getLogin() {
+        return login;
+    }
 
-    void setRoles(List<Role> roles);
+    public void setPassword(String s) {
+        this.password = password;
+    }
 
-    List<Role> getRoles();
+    public String getPassword() {
+        return password;
+    }
 
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
 }

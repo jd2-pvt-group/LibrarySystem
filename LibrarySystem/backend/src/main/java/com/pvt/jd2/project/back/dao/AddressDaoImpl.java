@@ -1,16 +1,16 @@
 package com.pvt.jd2.project.back.dao;
 
-import com.pvt.jd2.project.back.domain.metamodel.Address_;
+import com.pvt.jd2.project.common.domain.metamodel.Address_;
 import com.pvt.jd2.project.common.dao.AddressDao;
 import com.pvt.jd2.project.common.domain.Address;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -23,12 +23,23 @@ import java.util.List;
 public class AddressDaoImpl implements AddressDao {
 
     @Autowired
-    private EntityManager entityManager;
+    private SessionFactory sessionFactory;
+
+    @Override
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
 
     @Override
     public void create(Address address) throws DatabaseException {
         try{
-            entityManager.persist(address);
+            Session session = sessionFactory.getCurrentSession();
+            session.persist(address);
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -37,7 +48,8 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public void delete(Address address) throws DatabaseException {
         try{
-            entityManager.remove(address);
+            Session session = sessionFactory.getCurrentSession();
+            session.delete(address);
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -46,11 +58,10 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public List<Address> list() throws DatabaseException {
         try{
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Address> query = criteriaBuilder.createQuery(Address.class);
-            Root<Address> root = query.from(Address.class);
-            query.select(root);
-            return entityManager.createQuery(query).getResultList();
+            Session session = sessionFactory.getCurrentSession();
+            Criteria criteria = session.createCriteria(Address.class);
+            List<Address> list = (List<Address>)criteria.list();
+            return list;
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -59,7 +70,8 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public Address findById(Long id) throws DatabaseException {
         try{
-            return entityManager.find(Address.class, id);
+            Session session = sessionFactory.getCurrentSession();
+            return (Address)session.get(Address.class, id);
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -68,12 +80,10 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public List<Address> findByPartOfCountryName(String partOfCountryName) throws DatabaseException {
         try{
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Address> query = criteriaBuilder.createQuery(Address.class);
-            Root<Address> root = query.from(Address.class);
-            query.select(root);
-            query.where(criteriaBuilder.like(root.get(Address_.country), partOfCountryName));
-            return entityManager.createQuery(query).getResultList();
+            Session session = sessionFactory.getCurrentSession();
+            Criteria criteria = session.createCriteria(Address.class);
+            criteria.add(Restrictions.like(Address_.ID, partOfCountryName));
+            return (List<Address>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -82,12 +92,10 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public List<Address> findByPartOfCityName(String partOfCityName) throws DatabaseException {
         try{
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Address> query = criteriaBuilder.createQuery(Address.class);
-            Root<Address> root = query.from(Address.class);
-            query.select(root);
-            query.where(criteriaBuilder.like(root.get(Address_.city), partOfCityName));
-            return entityManager.createQuery(query).getResultList();
+            Session session = sessionFactory.getCurrentSession();
+            Criteria criteria = session.createCriteria(Address.class);
+            criteria.add(Restrictions.like(Address_.CITY, partOfCityName));
+            return (List<Address>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -96,12 +104,10 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public List<Address> findByPartOfStreetName(String partOfStreetName) throws DatabaseException {
         try{
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Address> query = criteriaBuilder.createQuery(Address.class);
-            Root<Address> root = query.from(Address.class);
-            query.select(root);
-            query.where(criteriaBuilder.like(root.get(Address_.street), partOfStreetName));
-            return entityManager.createQuery(query).getResultList();
+            Session session = sessionFactory.getCurrentSession();
+            Criteria criteria = session.createCriteria(Address.class);
+            criteria.add(Restrictions.like(Address_.STREET, partOfStreetName));
+            return (List<Address>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
         }
@@ -110,12 +116,10 @@ public class AddressDaoImpl implements AddressDao {
     @Override
     public List<Address> findByApartment(Integer apartmentNumber) throws DatabaseException {
         try{
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Address> query = criteriaBuilder.createQuery(Address.class);
-            Root<Address> root = query.from(Address.class);
-            query.select(root);
-            query.where(criteriaBuilder.equal(root.get(Address_.apartment), apartmentNumber));
-            return entityManager.createQuery(query).getResultList();
+            Session session = sessionFactory.getCurrentSession();
+            Criteria criteria = session.createCriteria(Address.class);
+            criteria.add(Restrictions.like(Address_.APARTMENT, apartmentNumber));
+            return (List<Address>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
         }

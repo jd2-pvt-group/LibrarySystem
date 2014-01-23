@@ -1,41 +1,82 @@
 package com.pvt.jd2.project.common.domain;
 
+import com.pvt.jd2.project.common.domain.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
- * Date: 22.01.14
- * Time: 12:28
+ * Date: 20.01.14
+ * Time: 16:48
  */
-public interface Book {
+public class Book implements Serializable {
 
-    void setId(Long id);
+    private Long id;
+    private String isbn;
+    private List<Genre> genres;
+    private BookSerial bookSerial;
+    private String name;
+    private List<Author> authors;
+    private Publisher publisher;
 
-    Long getId();
+    public Book(){
+    }
 
-    void setIsbn(String isbn);
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    String getIsbn();
+    public Long getId() {
+        return id;
+    }
 
-    void setGenres(List<Genre> genres);
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-    List<Genre> getGenres();
+    public String getIsbn() {
+        return isbn;
+    }
 
-    void setSerial(BookSerial bookSerial);
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
 
-    BookSerial getSerial();
+    public List<Genre> getGenres() {
+        return genres;
+    }
 
-    void setName(String name);
+    public void setSerial(BookSerial bookSerial) {
+        this.bookSerial = bookSerial;
+    }
 
-    String getName();
+    public BookSerial getSerial() {
+        return bookSerial;
+    }
 
-    void setAuthors(List<Author> authors);
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    List<Author> getAuthors();
+    public String getName() {
+        return name;
+    }
 
-    void setPublisher(Publisher publisher);
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
 
-    Publisher getPublisher();
+    public List<Author> getAuthors() {
+        return authors;
+    }
 
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
 }

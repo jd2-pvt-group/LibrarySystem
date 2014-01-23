@@ -1,18 +1,34 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 22.01.14
- * Time: 16:30
+ * Time: 17:22
  */
-public interface Genre {
+public class Genre implements Serializable {
 
-    void setId(Long id);
+    private Long id;
+    private String name;
 
-    Long getId();
+    public Genre(){
+    }
 
-    void setName(String name);
+    public void setId(Long integer) {
+        this.id = id;
+    }
 
-    String getName();
+    public Long getId() {
+        return id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

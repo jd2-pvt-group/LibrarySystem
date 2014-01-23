@@ -1,23 +1,43 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 22.01.14
- * Time: 16:08
+ * Time: 17:27
  */
-public interface Publisher {
+public class Publisher implements Serializable {
 
-    void setId(Long id);
+    private Long id;
+    private String name;
+    private Address address;
 
-    Long getId();
+    public Publisher(){
+    }
 
-    void setName(String name);
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    String getName();
+    public Long getId() {
+        return id;
+    }
 
-    void setAddress(Address address);
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    Address getAddress();
+    public String getName() {
+        return name;
+    }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
 }

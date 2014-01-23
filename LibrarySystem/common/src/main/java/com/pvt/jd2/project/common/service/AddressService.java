@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.common.service;
 
+import com.pvt.jd2.project.common.dao.AddressDao;
 import com.pvt.jd2.project.common.domain.Address;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 
@@ -13,9 +14,15 @@ import java.util.List;
  */
 public interface AddressService {
 
-    Address create(Address address) throws BusinessLogicException;
+    void setAddressDao(AddressDao addressDao);
 
-    Address delete(Address address) throws BusinessLogicException;
+    AddressDao getAddressDao();
+
+    Address findById(Long id) throws BusinessLogicException;
+
+    void create(Address address) throws BusinessLogicException;
+
+    void delete(Address address) throws BusinessLogicException;
 
     List<Address> list() throws BusinessLogicException;
 

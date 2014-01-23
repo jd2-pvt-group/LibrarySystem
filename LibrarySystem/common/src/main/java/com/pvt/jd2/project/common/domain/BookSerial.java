@@ -1,24 +1,44 @@
 package com.pvt.jd2.project.common.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 22.01.14
- * Time: 16:25
+ * Time: 17:19
  */
-public interface BookSerial {
+public class BookSerial implements Serializable {
 
-    void setId(Long id);
+    private Long id;
+    private String name;
+    private List<Book> books;
 
-    Long getId();
+    private BookSerial(){
+    }
 
-    void setName(String name);
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    String getName();
+    public Long getId() {
+        return id;
+    }
 
-    void setBooks(List<Book> books);
+    public void setName(String s) {
+        this.name = name;
+    }
 
-    List<Book> getBooks();
+    public String getName() {
+        return name;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
 }
