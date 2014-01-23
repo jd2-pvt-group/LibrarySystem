@@ -2,6 +2,7 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Attribute;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
+import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -13,10 +14,20 @@ import java.util.List;
  */
 public interface AttributeDao {
 
-    boolean create(Attribute address) throws DatabaseException;
+    void setSessionFactory(SessionFactory sessionFactory);
 
-    boolean delete(Attribute address) throws DatabaseException;
+    SessionFactory getSessionFactory();
+
+    void create(Attribute address) throws DatabaseException;
+
+    void delete(Attribute address) throws DatabaseException;
+
+    Attribute findById(Long id) throws DatabaseException;
 
     List<Attribute> list() throws DatabaseException;
+
+    List<Attribute> findByPartOfCode(String partOfCode) throws DatabaseException;
+
+    List<Attribute> findByPartOfDescription(String partOfDescription) throws DatabaseException;
 
 }
