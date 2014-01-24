@@ -8,24 +8,24 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 24.01.14
- * Time: 19:19
+ * Time: 21:56
  */
 @Entity
-@Table(name="BOOK_SERIAL")
-public class BookSerial implements Serializable {
+@Table(name="PERMISSION")
+public class Permission implements Serializable {
 
     @Id
     @Column(name="ID")
     @GeneratedValue
     private Long id;
 
-    @Column(name="NAME")
-    private String name;
+    @Column(name="CODE")
+    private String code;
 
     @Column(name="DESCRIPTION")
     private String description;
 
-    private List<Book> books;
+    private List<Role> roles;
 
     public Long getId() {
         return id;
@@ -35,12 +35,12 @@ public class BookSerial implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCode() {
+        return code;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -51,12 +51,12 @@ public class BookSerial implements Serializable {
         this.description = description;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class BookSerial implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookSerial that = (BookSerial) o;
+        Permission that = (Permission) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
 

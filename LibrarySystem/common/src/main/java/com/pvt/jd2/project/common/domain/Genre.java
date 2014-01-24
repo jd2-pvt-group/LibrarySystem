@@ -7,51 +7,48 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
- * Date: 22.01.14
- * Time: 17:11
+ * Date: 24.01.14
+ * Time: 22:16
  */
 @Entity
-@Table(name = "AUTHOR")
-public class Author implements Serializable {
+@Table(name = "GENRE")
+public class Genre implements Serializable {
 
     @Id
     @Column(name="ID")
     @GeneratedValue
     private Long id;
 
-    @Column(name="FIRST_NAME")
-    private String firstName;
+    @Column(name="NAME")
+    private String name;
 
-    @Column(name="LAST_NAME")
-    private String lastName;
+    @Column(name="DESCRIPTION")
+    private String description;
 
     private List<Book> books;
-
-    public Author(){
-    }
-
-    public void setId(Long integer) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getName() {
+        return name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Book> getBooks() {
@@ -67,9 +64,9 @@ public class Author implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Author author = (Author) o;
+        Genre genre = (Genre) o;
 
-        if (id != null ? !id.equals(author.id) : author.id != null) return false;
+        if (id != null ? !id.equals(genre.id) : genre.id != null) return false;
 
         return true;
     }

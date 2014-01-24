@@ -2,17 +2,16 @@ package com.pvt.jd2.project.common.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 24.01.14
- * Time: 19:19
+ * Time: 22:33
  */
 @Entity
-@Table(name="BOOK_SERIAL")
-public class BookSerial implements Serializable {
+@Table(name="GLOBAL_SETTING")
+public class GlobalSetting implements Serializable {
 
     @Id
     @Column(name="ID")
@@ -22,10 +21,8 @@ public class BookSerial implements Serializable {
     @Column(name="NAME")
     private String name;
 
-    @Column(name="DESCRIPTION")
-    private String description;
-
-    private List<Book> books;
+    @Column(name="VALUE")
+    private String value;
 
     public Long getId() {
         return id;
@@ -43,20 +40,12 @@ public class BookSerial implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getValue() {
+        return value;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     @Override
@@ -64,7 +53,7 @@ public class BookSerial implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookSerial that = (BookSerial) o;
+        GlobalSetting that = (GlobalSetting) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
 

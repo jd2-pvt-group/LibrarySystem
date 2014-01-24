@@ -1,6 +1,8 @@
 package com.pvt.jd2.project.common.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="PUBLISHER")
-public class Publisher {
+public class Publisher implements Serializable {
 
     @Id
     @Column(name="ID")
@@ -22,6 +24,8 @@ public class Publisher {
 
     @Column(name="DESCRIPTION")
     private String description;
+
+    private List<Book> books;
 
     public Long getId() {
         return id;
@@ -45,6 +49,14 @@ public class Publisher {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.pvt.jd2.project.common.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="BOOK")
-public class Book {
+public class Book implements Serializable {
 
     @Id
     @Column(name="ID")
@@ -29,6 +31,7 @@ public class Book {
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
+    private List<Author> authors;
 
     private BookSerial bookSerial;
 
@@ -72,6 +75,14 @@ public class Book {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     public BookSerial getBookSerial() {

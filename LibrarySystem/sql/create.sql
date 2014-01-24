@@ -3,7 +3,7 @@
 -- Server version:               5.5.35 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-01-24 18:55:59
+-- Date/time:                    2014-01-24 22:59:39
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -201,7 +201,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ADDRESS` varchar(200) DEFAULT NULL,
   `IS_ACTIVE` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `PASS_NUMBER` (`PASS_NUMBER`)
+  UNIQUE KEY `PASS_NUMBER` (`PASS_NUMBER`),
+  UNIQUE KEY `LOGIN` (`LOGIN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.

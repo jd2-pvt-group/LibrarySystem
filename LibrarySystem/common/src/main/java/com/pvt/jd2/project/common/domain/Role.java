@@ -1,6 +1,8 @@
 package com.pvt.jd2.project.common.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,11 +10,9 @@ import java.util.List;
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 24.01.14
- * Time: 19:19
+ * Time: 22:54
  */
-@Entity
-@Table(name="BOOK_SERIAL")
-public class BookSerial implements Serializable {
+public class Role implements Serializable {
 
     @Id
     @Column(name="ID")
@@ -25,7 +25,9 @@ public class BookSerial implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
-    private List<Book> books;
+    private List<Permission> permissions;
+
+    private List<User> users;
 
     public Long getId() {
         return id;
@@ -51,12 +53,20 @@ public class BookSerial implements Serializable {
         this.description = description;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -64,9 +74,9 @@ public class BookSerial implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookSerial that = (BookSerial) o;
+        Role role = (Role) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != null ? !id.equals(role.id) : role.id != null) return false;
 
         return true;
     }
