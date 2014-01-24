@@ -3,7 +3,7 @@
 -- Server version:               5.5.35 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-01-24 16:33:10
+-- Date/time:                    2014-01-24 18:55:59
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,9 +34,12 @@ CREATE TABLE IF NOT EXISTS `book` (
   `DESCRIPTION` varchar(255) DEFAULT NULL,
   `IS_ACTIVE` tinyint(1) DEFAULT '0',
   `BOOK_SERIAL_ID` int(11) DEFAULT NULL,
+  `PUBLISHER_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ISBN` (`ISBN`),
   KEY `FK_B_BOOK_SERIAL` (`BOOK_SERIAL_ID`),
+  KEY `FK_B_PUBLISHER` (`PUBLISHER_ID`),
+  CONSTRAINT `FK_B_PUBLISHER` FOREIGN KEY (`PUBLISHER_ID`) REFERENCES `publisher` (`ID`),
   CONSTRAINT `FK_B_BOOK_SERIAL` FOREIGN KEY (`BOOK_SERIAL_ID`) REFERENCES `book_serial` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,6 +149,17 @@ CREATE TABLE IF NOT EXISTS `permission` (
   `DESCRIPTION` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `CODE` (`CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table librarydb.publisher
+CREATE TABLE IF NOT EXISTS `publisher` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) NOT NULL,
+  `ADDRESS` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
