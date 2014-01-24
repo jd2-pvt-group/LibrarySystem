@@ -6,12 +6,10 @@ package com.pvt.jd2.project.common.domain.metamodel;
  * Date: 22.01.14
  * Time: 19:42
  */
-public interface Address_ {
+public interface Author_ {
 
     String ID = "id";
-    String COUNTRY = "country";
-    String CITY = "city";
-    String STREET = "street";
-    String APARTMENT = "apartment";
+    String FIRST_NAME = "firstName";
+    String LAST_NAME = "lastName";
 
 }
