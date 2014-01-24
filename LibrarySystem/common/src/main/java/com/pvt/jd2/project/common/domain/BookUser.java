@@ -11,8 +11,6 @@ import java.util.Date;
  */
 public class BookUser implements Serializable {
 
-    private Long id;
-
     private Book book;
 
     private User user;
@@ -22,14 +20,6 @@ public class BookUser implements Serializable {
     private Date endDate;
 
     private boolean isContinued;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Book getBook() {
         return book;
@@ -78,13 +68,13 @@ public class BookUser implements Serializable {
 
         BookUser bookUser = (BookUser) o;
 
-        if (id != null ? !id.equals(bookUser.id) : bookUser.id != null) return false;
+        if (book != null ? !book.equals(bookUser.book) : bookUser.book != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return book != null ? book.hashCode() : 0;
     }
 }

@@ -11,8 +11,6 @@ import java.util.Date;
  */
 public class BookUserHistory implements Serializable {
 
-    private Long id;
-
     private Book book;
 
     private User user;
@@ -24,14 +22,6 @@ public class BookUserHistory implements Serializable {
     private boolean isContinued;
 
     private boolean isInTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Book getBook() {
         return book;
@@ -88,13 +78,13 @@ public class BookUserHistory implements Serializable {
 
         BookUserHistory that = (BookUserHistory) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (book != null ? !book.equals(that.book) : that.book != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return book != null ? book.hashCode() : 0;
     }
 }
