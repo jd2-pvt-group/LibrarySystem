@@ -8,6 +8,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public void create(Book book) throws BusinessLogicException {
         try{
             bookDao.create(book);
@@ -43,6 +45,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public void delete(Book book) throws BusinessLogicException {
         try{
            bookDao.delete(book);
@@ -52,6 +55,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public void activate(Book book) throws BusinessLogicException {
         try{
             bookDao.activate(book);
@@ -61,6 +65,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public void deactivate(Book book) throws BusinessLogicException {
         try{
             bookDao.deactivate(book);
@@ -70,6 +75,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book findById(Long id) throws BusinessLogicException {
         try{
             return bookDao.findById(id);
@@ -79,6 +85,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public Book findByIsbn(String isbn) throws BusinessLogicException {
         try{
             return bookDao.findByIsbn(isbn);
@@ -88,6 +95,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public List<Book> list(ActivationStatus status) throws BusinessLogicException {
         try{
             return bookDao.list(status);
@@ -97,6 +105,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public List<Book> findByPartOfName(String partOfName, ActivationStatus status) throws BusinessLogicException {
         try{
             return bookDao.findByPartOfName(partOfName, status);
@@ -106,6 +115,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public List<Book> findByPartOfDescription(String partOfDescription, ActivationStatus status) throws BusinessLogicException {
         try{
             return bookDao.findByPartOfDescription(partOfDescription, status);
