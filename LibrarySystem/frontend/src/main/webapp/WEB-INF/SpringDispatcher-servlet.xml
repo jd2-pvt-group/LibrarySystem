@@ -43,8 +43,13 @@
     <tx:annotation-driven  transaction-manager="transactionManager"/>
 
     <bean id="addressDao" class="com.pvt.jd2.project.back.dao.AuthorDaoImpl"/>
+    <bean id="bookUserDao" class="com.pvt.jd2.project.back.dao.BookUserDaoImpl"/>
+    <bean id="bookDao" class="com.pvt.jd2.project.back.dao.BookDaoImpl"/>
 
     <bean id="addressService" class="com.pvt.jd2.project.back.service.AuthorServiceImpl"/>
+    <bean id="bookUserService" class="com.pvt.jd2.project.back.service.BookUserServiceImpl"/>
+    <bean id="bookService" class="com.pvt.jd2.project.back.service.BookServiceImpl"/>
+
 
 
 </beans>

@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * Date: 24.01.14
  * Time: 19:48
  */
+@Repository
 public class BookDaoImpl implements BookDao {
 
     @Autowired

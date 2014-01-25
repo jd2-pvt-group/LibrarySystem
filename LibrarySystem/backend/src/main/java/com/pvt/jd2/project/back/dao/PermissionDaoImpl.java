@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -17,7 +18,8 @@ import java.util.List;
  * User: Oleg
  * Date: 24.01.14
  * Time: 22:06
-  */
+ */
+@Repository
 public class PermissionDaoImpl implements PermissionDao {
 
     @Autowired

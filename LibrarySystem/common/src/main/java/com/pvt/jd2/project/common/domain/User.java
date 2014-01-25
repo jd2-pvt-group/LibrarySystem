@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.common.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,22 +10,34 @@ import java.util.List;
  * Date: 24.01.14
  * Time: 23:21
  */
+@Entity
+@Table(name = "USER")
 public class User implements Serializable {
 
+    @Id
+    @GeneratedValue
+    @Column(name="ID")
     private Long id;
 
+    @Column(name="LOGIN")
     private String login;
 
+    @Column(name="PASSWORD")
     private String password;
 
+    @Column(name="FIRST_NAME")
     private String firstName;
 
+    @Column(name="LAST_NAME")
     private String lastName;
 
+    @Column(name="PASS_NUMBER")
     private String passportNumber;
 
+    @Column(name="ADDRESS")
     private String address;
 
+    @Column(name="IS_ACTIVE")
     private boolean isActive;
 
     private List<Role> roles;
