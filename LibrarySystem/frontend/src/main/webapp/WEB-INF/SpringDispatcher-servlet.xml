@@ -50,6 +50,4 @@
     <bean id="bookUserService" class="com.pvt.jd2.project.back.service.BookUserServiceImpl"/>
     <bean id="bookService" class="com.pvt.jd2.project.back.service.BookServiceImpl"/>
 
-
-
 </beans>
