@@ -7,6 +7,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.GlobalSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class GlobalSettingServiceImpl implements GlobalSettingService{
     private GlobalSettingDao globalSettingDao;
 
     @Override
+    @Transactional
     public GlobalSetting findByName(String name) throws BusinessLogicException {
         try{
             return globalSettingDao.findByName(name);
@@ -32,6 +34,7 @@ public class GlobalSettingServiceImpl implements GlobalSettingService{
     }
 
     @Override
+    @Transactional
     public List<GlobalSetting> list() throws BusinessLogicException {
         try{
             return globalSettingDao.list();

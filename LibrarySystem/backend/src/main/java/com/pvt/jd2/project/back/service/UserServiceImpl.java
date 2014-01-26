@@ -8,6 +8,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
+    @Transactional
     public void create(User user) throws BusinessLogicException {
         try{
             userDao.create(user);
@@ -33,6 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(User user) throws BusinessLogicException {
         try{
             userDao.delete(user);
@@ -42,6 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void activate(User user) throws BusinessLogicException {
         try{
             userDao.activate(user);
@@ -51,6 +55,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void deactivate(User user) throws BusinessLogicException {
         try{
             userDao.deactivate(user);
@@ -60,6 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User findById(Long id) throws BusinessLogicException {
         try{
             return userDao.findById(id);
@@ -69,6 +75,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User findByLoginPassword(String login, String password) throws BusinessLogicException {
         try{
             return userDao.findByLoginPassword(login, password);
@@ -78,6 +85,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User findByPassportNumber(String passportNumber) throws BusinessLogicException {
         try{
             return userDao.findByPassportNumber(passportNumber);
@@ -87,6 +95,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<User> list(ActivationStatus status) throws BusinessLogicException {
         try{
             return userDao.list(status);
@@ -96,6 +105,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<User> listByPartOfFirstName(String partOfFirstName, ActivationStatus status) throws BusinessLogicException {
         try{
             return userDao.listByPartOfFirstName(partOfFirstName, status);
@@ -105,6 +115,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<User> listByPartOfLastName(String partOfLastName, ActivationStatus status) throws BusinessLogicException {
         try{
             return userDao.listByPartOfLastName(partOfLastName, status);
@@ -114,6 +125,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<User> listByPartOfAddress(String partOfAddress, ActivationStatus status) throws BusinessLogicException {
         try{
             return userDao.listByPartOfAddress(partOfAddress, status);
@@ -123,6 +135,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<User> listByPartOfPassportNumber(String partOfPassportNumber, ActivationStatus status) throws BusinessLogicException {
         try{
             return userDao.listByPartOfPassportNumber(partOfPassportNumber, status);

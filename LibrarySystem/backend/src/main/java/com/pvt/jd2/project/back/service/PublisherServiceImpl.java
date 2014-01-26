@@ -8,6 +8,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class PublisherServiceImpl implements PublisherService{
     private PublisherDao publisherDao;
 
     @Override
+    @Transactional
     public void create(Publisher publisher) throws BusinessLogicException {
         try{
             publisherDao.create(publisher);
@@ -33,6 +35,7 @@ public class PublisherServiceImpl implements PublisherService{
     }
 
     @Override
+    @Transactional
     public void delete(Publisher publisher) throws BusinessLogicException {
         try{
             publisherDao.delete(publisher);
@@ -42,6 +45,7 @@ public class PublisherServiceImpl implements PublisherService{
     }
 
     @Override
+    @Transactional
     public Publisher findById(Long id) throws BusinessLogicException {
         try{
             return publisherDao.findById(id);
@@ -51,6 +55,7 @@ public class PublisherServiceImpl implements PublisherService{
     }
 
     @Override
+    @Transactional
     public List<Publisher> list() throws BusinessLogicException {
         try{
             return publisherDao.list();
@@ -60,6 +65,7 @@ public class PublisherServiceImpl implements PublisherService{
     }
 
     @Override
+    @Transactional
     public List<Publisher> listByPartOfName(String partOfName) throws BusinessLogicException {
         try{
             return publisherDao.listByPartOfName(partOfName);
@@ -69,6 +75,7 @@ public class PublisherServiceImpl implements PublisherService{
     }
 
     @Override
+    @Transactional
     public List<Publisher> listByPartOfAddress(String partOfAddress) throws BusinessLogicException {
         try{
             return publisherDao.listByPartOfAddress(partOfAddress);

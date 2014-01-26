@@ -10,6 +10,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.BookUserHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     private BookUserHistoryDao bookUserHistoryDao;
 
     @Override
+    @Transactional
     public void create(BookUserHistory bookUserHistory) throws BusinessLogicException {
         try{
             bookUserHistoryDao.create(bookUserHistory);
@@ -36,6 +38,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public void delete(BookUserHistory bookUserHistory) throws BusinessLogicException {
         try{
             bookUserHistoryDao.delete(bookUserHistory);
@@ -45,6 +48,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public BookUserHistory findById(Long id) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.findById(id);
@@ -54,6 +58,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> list() throws BusinessLogicException {
         try{
             return bookUserHistoryDao.list();
@@ -63,6 +68,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByBook(Book book) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByBook(book);
@@ -72,6 +78,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByUser(User user) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByUser(user);
@@ -81,6 +88,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByInTime(boolean isInTime) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByInTime(isInTime);
@@ -90,6 +98,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByInTime(User user, boolean isInTime) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByInTime(user, isInTime);
@@ -99,6 +108,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByContinued(boolean isContinued) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByContinued(isContinued);
@@ -108,6 +118,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByContinued(User user, boolean isContinued) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByContinued(user, isContinued);
@@ -117,6 +128,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByStartDate(startDate, status);
@@ -126,6 +138,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByEndDate(endDate, status);
@@ -135,6 +148,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByStartDateBetween(startDate, endDate);
@@ -144,6 +158,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    @Transactional
     public List<BookUserHistory> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByEndDateBetween(startDate, endDate);

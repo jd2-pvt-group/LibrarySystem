@@ -7,6 +7,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class GenreServiceImpl implements GenreService {
     private GenreDao genreDao;
 
     @Override
+    @Transactional
     public void create(Genre genre) throws BusinessLogicException {
         try{
             genreDao.create(genre);
@@ -32,6 +34,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public void delete(Genre genre) throws BusinessLogicException {
         try{
             genreDao.delete(genre);
@@ -41,6 +44,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public Genre findById(Long id) throws BusinessLogicException {
         try{
             return genreDao.findById(id);
@@ -50,6 +54,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public List<Genre> list() throws BusinessLogicException {
         try{
             return genreDao.list();
@@ -59,6 +64,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public List<Genre> listByPartOfName(String partOfName) throws BusinessLogicException {
         try{
             return genreDao.listByPartOfName(partOfName);
@@ -68,6 +74,7 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
+    @Transactional
     public List<Genre> listByPartOfDescription(String partOfDescription) throws BusinessLogicException {
         try{
             return genreDao.listByPartOfDescription(partOfDescription);

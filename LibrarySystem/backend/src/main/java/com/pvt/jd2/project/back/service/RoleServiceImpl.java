@@ -7,6 +7,7 @@ import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import com.pvt.jd2.project.common.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
 
     @Override
+    @Transactional
     public void create(Role role) throws BusinessLogicException {
         try{
             roleDao.create(role);
@@ -32,6 +34,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public void delete(Role role) throws BusinessLogicException {
         try{
             roleDao.delete(role);
@@ -41,6 +44,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public Role findById(Long id) throws BusinessLogicException {
         try{
             return roleDao.findById(id);
@@ -50,6 +54,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public Role findByName(String name) throws BusinessLogicException {
         try{
             return roleDao.findByName(name);
@@ -59,6 +64,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public List<Role> list() throws BusinessLogicException {
         try{
             return roleDao.list();
@@ -68,6 +74,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public List<Role> listByPartOfName(String partOfName) throws BusinessLogicException {
         try{
             return roleDao.listByPartOfName(partOfName);
@@ -77,6 +84,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional
     public List<Role> listByPartOfDescription(String partOfDescription) throws BusinessLogicException {
         try{
             return roleDao.listByPartOfDescription(partOfDescription);

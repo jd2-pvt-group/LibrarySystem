@@ -28,6 +28,7 @@ public class BookUserServiceImpl implements BookUserService {
     private BookUserDao bookUserDao;
 
     @Override
+    @Transactional
     public void create(BookUser bookUser) throws BusinessLogicException {
         try{
             bookUserDao.create(bookUser);
@@ -37,6 +38,7 @@ public class BookUserServiceImpl implements BookUserService {
     }
 
     @Override
+    @Transactional
     public void update(BookUser bookUser) throws BusinessLogicException {
         try{
             bookUserDao.update(bookUser);
@@ -46,6 +48,7 @@ public class BookUserServiceImpl implements BookUserService {
     }
 
     @Override
+    @Transactional
     public void delete(BookUser bookUser) throws BusinessLogicException {
         try{
             bookUserDao.delete(bookUser);
@@ -125,6 +128,7 @@ public class BookUserServiceImpl implements BookUserService {
     }
 
     @Override
+    @Transactional
     public List<BookUser> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserDao.listByStartDate(startDate, status);
@@ -134,6 +138,7 @@ public class BookUserServiceImpl implements BookUserService {
     }
 
     @Override
+    @Transactional
     public List<BookUser> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserDao.listByEndDate(endDate, status);
@@ -143,6 +148,7 @@ public class BookUserServiceImpl implements BookUserService {
     }
 
     @Override
+    @Transactional
     public List<BookUser> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserDao.listByStartDateBetween(startDate, endDate);
@@ -152,6 +158,7 @@ public class BookUserServiceImpl implements BookUserService {
     }
 
     @Override
+    @Transactional
     public List<BookUser> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserDao.listByEndDateBetween(startDate, endDate);
