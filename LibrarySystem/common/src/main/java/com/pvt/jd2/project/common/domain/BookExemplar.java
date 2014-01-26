@@ -19,10 +19,6 @@ public class BookExemplar implements Serializable {
     @AttributeOverride(name="libraryCode", column = @Column(name="LIBRARY_CODE"))})
     private BookExemplarId id;
 
-    @ManyToOne
-    @JoinColumn(name="BOOK_ID")
-    private Book book;
-
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
@@ -32,14 +28,6 @@ public class BookExemplar implements Serializable {
 
     public void setId(BookExemplarId id) {
         this.id = id;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
     }
 
     public boolean isActive() {

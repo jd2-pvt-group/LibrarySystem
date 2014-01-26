@@ -48,9 +48,6 @@ public class Book implements Serializable {
             inverseJoinColumns={@JoinColumn(name="GENRE_ID")})
     private List<Genre> genres;
 
-    @OneToMany(mappedBy = "book")
-    private List<BookExemplar> bookExemplars;
-
     public Long getId() {
         return id;
     }
@@ -105,14 +102,6 @@ public class Book implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
-    }
-
-    public List<BookExemplar> getBookExemplars() {
-        return bookExemplars;
-    }
-
-    public void setBookExemplars(List<BookExemplar> bookExemplars) {
-        this.bookExemplars = bookExemplars;
     }
 
     public List<Genre> getGenres() {
