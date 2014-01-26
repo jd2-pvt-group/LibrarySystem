@@ -8,6 +8,6 @@ package com.pvt.jd2.project.front;
  */
 public interface Attributes {
 
-    String ADDRESSES = "addresses";
+    String AUTHORS = "authors";
 
 }

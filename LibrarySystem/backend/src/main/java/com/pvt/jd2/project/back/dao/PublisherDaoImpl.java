@@ -26,16 +26,6 @@ public class PublisherDaoImpl implements PublisherDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(Publisher publisher) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -65,11 +55,15 @@ public class PublisherDaoImpl implements PublisherDao {
         }
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Publisher.class);
+    }
+
     @Override
     public List<Publisher> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Publisher.class);
+            Criteria criteria = createCriteria();
             return (List<Publisher>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
@@ -77,10 +71,9 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public List<Publisher> findByPartOfName(String partOfName) throws DatabaseException {
+    public List<Publisher> listByPartOfName(String partOfName) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Publisher.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Publisher_.NAME, partOfName));
             return (List<Publisher>)criteria.list();
         }catch(Exception e){
@@ -89,10 +82,9 @@ public class PublisherDaoImpl implements PublisherDao {
     }
 
     @Override
-    public List<Publisher> findByPartOfAddress(String partOfAddress) throws DatabaseException {
+    public List<Publisher> listByPartOfAddress(String partOfAddress) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Publisher.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Publisher_.ADDRESS, partOfAddress));
             return (List<Publisher>)criteria.list();
         }catch(Exception e){

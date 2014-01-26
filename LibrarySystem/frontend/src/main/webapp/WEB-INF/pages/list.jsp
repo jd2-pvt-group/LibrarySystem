@@ -9,29 +9,26 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>List of addresses</title>
+    <title>List of authors</title>
 </head>
 <body>
     <form action="${pageContext.request.contextPath}/new" method="POST">
-        <input type="submit" value="Create new address"/>
+        <input type="submit" value="Create new author"/>
     </form>
     <table>
             <tr>
-                <th>Country</th>
-                <th>City</th>
-                <th>Street</th>
-                <th>Apartment</th>
-                <th>Delete</th>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
             </tr>
-        <c:forEach var="address" items="${addresses}">
+        <c:forEach var="author" items="${authors}">
             <tr>
-                <td>${address.country}</td>
-                <td>${address.city}</td>
-                <td>${address.street}</td>
-                <td>${address.apartment}</td>
+                <td>${author.id}</td>
+                <td>${author.firstName}</td>
+                <td>${author.lastName}</td>
                 <td>
-                    <form action="${pageContext.request.contextPath}/delete/${address.id}">
-                        <input type="submit" value="Remove address"/>
+                    <form action="${pageContext.request.contextPath}/delete/${author.id}">
+                        <input type="submit" value="Remove author"/>
                     </form>
                 </td>
             </tr>

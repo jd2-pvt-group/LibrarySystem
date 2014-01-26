@@ -25,21 +25,15 @@ public class GlobalSettingDaoImpl implements GlobalSettingDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(GlobalSetting.class);
     }
 
     @Override
     public GlobalSetting findByName(String name) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(GlobalSetting.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(GlobalSetting_.NAME, name));
             List<GlobalSetting> settings = (List<GlobalSetting>)criteria.list();
             return settings.isEmpty() ? null : settings.get(0);
@@ -51,8 +45,7 @@ public class GlobalSettingDaoImpl implements GlobalSettingDao {
     @Override
     public List<GlobalSetting> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(GlobalSetting.class);
+            Criteria criteria = createCriteria();
             return (List<GlobalSetting>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);

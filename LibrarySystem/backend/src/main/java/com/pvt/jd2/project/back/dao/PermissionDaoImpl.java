@@ -26,16 +26,6 @@ public class PermissionDaoImpl implements PermissionDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(Permission permission) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -65,11 +55,15 @@ public class PermissionDaoImpl implements PermissionDao {
         }
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Permission.class);
+    }
+
     @Override
     public Permission findByCode(String code) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Permission.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(Permission_.CODE, code));
             List<Permission> permissions = (List<Permission>)criteria.list();
             return permissions.isEmpty() ? null : permissions.get(0);
@@ -81,8 +75,7 @@ public class PermissionDaoImpl implements PermissionDao {
     @Override
     public List<Permission> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Permission.class);
+            Criteria criteria = createCriteria();
             return (List<Permission>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
@@ -90,10 +83,9 @@ public class PermissionDaoImpl implements PermissionDao {
     }
 
     @Override
-    public List<Permission> findByPartOfCode(String partOfCode) throws DatabaseException {
+    public List<Permission> listByPartOfCode(String partOfCode) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Permission.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Permission_.CODE, partOfCode));
             return (List<Permission>)criteria.list();
         }catch(Exception e){
@@ -102,10 +94,9 @@ public class PermissionDaoImpl implements PermissionDao {
     }
 
     @Override
-    public List<Permission> findByPartOfDescription(String partOfDescription) throws DatabaseException {
+    public List<Permission> listByPartOfDescription(String partOfDescription) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Permission.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Permission_.DESCRIPTION, partOfDescription));
             return (List<Permission>)criteria.list();
         }catch(Exception e){

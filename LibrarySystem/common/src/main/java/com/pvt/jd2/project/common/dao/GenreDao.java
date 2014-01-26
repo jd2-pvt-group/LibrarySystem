@@ -2,7 +2,6 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Genre;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -14,10 +13,6 @@ import java.util.List;
  */
 public interface GenreDao {
 
-    void setSessionFactory(SessionFactory sessionFactory);
-
-    SessionFactory getSessionFactory();
-
     void create(Genre genre) throws DatabaseException;
 
     void delete(Genre genre) throws DatabaseException;
@@ -26,8 +21,8 @@ public interface GenreDao {
 
     List<Genre> list() throws DatabaseException;
 
-    List<Genre> findByPartOfName(String partOfName) throws DatabaseException;
+    List<Genre> listByPartOfName(String partOfName) throws DatabaseException;
 
-    List<Genre> findByPartOfDescription(String partOfDescription) throws DatabaseException;
+    List<Genre> listByPartOfDescription(String partOfDescription) throws DatabaseException;
 
 }

@@ -21,20 +21,20 @@ import java.util.List;
  * Time: 20:22
  */
 @Controller
-public class AddressController {
+public class AuthorController {
 
     @Autowired
-    private AuthorService addressService;
+    private AuthorService authorService;
 
-    public void setAddressService(AuthorService addressService){
-        this.addressService = addressService;
-    }
+//    public void setAuthorService(AuthorService authorService){
+//        this.authorService = authorService;
+//    }
 
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String list(Model model) {
         try{
-            List<Author> addresses = addressService.list();
-            model.addAttribute(Attributes.ADDRESSES, addresses);
+            List<Author> authors = authorService.list();
+            model.addAttribute(Attributes.AUTHORS, authors);
             return "list";
         }catch (BusinessLogicException e){
             return "error";
@@ -42,16 +42,16 @@ public class AddressController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.POST)
-    public String createNew(@ModelAttribute Author address, BindingResult result) {
+    public String createNew(@ModelAttribute Author author, BindingResult result) {
         return "create";
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute Author address, BindingResult result, Model model) {
+    public String create(@ModelAttribute Author author, BindingResult result, Model model) {
         try{
-            addressService.create(address);
-            List<Author> addresses = addressService.list();
-            model.addAttribute(Attributes.ADDRESSES, addresses);
+            authorService.create(author);
+            List<Author> authors = authorService.list();
+            model.addAttribute(Attributes.AUTHORS, authors);
             return "list";
         }catch(BusinessLogicException e){
             return "error";
@@ -61,12 +61,12 @@ public class AddressController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String createNew(@PathVariable Long id, Model model) {
         try{
-            Author address = addressService.findById(id);
-            if (address != null){
-                addressService.delete(address);
+            Author author = authorService.findById(id);
+            if (author != null){
+                authorService.delete(author);
             }
-            List<Author> addresses = addressService.list();
-            model.addAttribute(Attributes.ADDRESSES, addresses);
+            List<Author> authors = authorService.list();
+            model.addAttribute(Attributes.AUTHORS, authors);
             return "list";
         }catch(BusinessLogicException e){
             e.printStackTrace();

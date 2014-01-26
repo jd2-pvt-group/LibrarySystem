@@ -26,16 +26,6 @@ public class RoleDaoImpl implements RoleDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(Role role) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -65,11 +55,15 @@ public class RoleDaoImpl implements RoleDao {
         }
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Role.class);
+    }
+
     @Override
     public Role findByName(String name) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Role.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(Role_.NAME, name));
             List<Role> roles = (List<Role>)criteria.list();
             return roles.isEmpty() ? null : roles.get(0);
@@ -81,8 +75,7 @@ public class RoleDaoImpl implements RoleDao {
     @Override
     public List<Role> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Role.class);
+            Criteria criteria = createCriteria();
             return (List<Role>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
@@ -90,10 +83,9 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public List<Role> findByPartOfName(String partOfName) throws DatabaseException {
+    public List<Role> listByPartOfName(String partOfName) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Role.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Role_.NAME, partOfName));
             return (List<Role>)criteria.list();
         }catch(Exception e){
@@ -102,10 +94,9 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public List<Role> findByPartOfDescription(String partOfDescription) throws DatabaseException {
+    public List<Role> listByPartOfDescription(String partOfDescription) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Role.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Role_.DESCRIPTION, partOfDescription));
             return (List<Role>)criteria.list();
         }catch(Exception e){

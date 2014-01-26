@@ -2,7 +2,6 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Permission;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -14,10 +13,6 @@ import java.util.List;
  */
 public interface PermissionDao {
 
-    void setSessionFactory(SessionFactory sessionFactory);
-
-    SessionFactory getSessionFactory();
-
     void create(Permission permission) throws DatabaseException;
 
     void delete(Permission permission) throws DatabaseException;
@@ -28,8 +23,8 @@ public interface PermissionDao {
 
     List<Permission> list() throws DatabaseException;
 
-    List<Permission> findByPartOfCode(String partOfCode) throws DatabaseException;
+    List<Permission> listByPartOfCode(String partOfCode) throws DatabaseException;
 
-    List<Permission> findByPartOfDescription(String partOfDescription) throws DatabaseException;
+    List<Permission> listByPartOfDescription(String partOfDescription) throws DatabaseException;
 
 }

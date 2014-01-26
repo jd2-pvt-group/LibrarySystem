@@ -1,11 +1,12 @@
 package com.pvt.jd2.project.common.service;
 
-import com.pvt.jd2.project.common.dao.BookUserDao;
 import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.BookUser;
+import com.pvt.jd2.project.common.domain.ComparisonStatus;
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,22 +17,32 @@ import java.util.List;
  */
 public interface BookUserService {
 
-    void setBookUserDao(BookUserDao bookUserDao);
+    void create(BookUser bookUser) throws BusinessLogicException;
 
-    BookUserDao getBookUserDao();
+    void update(BookUser bookUser) throws BusinessLogicException;
+
+    void delete(BookUser bookUser) throws BusinessLogicException;
 
     BookUser findByBook(Book book) throws BusinessLogicException;
 
     List<BookUser> list() throws BusinessLogicException;
 
-    List<BookUser> findByUser(User user) throws BusinessLogicException;
+    List<BookUser> listByUser(User user) throws BusinessLogicException;
 
-    List<BookUser> findByDebt() throws BusinessLogicException;
+    List<BookUser> listByDebt() throws BusinessLogicException;
 
-    List<BookUser> findByDebtUser(User user) throws BusinessLogicException;
+    List<BookUser> listByDebtUser(User user) throws BusinessLogicException;
 
-    List<BookUser> findByIsContinued() throws BusinessLogicException;
+    List<BookUser> listByIsContinued() throws BusinessLogicException;
 
-    List<BookUser> findByIsContinued(User user) throws BusinessLogicException;
+    List<BookUser> listByIsContinued(User user) throws BusinessLogicException;
+
+    List<BookUser> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException;
+
+    List<BookUser> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException;
+
+    List<BookUser> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException;
+
+    List<BookUser> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException;
 
 }

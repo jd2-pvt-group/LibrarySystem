@@ -27,16 +27,6 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(User user) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -84,11 +74,15 @@ public class UserDaoImpl implements UserDao {
         session.merge(user);
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(User.class);
+    }
+
     @Override
     public User findById(Long id) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(User_.ID, id));
             List<User> users = (List<User>)criteria.list();
             return users.isEmpty() ? null : users.get(0);
@@ -100,8 +94,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByLoginPassword(String login, String password) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(User_.LOGIN, login));
             criteria.add(Restrictions.eq(User_.PASSWORD, password));
             List<User> users = (List<User>)criteria.list();
@@ -114,8 +107,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByPassportNumber(String passportNumber) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(User_.PASS_NUMBER, passportNumber));
             List<User> users = (List<User>)criteria.list();
             return users.isEmpty() ? null : users.get(0);
@@ -127,8 +119,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> list(ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             return (List<User>)criteria.list();
         }catch(Exception e){
@@ -137,10 +128,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findByPartOfFirstName(String partOfFirstName, ActivationStatus status) throws DatabaseException {
+    public List<User> listByPartOfFirstName(String partOfFirstName, ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.eq(User_.FIRST_NAME, partOfFirstName));
             return (List<User>)criteria.list();
@@ -150,10 +140,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findByPartOfLastName(String partOfLastName, ActivationStatus status) throws DatabaseException {
+    public List<User> listByPartOfLastName(String partOfLastName, ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.eq(User_.LAST_NAME, partOfLastName));
             return (List<User>)criteria.list();
@@ -163,10 +152,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findByPartOfAddress(String partOfAddress, ActivationStatus status) throws DatabaseException {
+    public List<User> listByPartOfAddress(String partOfAddress, ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.eq(User_.ADDRESS, partOfAddress));
             return (List<User>)criteria.list();
@@ -176,10 +164,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findByPartOfPassportNumber(String partOfPassportNumber, ActivationStatus status) throws DatabaseException {
+    public List<User> listByPartOfPassportNumber(String partOfPassportNumber, ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(User.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.eq(User_.PASS_NUMBER, partOfPassportNumber));
             return (List<User>)criteria.list();

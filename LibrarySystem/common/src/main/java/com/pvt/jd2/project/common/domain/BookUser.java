@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.common.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,17 +10,41 @@ import java.util.Date;
  * Date: 24.01.14
  * Time: 23:19
  */
+@Entity
+@Table(name="BOOK_USER")
 public class BookUser implements Serializable {
 
+    @Id
+    @GeneratedValue
+    @Column(name="BOOK_ID")
+    private Long bookId;
+
+    @OneToOne
+    @JoinColumn(name = "BOOK_ID")
     private Book book;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
+    @Column(name="START_DATE")
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
+    @Column(name="END_DATE")
+    @Temporal(TemporalType.DATE)
     private Date endDate;
 
+    @Column(name="IS_CONTINUED")
     private boolean isContinued;
+
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
+    }
 
     public Book getBook() {
         return book;

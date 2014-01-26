@@ -3,7 +3,6 @@ package com.pvt.jd2.project.common.dao;
 import com.pvt.jd2.project.common.domain.ActivationStatus;
 import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -14,10 +13,6 @@ import java.util.List;
  * Time: 19:31
  */
 public interface BookDao {
-
-    void setSessionFactory(SessionFactory sessionFactory);
-
-    SessionFactory getSessionFactory();
 
     void create(Book book) throws DatabaseException;
 
@@ -33,8 +28,8 @@ public interface BookDao {
 
     List<Book> list(ActivationStatus status) throws DatabaseException;
 
-    List<Book> findByPartOfName(String partOfName, ActivationStatus status) throws DatabaseException;
+    List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws DatabaseException;
 
-    List<Book> findByPartOfDescription(String partOfDescription, ActivationStatus status) throws DatabaseException;
+    List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws DatabaseException;
 
 }

@@ -25,6 +25,7 @@ public class Permission implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
+    @ManyToMany(mappedBy = "permissions")
     private List<Role> roles;
 
     public Long getId() {

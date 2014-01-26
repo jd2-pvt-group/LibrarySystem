@@ -1,10 +1,7 @@
 package com.pvt.jd2.project.common.dao;
 
-import com.pvt.jd2.project.common.domain.Book;
-import com.pvt.jd2.project.common.domain.BookUser;
-import com.pvt.jd2.project.common.domain.User;
+import com.pvt.jd2.project.common.domain.*;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.Date;
 import java.util.List;
@@ -17,22 +14,32 @@ import java.util.List;
  */
 public interface BookUserDao {
 
-    void setSessionFactory(SessionFactory sessionFactory);
+    void create(BookUser bookUser) throws DatabaseException;
 
-    SessionFactory getSessionFactory();
+    void update(BookUser bookUser) throws DatabaseException;
+
+    void delete(BookUser bookUser) throws DatabaseException;
 
     BookUser findByBook(Book book) throws DatabaseException;
 
     List<BookUser> list() throws DatabaseException;
 
-    List<BookUser> findByUser(User user) throws DatabaseException;
+    List<BookUser> listByUser(User user) throws DatabaseException;
 
-    List<BookUser> findByDebt() throws DatabaseException;
+    List<BookUser> listByDebt() throws DatabaseException;
 
-    List<BookUser> findByDebtUser(User user) throws DatabaseException;
+    List<BookUser> listByDebtUser(User user) throws DatabaseException;
 
-    List<BookUser> findByIsContinued() throws DatabaseException;
+    List<BookUser> listByIsContinued() throws DatabaseException;
 
-    List<BookUser> findByIsContinued(User user) throws DatabaseException;
+    List<BookUser> listByIsContinued(User user) throws DatabaseException;
+
+    List<BookUser> listByStartDate(Date startDate, ComparisonStatus status) throws DatabaseException;
+
+    List<BookUser> listByEndDate(Date endDate, ComparisonStatus status) throws DatabaseException;
+
+    List<BookUser> listByStartDateBetween(Date startDate, Date endDate) throws DatabaseException;
+
+    List<BookUser> listByEndDateBetween(Date startDate, Date endDate) throws DatabaseException;
 
 }

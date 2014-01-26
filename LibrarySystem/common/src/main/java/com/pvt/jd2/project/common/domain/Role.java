@@ -1,8 +1,8 @@
 package com.pvt.jd2.project.common.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,6 +12,8 @@ import java.util.List;
  * Date: 24.01.14
  * Time: 22:54
  */
+@Entity
+@Table(name="ROLE")
 public class Role implements Serializable {
 
     @Id
@@ -25,8 +27,13 @@ public class Role implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
+    @ManyToMany()
+    @JoinTable(name="ROLE_PERMISSION",
+            joinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")},
+            inverseJoinColumns={@JoinColumn(name="PERMISSION_ID", referencedColumnName = "ID")})
     private List<Permission> permissions;
 
+    @ManyToMany(mappedBy = "roles")
     private List<User> users;
 
     public Long getId() {

@@ -15,10 +15,6 @@ import java.util.List;
  */
 public interface BookService {
 
-    void setBookDao(BookDao bookDao);
-
-    BookDao getBookDao();
-
     void create(Book book) throws BusinessLogicException;
 
     void delete(Book book) throws BusinessLogicException;
@@ -33,9 +29,9 @@ public interface BookService {
 
     List<Book> list(ActivationStatus status) throws BusinessLogicException;
 
-    List<Book> findByPartOfName(String partOfName, ActivationStatus status) throws BusinessLogicException;
+    List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws BusinessLogicException;
 
-    List<Book> findByPartOfDescription(String partOfDescription, ActivationStatus status) throws BusinessLogicException;
+    List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws BusinessLogicException;
 
 
 }

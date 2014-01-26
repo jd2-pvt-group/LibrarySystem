@@ -26,16 +26,6 @@ public class AuthorDaoImpl implements AuthorDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(Author author) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -55,11 +45,15 @@ public class AuthorDaoImpl implements AuthorDao {
         }
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Author.class);
+    }
+
     @Override
     public List<Author> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Author.class);
+            Criteria criteria = createCriteria();
             List<Author> list = (List<Author>)criteria.list();
             return list;
         }catch(Exception e){
@@ -78,10 +72,9 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public List<Author> findByPartOfFirstName(String partOfFirstName) throws DatabaseException {
+    public List<Author> listByPartOfFirstName(String partOfFirstName) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Author.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Author_.FIRST_NAME, partOfFirstName));
             return (List<Author>)criteria.list();
         }catch(Exception e){
@@ -90,10 +83,9 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public List<Author> findByPartOfLastName(String partOfLastName) throws DatabaseException {
+    public List<Author> listByPartOfLastName(String partOfLastName) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Author.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Author_.LAST_NAME, partOfLastName));
             return (List<Author>)criteria.list();
         }catch(Exception e){

@@ -2,7 +2,6 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.BookSerial;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -14,10 +13,6 @@ import java.util.List;
  */
 public interface BookSerialDao {
 
-    void setSessionFactory(SessionFactory sessionFactory);
-
-    SessionFactory getSessionFactory();
-
     void create(BookSerial bookSerial) throws DatabaseException;
 
     void delete(BookSerial bookSerial) throws DatabaseException;
@@ -26,8 +21,8 @@ public interface BookSerialDao {
 
     List<BookSerial> list() throws DatabaseException;
 
-    List<BookSerial> findByPartOfName(String partOfName) throws DatabaseException;
+    List<BookSerial> listByPartOfName(String partOfName) throws DatabaseException;
 
-    List<BookSerial> findByPartOfDescription(String partOfDescription) throws DatabaseException;
+    List<BookSerial> listByPartOfDescription(String partOfDescription) throws DatabaseException;
 
 }

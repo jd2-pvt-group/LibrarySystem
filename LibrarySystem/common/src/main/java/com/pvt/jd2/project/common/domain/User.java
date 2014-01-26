@@ -40,8 +40,13 @@ public class User implements Serializable {
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
+    @ManyToMany
+    @JoinTable(name="USER_ROLE",
+            joinColumns={@JoinColumn(name="USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles;
 
+    @OneToMany(mappedBy="user")
     private List<BookUser> bookUsers;
 
     public Long getId() {

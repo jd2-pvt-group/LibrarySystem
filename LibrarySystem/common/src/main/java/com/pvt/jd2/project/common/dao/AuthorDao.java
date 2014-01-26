@@ -2,7 +2,6 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Author;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -14,10 +13,6 @@ import java.util.List;
  */
 public interface AuthorDao {
 
-    void setSessionFactory(SessionFactory sessionFactory);
-
-    SessionFactory getSessionFactory();
-
     void create(Author author) throws DatabaseException;
 
     void delete(Author author) throws DatabaseException;
@@ -26,8 +21,8 @@ public interface AuthorDao {
 
     Author findById(Long id) throws DatabaseException;
 
-    List<Author> findByPartOfFirstName(String partOfFirstName) throws DatabaseException;
+    List<Author> listByPartOfFirstName(String partOfFirstName) throws DatabaseException;
 
-    List<Author> findByPartOfLastName(String partOfLastName) throws DatabaseException;
+    List<Author> listByPartOfLastName(String partOfLastName) throws DatabaseException;
 
 }

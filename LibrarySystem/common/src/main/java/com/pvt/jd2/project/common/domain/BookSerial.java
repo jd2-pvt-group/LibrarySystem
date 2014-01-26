@@ -25,6 +25,7 @@ public class BookSerial implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
+    @OneToMany(mappedBy="bookSerial")
     private List<Book> books;
 
     public Long getId() {

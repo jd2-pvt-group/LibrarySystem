@@ -25,6 +25,7 @@ public class Author implements Serializable {
     @Column(name="LAST_NAME")
     private String lastName;
 
+    @ManyToMany(mappedBy="authors")
     private List<Book> books;
 
     public Author(){

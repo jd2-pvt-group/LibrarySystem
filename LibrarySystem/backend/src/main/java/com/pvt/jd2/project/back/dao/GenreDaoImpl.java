@@ -26,16 +26,6 @@ public class GenreDaoImpl implements GenreDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(Genre genre) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -65,11 +55,15 @@ public class GenreDaoImpl implements GenreDao {
         }
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Genre.class);
+    }
+
     @Override
     public List<Genre> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Genre.class);
+            Criteria criteria = createCriteria();
             return (List<Genre>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
@@ -77,10 +71,9 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public List<Genre> findByPartOfName(String partOfName) throws DatabaseException {
+    public List<Genre> listByPartOfName(String partOfName) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Genre.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Genre_.NAME, partOfName));
             return (List<Genre>)criteria.list();
         }catch(Exception e){
@@ -89,10 +82,9 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public List<Genre> findByPartOfDescription(String partOfDescription) throws DatabaseException {
+    public List<Genre> listByPartOfDescription(String partOfDescription) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Genre.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(Genre_.DESCRIPTION, partOfDescription));
             return (List<Genre>)criteria.list();
         }catch(Exception e){

@@ -27,16 +27,6 @@ public class BookDaoImpl implements BookDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(Book book) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -94,11 +84,15 @@ public class BookDaoImpl implements BookDao {
         }
     }
 
+    private Criteria createCriteria() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(Book.class);
+    }
+
     @Override
     public Book findByIsbn(String isbn) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Book.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(Book_.ISBN, isbn));
             List<Book> books = (List<Book>)criteria.list();
             return books.isEmpty() ? null : books.get(0);
@@ -110,8 +104,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> list(ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Book.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             return (List<Book>)criteria.list();
         }catch(Exception e){
@@ -120,10 +113,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> findByPartOfName(String partOfName, ActivationStatus status) throws DatabaseException {
+    public List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Book.class);
+            Criteria criteria = createCriteria();
             updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.like(Book_.NAME, partOfName));
             return (List<Book>)criteria.list();
@@ -133,10 +125,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> findByPartOfDescription(String partOfDescription, ActivationStatus status) throws DatabaseException {
+    public List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(Book.class);
+            Criteria criteria = createCriteria();;
             updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.like(Book_.DESCRIPTION, partOfDescription));
             return (List<Book>)criteria.list();

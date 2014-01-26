@@ -26,16 +26,6 @@ public class BookSerialDaoImpl implements BookSerialDao{
     private SessionFactory sessionFactory;
 
     @Override
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    @Override
     public void create(BookSerial bookSerial) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -65,11 +55,15 @@ public class BookSerialDaoImpl implements BookSerialDao{
         }
     }
 
+    private Criteria createCriteria(){
+        Session session = sessionFactory.getCurrentSession();
+        return session.createCriteria(BookSerial.class);
+    }
+
     @Override
     public List<BookSerial> list() throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(BookSerial.class);
+            Criteria criteria = createCriteria();
             return (List<BookSerial>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
@@ -77,10 +71,9 @@ public class BookSerialDaoImpl implements BookSerialDao{
     }
 
     @Override
-    public List<BookSerial> findByPartOfName(String partOfName) throws DatabaseException {
+    public List<BookSerial> listByPartOfName(String partOfName) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(BookSerial.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(BookSerial_.NAME, partOfName));
             return (List<BookSerial>)criteria.list();
         }catch(Exception e){
@@ -89,10 +82,9 @@ public class BookSerialDaoImpl implements BookSerialDao{
     }
 
     @Override
-    public List<BookSerial> findByPartOfDescription(String partOfDescription) throws DatabaseException {
+    public List<BookSerial> listByPartOfDescription(String partOfDescription) throws DatabaseException {
         try{
-            Session session = sessionFactory.getCurrentSession();
-            Criteria criteria = session.createCriteria(BookSerial.class);
+            Criteria criteria = createCriteria();
             criteria.add(Restrictions.like(BookSerial_.DESCRIPTION, partOfDescription));
             return (List<BookSerial>)criteria.list();
         }catch(Exception e){

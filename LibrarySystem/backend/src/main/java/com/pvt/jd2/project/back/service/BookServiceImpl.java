@@ -25,16 +25,6 @@ public class BookServiceImpl implements BookService {
     private BookDao bookDao;
 
     @Override
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
-
-    @Override
-    public BookDao getBookDao() {
-        return bookDao;
-    }
-
-    @Override
     @Transactional
     public void create(Book book) throws BusinessLogicException {
         try{
@@ -106,9 +96,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Book> findByPartOfName(String partOfName, ActivationStatus status) throws BusinessLogicException {
+    public List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws BusinessLogicException {
         try{
-            return bookDao.findByPartOfName(partOfName, status);
+            return bookDao.listByPartOfName(partOfName, status);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
@@ -116,9 +106,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Book> findByPartOfDescription(String partOfDescription, ActivationStatus status) throws BusinessLogicException {
+    public List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws BusinessLogicException {
         try{
-            return bookDao.findByPartOfDescription(partOfDescription, status);
+            return bookDao.listByPartOfDescription(partOfDescription, status);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }

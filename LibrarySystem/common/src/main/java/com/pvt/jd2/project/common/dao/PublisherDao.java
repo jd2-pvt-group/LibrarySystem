@@ -2,7 +2,6 @@ package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Publisher;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
@@ -14,10 +13,6 @@ import java.util.List;
  */
 public interface PublisherDao {
 
-    void setSessionFactory(SessionFactory sessionFactory);
-
-    SessionFactory getSessionFactory();
-
     void create(Publisher publisher) throws DatabaseException;
 
     void delete(Publisher publisher) throws DatabaseException;
@@ -26,8 +21,8 @@ public interface PublisherDao {
 
     List<Publisher> list() throws DatabaseException;
 
-    List<Publisher> findByPartOfName(String partOfName) throws DatabaseException;
+    List<Publisher> listByPartOfName(String partOfName) throws DatabaseException;
 
-    List<Publisher> findByPartOfAddress(String partOfAddress) throws DatabaseException;
+    List<Publisher> listByPartOfAddress(String partOfAddress) throws DatabaseException;
 
 }

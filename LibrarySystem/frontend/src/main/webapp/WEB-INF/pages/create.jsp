@@ -9,15 +9,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>List of addresses</title>
+    <title>Creation of new author</title>
 </head>
 <body>
-    <form:form action="${pageContext.request.contextPath}/create" method="POST" modelAttribute="address">
-        <form:input path="country"/><br/>
-        <form:input path="city"/><br/>
-        <form:input path="street"/><br/>
-        <form:input path="apartment"/><br/>
-        <input type="submit" value="Save new address"/>
+    <form:form action="${pageContext.request.contextPath}/create" method="POST" modelAttribute="author">
+        <form:input path="firstName"/><br/>
+        <form:input path="lastName"/><br/>
+        <input type="submit" value="Save new author"/>
     </form:form>
 </body>
 </html>

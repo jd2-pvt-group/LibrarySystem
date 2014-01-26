@@ -25,6 +25,7 @@ public class Publisher implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
+    @OneToMany(mappedBy="publisher")
     private List<Book> books;
 
     public Long getId() {

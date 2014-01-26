@@ -31,11 +31,25 @@ public class Book implements Serializable {
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="BOOK_AUTHOR",
+            joinColumns={@JoinColumn(name="BOOK_ID")},
+            inverseJoinColumns={@JoinColumn(name="AUTHOR_ID")})
     private List<Author> authors;
 
+    @ManyToOne
+    @JoinColumn(name="BOOK_SERIAL_ID")
     private BookSerial bookSerial;
 
-    private Publisher  publisher;
+    @ManyToOne
+    @JoinColumn(name="PUBLISHER_ID")
+    private Publisher publisher;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name="BOOK_GENRE",
+            joinColumns={@JoinColumn(name="BOOK_ID")},
+            inverseJoinColumns={@JoinColumn(name="GENRE_ID")})
+    private List<Genre> genres;
 
     public Long getId() {
         return id;

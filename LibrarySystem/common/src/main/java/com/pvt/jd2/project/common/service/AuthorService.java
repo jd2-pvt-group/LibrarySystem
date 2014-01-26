@@ -14,10 +14,6 @@ import java.util.List;
  */
 public interface AuthorService {
 
-    void setAuthorDao(AuthorDao addressDao);
-
-    AuthorDao getAuthorDao();
-
     Author findById(Long id) throws BusinessLogicException;
 
     void create(Author author) throws BusinessLogicException;

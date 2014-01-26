@@ -23,17 +23,6 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorDao authorsDao;
 
-
-    @Override
-    public void setAuthorDao(AuthorDao authorsDao) {
-        this.authorsDao = authorsDao;
-    }
-
-    @Override
-    public AuthorDao getAuthorDao() {
-        return authorsDao;
-    }
-
     @Override
     @Transactional
     public Author findById(Long id) throws BusinessLogicException {
@@ -78,7 +67,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     public List<Author> listByFirstName(String firstName) throws BusinessLogicException {
         try{
-            return authorsDao.findByPartOfFirstName(firstName);
+            return authorsDao.listByPartOfFirstName(firstName);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
@@ -88,7 +77,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     public List<Author> listByLastName(String lastName) throws BusinessLogicException {
         try{
-            return authorsDao.findByPartOfLastName(lastName);
+            return authorsDao.listByPartOfLastName(lastName);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }

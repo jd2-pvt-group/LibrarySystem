@@ -25,6 +25,7 @@ public class Genre implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
+    @ManyToMany(mappedBy="genres")
     private List<Book> books;
 
     public Long getId() {
