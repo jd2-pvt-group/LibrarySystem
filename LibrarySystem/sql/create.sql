@@ -3,7 +3,7 @@
 -- Server version:               5.5.35 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-01-25 22:57:29
+-- Date/time:                    2014-01-26 19:43:44
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `book` (
   `ISBN` varchar(50) NOT NULL,
   `NAME` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(255) DEFAULT NULL,
-  `IS_ACTIVE` tinyint(1) DEFAULT '0',
   `BOOK_SERIAL_ID` int(11) DEFAULT NULL,
   `PUBLISHER_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
@@ -59,6 +58,55 @@ CREATE TABLE IF NOT EXISTS `book_author` (
 -- Data exporting was unselected.
 
 
+-- Dumping structure for table librarydb.book_exemplar
+CREATE TABLE IF NOT EXISTS `book_exemplar` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `BOOK_ID` int(10) NOT NULL,
+  `LIBRARY_CODE` int(10) NOT NULL,
+  `IS_ACTIVE` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `FK_BE_BOOK` (`BOOK_ID`),
+  CONSTRAINT `FK_BE_BOOK` FOREIGN KEY (`BOOK_ID`) REFERENCES `book` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table librarydb.book_exemplar_user
+CREATE TABLE IF NOT EXISTS `book_exemplar_user` (
+  `BOOK_EXEMPLAR_ID` int(10) NOT NULL,
+  `USER_ID` int(10) NOT NULL,
+  `START_DATE` date NOT NULL,
+  `END_DATE` date NOT NULL,
+  `IS_CONTINUED` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`BOOK_EXEMPLAR_ID`),
+  KEY `USER_ID` (`USER_ID`),
+  CONSTRAINT `FK_BEU_BOOK_EXEMPLAR` FOREIGN KEY (`BOOK_EXEMPLAR_ID`) REFERENCES `book_exemplar` (`ID`),
+  CONSTRAINT `FK_BEU_USER` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table librarydb.book_exemplar_user_history
+CREATE TABLE IF NOT EXISTS `book_exemplar_user_history` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `BOOK_EXEMPLAR_ID` int(10) NOT NULL,
+  `USER_ID` int(10) NOT NULL,
+  `START_DATE` date NOT NULL,
+  `END_DATE` date NOT NULL,
+  `IS_CONTINUED` tinyint(1) NOT NULL,
+  `IS_IN_TIME` tinyint(1) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_BEUX_BOOK_EXEMPLAR` (`BOOK_EXEMPLAR_ID`),
+  KEY `FK_BEUX_USER` (`USER_ID`),
+  CONSTRAINT `FK_BEUX_BOOK_EXEMPLAR` FOREIGN KEY (`BOOK_EXEMPLAR_ID`) REFERENCES `book_exemplar` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_BEUX_USER` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
 -- Dumping structure for table librarydb.book_genre
 CREATE TABLE IF NOT EXISTS `book_genre` (
   `BOOK_ID` int(10) NOT NULL,
@@ -78,41 +126,6 @@ CREATE TABLE IF NOT EXISTS `book_serial` (
   `NAME` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Data exporting was unselected.
-
-
--- Dumping structure for table librarydb.book_user
-CREATE TABLE IF NOT EXISTS `book_user` (
-  `BOOK_ID` int(10) NOT NULL,
-  `USER_ID` int(10) NOT NULL,
-  `START_DATE` date NOT NULL,
-  `END_DATE` date NOT NULL,
-  `IS_CONTINUED` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`BOOK_ID`),
-  KEY `FK_BU_USER` (`USER_ID`),
-  CONSTRAINT `FK_BU_BOOK` FOREIGN KEY (`BOOK_ID`) REFERENCES `book` (`ID`),
-  CONSTRAINT `FK_BU_USER` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Data exporting was unselected.
-
-
--- Dumping structure for table librarydb.book_user_history
-CREATE TABLE IF NOT EXISTS `book_user_history` (
-  `ID` int(10) NOT NULL,
-  `BOOK_ID` int(10) NOT NULL,
-  `USER_ID` int(10) NOT NULL,
-  `START_DATE` date NOT NULL,
-  `END_DATE` date NOT NULL,
-  `IS_CONTINUED` tinyint(1) NOT NULL,
-  `IS_IN_TIME` tinyint(1) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_BUH_BOOK` (`BOOK_ID`),
-  KEY `FK_BUH_USER` (`USER_ID`),
-  CONSTRAINT `FK_BUH_USER` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_BUH_BOOK` FOREIGN KEY (`BOOK_ID`) REFERENCES `book` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
