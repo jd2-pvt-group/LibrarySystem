@@ -47,7 +47,7 @@ public class User implements Serializable {
     private List<Role> roles;
 
     @OneToMany(mappedBy="user")
-    private List<BookUser> bookUsers;
+    private List<BookExemplarUser> bookUsers;
 
     public Long getId() {
         return id;
@@ -121,11 +121,11 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public List<BookUser> getBookUsers() {
+    public List<BookExemplarUser> getBookUsers() {
         return bookUsers;
     }
 
-    public void setBookUsers(List<BookUser> bookUsers) {
+    public void setBookUsers(List<BookExemplarUser> bookUsers) {
         this.bookUsers = bookUsers;
     }
 

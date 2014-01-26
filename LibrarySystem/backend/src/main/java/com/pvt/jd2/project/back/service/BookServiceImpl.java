@@ -1,7 +1,6 @@
 package com.pvt.jd2.project.back.service;
 
 import com.pvt.jd2.project.common.dao.BookDao;
-import com.pvt.jd2.project.common.domain.ActivationStatus;
 import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
@@ -46,26 +45,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public void activate(Book book) throws BusinessLogicException {
-        try{
-            bookDao.activate(book);
-        }catch(DatabaseException e){
-            throw new BusinessLogicException(e);
-        }
-    }
-
-    @Override
-    @Transactional
-    public void deactivate(Book book) throws BusinessLogicException {
-        try{
-            bookDao.deactivate(book);
-        }catch(DatabaseException e){
-            throw new BusinessLogicException(e);
-        }
-    }
-
-    @Override
-    @Transactional
     public Book findById(Long id) throws BusinessLogicException {
         try{
             return bookDao.findById(id);
@@ -86,9 +65,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Book> list(ActivationStatus status) throws BusinessLogicException {
+    public List<Book> list() throws BusinessLogicException {
         try{
-            return bookDao.list(status);
+            return bookDao.list();
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
@@ -96,9 +75,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws BusinessLogicException {
+    public List<Book> listByPartOfName(String partOfName) throws BusinessLogicException {
         try{
-            return bookDao.listByPartOfName(partOfName, status);
+            return bookDao.listByPartOfName(partOfName);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
@@ -106,9 +85,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws BusinessLogicException {
+    public List<Book> listByPartOfDescription(String partOfDescription) throws BusinessLogicException {
         try{
-            return bookDao.listByPartOfDescription(partOfDescription, status);
+            return bookDao.listByPartOfDescription(partOfDescription);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }

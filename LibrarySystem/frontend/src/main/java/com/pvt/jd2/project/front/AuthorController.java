@@ -26,10 +26,6 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
 
-//    public void setAuthorService(AuthorService authorService){
-//        this.authorService = authorService;
-//    }
-
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String list(Model model) {
         try{

@@ -18,18 +18,14 @@ public interface BookDao {
 
     void delete(Book book) throws DatabaseException;
 
-    void activate(Book book) throws DatabaseException;
-
-    void deactivate(Book book) throws DatabaseException;
-
     Book findById(Long id) throws DatabaseException;
 
     Book findByIsbn(String isbn) throws DatabaseException;
 
-    List<Book> list(ActivationStatus status) throws DatabaseException;
+    List<Book> list() throws DatabaseException;
 
-    List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws DatabaseException;
+    List<Book> listByPartOfName(String partOfName) throws DatabaseException;
 
-    List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws DatabaseException;
+    List<Book> listByPartOfDescription(String partOfDescription) throws DatabaseException;
 
 }

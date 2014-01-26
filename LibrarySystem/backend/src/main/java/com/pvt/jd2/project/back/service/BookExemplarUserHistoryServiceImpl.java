@@ -1,13 +1,10 @@
 package com.pvt.jd2.project.back.service;
 
-import com.pvt.jd2.project.common.dao.BookUserHistoryDao;
-import com.pvt.jd2.project.common.domain.Book;
-import com.pvt.jd2.project.common.domain.BookUserHistory;
-import com.pvt.jd2.project.common.domain.ComparisonStatus;
-import com.pvt.jd2.project.common.domain.User;
+import com.pvt.jd2.project.common.dao.BookExemplarUserHistoryDao;
+import com.pvt.jd2.project.common.domain.*;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import com.pvt.jd2.project.common.service.BookUserHistoryService;
+import com.pvt.jd2.project.common.service.BookExemplarUserHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +19,14 @@ import java.util.List;
  * Time: 3:57
  */
 @Service
-public class BookUserHistoryServiceImpl implements BookUserHistoryService {
+public class BookExemplarUserHistoryServiceImpl implements BookExemplarUserHistoryService {
 
     @Autowired
-    private BookUserHistoryDao bookUserHistoryDao;
+    private BookExemplarUserHistoryDao bookUserHistoryDao;
 
     @Override
     @Transactional
-    public void create(BookUserHistory bookUserHistory) throws BusinessLogicException {
+    public void create(BookExemplarUserHistory bookUserHistory) throws BusinessLogicException {
         try{
             bookUserHistoryDao.create(bookUserHistory);
         }catch(DatabaseException e){
@@ -39,7 +36,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public void delete(BookUserHistory bookUserHistory) throws BusinessLogicException {
+    public void delete(BookExemplarUserHistory bookUserHistory) throws BusinessLogicException {
         try{
             bookUserHistoryDao.delete(bookUserHistory);
         }catch(DatabaseException e){
@@ -49,7 +46,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public BookUserHistory findById(Long id) throws BusinessLogicException {
+    public BookExemplarUserHistory findById(Long id) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.findById(id);
         }catch(DatabaseException e){
@@ -59,7 +56,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> list() throws BusinessLogicException {
+    public List<BookExemplarUserHistory> list() throws BusinessLogicException {
         try{
             return bookUserHistoryDao.list();
         }catch(DatabaseException e){
@@ -69,9 +66,9 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByBook(Book book) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByBookExemplar(BookExemplar bookExemplar) throws BusinessLogicException {
         try{
-            return bookUserHistoryDao.listByBook(book);
+            return bookUserHistoryDao.listByBookExemplar(bookExemplar);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
@@ -79,7 +76,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByUser(User user) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByUser(User user) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByUser(user);
         }catch(DatabaseException e){
@@ -89,7 +86,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByInTime(boolean isInTime) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByInTime(boolean isInTime) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByInTime(isInTime);
         }catch(DatabaseException e){
@@ -99,7 +96,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByInTime(User user, boolean isInTime) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByInTime(User user, boolean isInTime) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByInTime(user, isInTime);
         }catch(DatabaseException e){
@@ -108,8 +105,17 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    public List<BookExemplarUserHistory> listByInTime(BookExemplar bookExemplar, boolean isInTime) throws BusinessLogicException {
+        try{
+            return bookUserHistoryDao.listByInTime(bookExemplar, isInTime);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
+    }
+
+    @Override
     @Transactional
-    public List<BookUserHistory> listByContinued(boolean isContinued) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByContinued(boolean isContinued) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByContinued(isContinued);
         }catch(DatabaseException e){
@@ -119,7 +125,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByContinued(User user, boolean isContinued) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByContinued(User user, boolean isContinued) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByContinued(user, isContinued);
         }catch(DatabaseException e){
@@ -128,8 +134,17 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
     }
 
     @Override
+    public List<BookExemplarUserHistory> listByContinued(BookExemplar bookExemplar, boolean isContinued) throws BusinessLogicException {
+        try{
+            return bookUserHistoryDao.listByContinued(bookExemplar, isContinued);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
+    }
+
+    @Override
     @Transactional
-    public List<BookUserHistory> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByStartDate(startDate, status);
         }catch(DatabaseException e){
@@ -139,7 +154,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByEndDate(endDate, status);
         }catch(DatabaseException e){
@@ -149,7 +164,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByStartDateBetween(startDate, endDate);
         }catch(DatabaseException e){
@@ -159,7 +174,7 @@ public class BookUserHistoryServiceImpl implements BookUserHistoryService {
 
     @Override
     @Transactional
-    public List<BookUserHistory> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
+    public List<BookExemplarUserHistory> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserHistoryDao.listByEndDateBetween(startDate, endDate);
         }catch(DatabaseException e){

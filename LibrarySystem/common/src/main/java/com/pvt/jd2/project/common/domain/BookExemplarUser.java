@@ -8,22 +8,25 @@ import java.util.Date;
  * Created with IntelliJ IDEA.
  * User: Oleg
  * Date: 24.01.14
- * Time: 23:30
+ * Time: 23:19
  */
 @Entity
-@Table(name="BOOK_USER_HISTORY")
-public class BookUserHistory implements Serializable {
+@Table(name="BOOK_EXEMPLAR_USER")
+public class BookExemplarUser implements Serializable {
 
-    @Id
-    @GeneratedValue
-    @Column(name="ID")
-    private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "BOOK_ID")
-    private Book book;
+    @EmbeddedId
+    @AttributeOverrides(value = {
+            @AttributeOverride(name="bookId", column = @Column(name="BOOK_ID")),
+            @AttributeOverride(name="libraryCode", column = @Column(name="LIBRARY_CODE"))})
+    private BookExemplarId id;
 
     @OneToOne
+    @JoinColumns(value = {
+    @JoinColumn(name = "BOOK_ID"),
+    @JoinColumn(name = "LIBRARY_CODE")})
+    private BookExemplar bookExemplar;
+
+    @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 
@@ -38,23 +41,20 @@ public class BookUserHistory implements Serializable {
     @Column(name="IS_CONTINUED")
     private boolean isContinued;
 
-    @Column(name="IS_IN_TIME")
-    private boolean isInTime;
-
-    public Long getId() {
+    public BookExemplarId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(BookExemplarId id) {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
+    public BookExemplar getBookExemplar() {
+        return bookExemplar;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookExemplar(BookExemplar bookExemplar) {
+        this.bookExemplar = bookExemplar;
     }
 
     public User getUser() {
@@ -89,28 +89,20 @@ public class BookUserHistory implements Serializable {
         isContinued = continued;
     }
 
-    public boolean isInTime() {
-        return isInTime;
-    }
-
-    public void setInTime(boolean inTime) {
-        isInTime = inTime;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BookUserHistory that = (BookUserHistory) o;
+        BookExemplarUser that = (BookExemplarUser) o;
 
-        if (book != null ? !book.equals(that.book) : that.book != null) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return book != null ? book.hashCode() : 0;
+        return id != null ? id.hashCode() : 0;
     }
 }

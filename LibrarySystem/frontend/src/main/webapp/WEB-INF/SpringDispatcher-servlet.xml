@@ -43,10 +43,11 @@
     <tx:annotation-driven  transaction-manager="transactionManager"/>
 
     <bean id="addressDao" class="com.pvt.jd2.project.back.dao.AuthorDaoImpl"/>
-    <bean id="bookUserDao" class="com.pvt.jd2.project.back.dao.BookUserDaoImpl"/>
+    <bean id="bookExemplarUserDao" class="com.pvt.jd2.project.back.dao.BookExemplarUserDaoImpl"/>
+    <bean id="bookExemplarDao" class="com.pvt.jd2.project.back.dao.BookExemplarDaoImpl"/>
     <bean id="bookDao" class="com.pvt.jd2.project.back.dao.BookDaoImpl"/>
     <bean id="bookSerialDao" class="com.pvt.jd2.project.back.dao.BookSerialDaoImpl"/>
-    <bean id="bookSerialHistoryDao" class="com.pvt.jd2.project.back.dao.BookUserHistoryDaoImpl"/>
+    <bean id="bookExemplarUserHistoryDao" class="com.pvt.jd2.project.back.dao.BookExemplarUserHistoryDaoImpl"/>
     <bean id="genreDao" class="com.pvt.jd2.project.back.dao.GenreDaoImpl"/>
     <bean id="globalSettingDao" class="com.pvt.jd2.project.back.dao.GlobalSettingDaoImpl"/>
     <bean id="permissionDao" class="com.pvt.jd2.project.back.dao.PermissionDaoImpl"/>
@@ -55,10 +56,11 @@
     <bean id="userDao" class="com.pvt.jd2.project.back.dao.UserDaoImpl"/>
 
     <bean id="addressService" class="com.pvt.jd2.project.back.service.AuthorServiceImpl"/>
-    <bean id="bookUserService" class="com.pvt.jd2.project.back.service.BookUserServiceImpl"/>
+    <bean id="bookExemplarUserService" class="com.pvt.jd2.project.back.service.BookExemplarUserServiceImpl"/>
     <bean id="bookService" class="com.pvt.jd2.project.back.service.BookServiceImpl"/>
+    <bean id="bookExemplarService" class="com.pvt.jd2.project.back.service.BookExemplarServiceImpl"/>
     <bean id="bookSerialService" class="com.pvt.jd2.project.back.service.BookSerialServiceImpl"/>
-    <bean id="bookUserHistoryService" class="com.pvt.jd2.project.back.service.BookUserHistoryServiceImpl"/>
+    <bean id="bookExemplarUserHistoryService" class="com.pvt.jd2.project.back.service.BookExemplarUserHistoryServiceImpl"/>
     <bean id="genreService" class="com.pvt.jd2.project.back.service.GenreServiceImpl"/>
     <bean id="globalSettingService" class="com.pvt.jd2.project.back.service.GlobalSettingServiceImpl"/>
     <bean id="permissionService" class="com.pvt.jd2.project.back.service.PermissionServiceImpl"/>

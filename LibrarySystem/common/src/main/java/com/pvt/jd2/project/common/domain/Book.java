@@ -28,9 +28,6 @@ public class Book implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
-    @Column(name="IS_ACTIVE")
-    private boolean isActive;
-
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name="BOOK_AUTHOR",
             joinColumns={@JoinColumn(name="BOOK_ID")},
@@ -50,6 +47,9 @@ public class Book implements Serializable {
             joinColumns={@JoinColumn(name="BOOK_ID")},
             inverseJoinColumns={@JoinColumn(name="GENRE_ID")})
     private List<Genre> genres;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookExemplar> bookExemplars;
 
     public Long getId() {
         return id;
@@ -83,14 +83,6 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public List<Author> getAuthors() {
         return authors;
     }
@@ -113,6 +105,22 @@ public class Book implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public List<BookExemplar> getBookExemplars() {
+        return bookExemplars;
+    }
+
+    public void setBookExemplars(List<BookExemplar> bookExemplars) {
+        this.bookExemplars = bookExemplars;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     @Override

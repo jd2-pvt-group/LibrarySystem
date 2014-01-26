@@ -1,13 +1,10 @@
 package com.pvt.jd2.project.back.service;
 
-import com.pvt.jd2.project.common.dao.BookUserDao;
-import com.pvt.jd2.project.common.domain.Book;
-import com.pvt.jd2.project.common.domain.BookUser;
-import com.pvt.jd2.project.common.domain.ComparisonStatus;
-import com.pvt.jd2.project.common.domain.User;
+import com.pvt.jd2.project.common.dao.BookExemplarUserDao;
+import com.pvt.jd2.project.common.domain.*;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
-import com.pvt.jd2.project.common.service.BookUserService;
+import com.pvt.jd2.project.common.service.BookExemplarUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +19,14 @@ import java.util.List;
  * Time: 16:33
  */
 @Service
-public class BookUserServiceImpl implements BookUserService {
+public class BookExemplarUserServiceImpl implements BookExemplarUserService {
 
     @Autowired
-    private BookUserDao bookUserDao;
+    private BookExemplarUserDao bookUserDao;
 
     @Override
     @Transactional
-    public void create(BookUser bookUser) throws BusinessLogicException {
+    public void create(BookExemplarUser bookUser) throws BusinessLogicException {
         try{
             bookUserDao.create(bookUser);
         }catch(DatabaseException e){
@@ -39,7 +36,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public void update(BookUser bookUser) throws BusinessLogicException {
+    public void update(BookExemplarUser bookUser) throws BusinessLogicException {
         try{
             bookUserDao.update(bookUser);
         }catch(DatabaseException e){
@@ -49,7 +46,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public void delete(BookUser bookUser) throws BusinessLogicException {
+    public void delete(BookExemplarUser bookUser) throws BusinessLogicException {
         try{
             bookUserDao.delete(bookUser);
         }catch(DatabaseException e){
@@ -59,9 +56,9 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public BookUser findByBook(Book book) throws BusinessLogicException {
+    public BookExemplarUser findByBookExemplar(BookExemplar bookExemplar) throws BusinessLogicException {
         try{
-           return bookUserDao.findByBook(book);
+           return bookUserDao.findByBookExemplar(bookExemplar);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }
@@ -69,7 +66,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> list() throws BusinessLogicException {
+    public List<BookExemplarUser> list() throws BusinessLogicException {
         try{
             return bookUserDao.list();
         }catch(DatabaseException e){
@@ -79,7 +76,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByUser(User user) throws BusinessLogicException {
+    public List<BookExemplarUser> listByUser(User user) throws BusinessLogicException {
         try{
             return bookUserDao.listByUser(user);
         }catch(DatabaseException e){
@@ -89,7 +86,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByDebt() throws BusinessLogicException {
+    public List<BookExemplarUser> listByDebt() throws BusinessLogicException {
         try{
             return bookUserDao.listByDebt();
         }catch(DatabaseException e){
@@ -99,7 +96,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByDebtUser(User user) throws BusinessLogicException {
+    public List<BookExemplarUser> listByDebtUser(User user) throws BusinessLogicException {
         try{
             return bookUserDao.listByDebtUser(user);
         }catch(DatabaseException e){
@@ -109,7 +106,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByIsContinued() throws BusinessLogicException {
+    public List<BookExemplarUser> listByIsContinued() throws BusinessLogicException {
         try{
             return bookUserDao.listByIsContinued();
         }catch(DatabaseException e){
@@ -119,7 +116,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByIsContinued(User user) throws BusinessLogicException {
+    public List<BookExemplarUser> listByIsContinued(User user) throws BusinessLogicException {
         try{
             return bookUserDao.listByIsContinued(user);
         }catch(DatabaseException e){
@@ -129,7 +126,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException {
+    public List<BookExemplarUser> listByStartDate(Date startDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserDao.listByStartDate(startDate, status);
         }catch(DatabaseException e){
@@ -139,7 +136,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException {
+    public List<BookExemplarUser> listByEndDate(Date endDate, ComparisonStatus status) throws BusinessLogicException {
         try{
             return bookUserDao.listByEndDate(endDate, status);
         }catch(DatabaseException e){
@@ -149,7 +146,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
+    public List<BookExemplarUser> listByStartDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserDao.listByStartDateBetween(startDate, endDate);
         }catch(DatabaseException e){
@@ -159,7 +156,7 @@ public class BookUserServiceImpl implements BookUserService {
 
     @Override
     @Transactional
-    public List<BookUser> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
+    public List<BookExemplarUser> listByEndDateBetween(Date startDate, Date endDate) throws BusinessLogicException {
         try{
             return bookUserDao.listByEndDateBetween(startDate, endDate);
         }catch(DatabaseException e){

@@ -12,6 +12,5 @@ public interface Book_ {
     String ISBN = "isbn";
     String NAME = "name";
     String DESCRIPTION = "description";
-    String IS_ACTIVE = "isActive";
 
 }

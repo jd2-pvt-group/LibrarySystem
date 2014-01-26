@@ -47,34 +47,6 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void activate(Book book) throws DatabaseException {
-        try{
-            if (!book.isActive()){
-                updateActiveStatus(book, true);
-            }
-        }catch(Exception e){
-            throw new DatabaseException(e);
-        }
-    }
-
-    @Override
-    public void deactivate(Book book) throws DatabaseException {
-        try{
-            if (book.isActive()){
-                updateActiveStatus(book, false);
-            }
-        }catch(Exception e){
-            throw new DatabaseException(e);
-        }
-    }
-
-    private void updateActiveStatus(Book book, boolean isActive) {
-        book.setActive(false);
-        Session session = sessionFactory.getCurrentSession();
-        session.merge(book);
-    }
-
-    @Override
     public Book findById(Long id) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
@@ -102,10 +74,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> list(ActivationStatus status) throws DatabaseException {
+    public List<Book> list() throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
-            updateCriteriaForStatus(criteria, status);
             return (List<Book>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
@@ -113,10 +84,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> listByPartOfName(String partOfName, ActivationStatus status) throws DatabaseException {
+    public List<Book> listByPartOfName(String partOfName) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
-            updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.like(Book_.NAME, partOfName));
             return (List<Book>)criteria.list();
         }catch(Exception e){
@@ -125,25 +95,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> listByPartOfDescription(String partOfDescription, ActivationStatus status) throws DatabaseException {
+    public List<Book> listByPartOfDescription(String partOfDescription) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();;
-            updateCriteriaForStatus(criteria, status);
             criteria.add(Restrictions.like(Book_.DESCRIPTION, partOfDescription));
             return (List<Book>)criteria.list();
         }catch(Exception e){
             throw new DatabaseException(e);
-        }
-    }
-
-    private void updateCriteriaForStatus(Criteria criteria, ActivationStatus status) {
-        switch (status){
-            case ACTIVE:
-                criteria.add(Restrictions.eq(Book_.IS_ACTIVE, true));
-                break;
-            case INACTIVE:
-                criteria.add(Restrictions.eq(Book_.IS_ACTIVE, false));
-                break;
         }
     }
 
