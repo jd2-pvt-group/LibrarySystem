@@ -45,9 +45,25 @@
     <bean id="addressDao" class="com.pvt.jd2.project.back.dao.AuthorDaoImpl"/>
     <bean id="bookUserDao" class="com.pvt.jd2.project.back.dao.BookUserDaoImpl"/>
     <bean id="bookDao" class="com.pvt.jd2.project.back.dao.BookDaoImpl"/>
+    <bean id="bookSerialDao" class="com.pvt.jd2.project.back.dao.BookSerialDaoImpl"/>
+    <bean id="bookSerialHistoryDao" class="com.pvt.jd2.project.back.dao.BookUserHistoryDaoImpl"/>
+    <bean id="genreDao" class="com.pvt.jd2.project.back.dao.GenreDaoImpl"/>
+    <bean id="globalSettingDao" class="com.pvt.jd2.project.back.dao.GlobalSettingDaoImpl"/>
+    <bean id="permissionDao" class="com.pvt.jd2.project.back.dao.PermissionDaoImpl"/>
+    <bean id="publisherDao" class="com.pvt.jd2.project.back.dao.PublisherDaoImpl"/>
+    <bean id="roleDao" class="com.pvt.jd2.project.back.dao.RoleDaoImpl"/>
+    <bean id="userDao" class="com.pvt.jd2.project.back.dao.UserDaoImpl"/>
 
     <bean id="addressService" class="com.pvt.jd2.project.back.service.AuthorServiceImpl"/>
     <bean id="bookUserService" class="com.pvt.jd2.project.back.service.BookUserServiceImpl"/>
     <bean id="bookService" class="com.pvt.jd2.project.back.service.BookServiceImpl"/>
+    <bean id="bookSerialService" class="com.pvt.jd2.project.back.service.BookSerialServiceImpl"/>
+    <bean id="bookUserHistoryService" class="com.pvt.jd2.project.back.service.BookUserHistoryServiceImpl"/>
+    <bean id="genreService" class="com.pvt.jd2.project.back.service.GenreServiceImpl"/>
+    <bean id="globalSettingService" class="com.pvt.jd2.project.back.service.GlobalSettingServiceImpl"/>
+    <bean id="permissionService" class="com.pvt.jd2.project.back.service.PermissionServiceImpl"/>
+    <bean id="publisherService" class="com.pvt.jd2.project.back.service.PublisherServiceImpl"/>
+    <bean id="roleService" class="com.pvt.jd2.project.back.service.RoleServiceImpl"/>
+    <bean id="userService" class="com.pvt.jd2.project.back.service.UserServiceImpl"/>
 
 </beans>
