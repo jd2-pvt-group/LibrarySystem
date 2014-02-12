@@ -17,4 +17,6 @@ public interface User_ {
     String IS_ACTIVE = "isActive";
     String PASS_NUMBER = "passportNumber";
 
+    String ROLES = "roles";
+
 }

@@ -12,4 +12,8 @@ public interface Genre_ {
     String NAME = "name";
     String DESCRIPTION = "description";
 
+    String BOOKS = "books";
+    String BOOK = "book";
+    String BOOK_ID = "book.id";
+
 }

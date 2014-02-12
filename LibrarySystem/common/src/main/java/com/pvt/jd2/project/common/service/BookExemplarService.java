@@ -20,6 +20,8 @@ public interface BookExemplarService {
 
     void delete(BookExemplar bookExemplar) throws BusinessLogicException;
 
+    boolean exists(BookExemplarId id) throws BusinessLogicException;
+
     void activate(BookExemplar bookExemplar) throws BusinessLogicException;
 
     void deactivate(BookExemplar bookExemplar) throws BusinessLogicException;

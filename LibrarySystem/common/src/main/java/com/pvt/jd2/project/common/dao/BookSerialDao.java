@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.common.dao;
 
+import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.BookSerial;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 
@@ -17,12 +18,16 @@ public interface BookSerialDao {
 
     void delete(BookSerial bookSerial) throws DatabaseException;
 
+    void update(BookSerial bookSerial) throws DatabaseException;
+
+    boolean exists(BookSerial bookSerial) throws DatabaseException;
+
     BookSerial findById(Long id) throws DatabaseException;
+
+    BookSerial findFor(Book book) throws DatabaseException;
 
     List<BookSerial> list() throws DatabaseException;
 
-    List<BookSerial> listByPartOfName(String partOfName) throws DatabaseException;
-
-    List<BookSerial> listByPartOfDescription(String partOfDescription) throws DatabaseException;
+    List<BookSerial> listLike(BookSerial bookSerial) throws DatabaseException;
 
 }

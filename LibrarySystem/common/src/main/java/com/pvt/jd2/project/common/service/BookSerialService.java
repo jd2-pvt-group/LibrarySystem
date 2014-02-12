@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.common.service;
 
+import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.BookSerial;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 
@@ -17,12 +18,16 @@ public interface BookSerialService {
 
     void delete(BookSerial bookSerial) throws BusinessLogicException;
 
+    void update(BookSerial bookSerial) throws BusinessLogicException;
+
+    boolean exists(BookSerial bookSerial) throws BusinessLogicException;
+
     BookSerial findById(Long id) throws BusinessLogicException;
+
+    BookSerial findFor(Book book) throws BusinessLogicException;
 
     List<BookSerial> list() throws BusinessLogicException;
 
-    List<BookSerial> listByPartOfName(String partOfName) throws BusinessLogicException;
-
-    List<BookSerial> listByPartOfDescription(String partOfDescription) throws BusinessLogicException;
+    List<BookSerial> listLike(BookSerial bookSerial) throws BusinessLogicException;
 
 }

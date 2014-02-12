@@ -19,15 +19,16 @@ public interface BookService {
 
     void delete(Book book) throws BusinessLogicException;
 
+    boolean exists(Book book) throws BusinessLogicException;
+
     Book findById(Long id) throws BusinessLogicException;
+
+    Book findByIdFull(Long id) throws BusinessLogicException;
 
     Book findByIsbn(String isbn) throws BusinessLogicException;
 
     List<Book> list() throws BusinessLogicException;
 
-    List<Book> listByPartOfName(String partOfName) throws BusinessLogicException;
-
-    List<Book> listByPartOfDescription(String partOfDescription) throws BusinessLogicException;
-
+    List<Book> listLike(Book book) throws BusinessLogicException;
 
 }

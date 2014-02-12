@@ -11,7 +11,8 @@ import java.util.List;
  * Time: 23:21
  */
 @Entity
-@Table(name = "USER")
+@Table(name = "USER",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"LOGIN", "PASS_NUMBER"})})
 public class User implements Serializable {
 
     @Id
@@ -40,14 +41,14 @@ public class User implements Serializable {
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
-    @ManyToMany
+    @OneToMany
     @JoinTable(name="USER_ROLE",
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles;
 
-    @OneToMany(mappedBy="user")
-    private List<BookExemplarUser> bookUsers;
+//    @OneToMany(mappedBy="user")
+//    private List<BookExemplarUser> bookUsers;
 
     public Long getId() {
         return id;
@@ -121,13 +122,13 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public List<BookExemplarUser> getBookUsers() {
-        return bookUsers;
-    }
-
-    public void setBookUsers(List<BookExemplarUser> bookUsers) {
-        this.bookUsers = bookUsers;
-    }
+//    public List<BookExemplarUser> getBookUsers() {
+//        return bookUsers;
+//    }
+//
+//    public void setBookUsers(List<BookExemplarUser> bookUsers) {
+//        this.bookUsers = bookUsers;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -144,5 +145,19 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", isActive=" + isActive +
+                '}';
     }
 }

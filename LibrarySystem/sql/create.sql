@@ -3,7 +3,7 @@
 -- Server version:               5.5.35 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-01-26 20:58:17
+-- Date/time:                    2014-02-09 15:14:31
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS `book_exemplar_user` (
   `IS_CONTINUED` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`BOOK_ID`,`LIBRARY_CODE`),
   KEY `FK_BEU_USER` (`USER_ID`),
-  CONSTRAINT `FK_BEU__BOOK_EXEPLAR` FOREIGN KEY (`BOOK_ID`, `LIBRARY_CODE`) REFERENCES `book_exemplar` (`BOOK_ID`, `LIBRARY_CODE`),
-  CONSTRAINT `FK_BEU_USER` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`)
+  CONSTRAINT `FK_BEU_USER` FOREIGN KEY (`USER_ID`) REFERENCES `user` (`ID`),
+  CONSTRAINT `FK_BEU__BOOK_EXEPLAR` FOREIGN KEY (`BOOK_ID`, `LIBRARY_CODE`) REFERENCES `book_exemplar` (`BOOK_ID`, `LIBRARY_CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -125,7 +125,8 @@ CREATE TABLE IF NOT EXISTS `book_serial` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `NAME` (`NAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -136,7 +137,8 @@ CREATE TABLE IF NOT EXISTS `genre` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(100) NOT NULL,
   `DESCRIPTION` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `NAME` (`NAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -170,7 +172,8 @@ CREATE TABLE IF NOT EXISTS `publisher` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
   `ADDRESS` varchar(255) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `NAME` (`NAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Data exporting was unselected.
@@ -178,9 +181,9 @@ CREATE TABLE IF NOT EXISTS `publisher` (
 
 -- Dumping structure for table librarydb.role
 CREATE TABLE IF NOT EXISTS `role` (
-  `ID` int(10) NOT NULL AUTO_INCREMENT,
-  `NAME` int(10) NOT NULL,
-  `DESCRIPTION` int(10) DEFAULT NULL,
+  `ID` bigint(10) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `NAME` (`NAME`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -190,10 +193,11 @@ CREATE TABLE IF NOT EXISTS `role` (
 
 -- Dumping structure for table librarydb.role_permission
 CREATE TABLE IF NOT EXISTS `role_permission` (
-  `ROLE_ID` int(10) NOT NULL,
+  `ROLE_ID` bigint(10) NOT NULL,
   `PERMISSION_ID` int(10) NOT NULL,
   PRIMARY KEY (`ROLE_ID`,`PERMISSION_ID`),
   KEY `FK_RP_PERMISSION` (`PERMISSION_ID`),
+  KEY `FK_RP_ROLE` (`ROLE_ID`),
   CONSTRAINT `FK_RP_PERMISSION` FOREIGN KEY (`PERMISSION_ID`) REFERENCES `permission` (`ID`),
   CONSTRAINT `FK_RP_ROLE` FOREIGN KEY (`ROLE_ID`) REFERENCES `role` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -222,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping structure for table librarydb.user_role
 CREATE TABLE IF NOT EXISTS `user_role` (
   `USER_ID` int(10) NOT NULL,
-  `ROLE_ID` int(10) NOT NULL,
+  `ROLE_ID` bigint(10) NOT NULL,
   PRIMARY KEY (`USER_ID`,`ROLE_ID`),
   KEY `FK_UR_ROLE` (`ROLE_ID`),
   CONSTRAINT `FK_UR_ROLE` FOREIGN KEY (`ROLE_ID`) REFERENCES `role` (`ID`),

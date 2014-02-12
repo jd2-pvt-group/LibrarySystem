@@ -12,4 +12,9 @@ public interface Role_ {
     String NAME = "name";
     String DESCRIPTION = "description";
 
+    String PERMISSIONS = "permissions";
+    String USERS = "users";
+    String USER = "user";
+    String USER_ID = "user.id";
+
 }

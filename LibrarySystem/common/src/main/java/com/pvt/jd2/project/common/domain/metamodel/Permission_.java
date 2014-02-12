@@ -12,4 +12,8 @@ public interface Permission_ {
     String CODE = "code";
     String DESCRIPTION = "description";
 
+    String ROLES = "roles";
+    String ROLE = "role";
+    String ROLE_ID = "role.id";
+
 }

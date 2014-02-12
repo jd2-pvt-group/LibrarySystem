@@ -3,6 +3,7 @@ package com.pvt.jd2.project.common.service;
 import com.pvt.jd2.project.common.domain.ActivationStatus;
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
+import com.pvt.jd2.project.common.exceptions.DatabaseException;
 
 import java.util.List;
 
@@ -15,6 +16,12 @@ import java.util.List;
 public interface UserService {
 
     void create(User user) throws BusinessLogicException;
+
+    void update(User user) throws BusinessLogicException;
+
+    boolean isLoginExist(Long id, String login) throws BusinessLogicException;
+
+    boolean isPassportNumberExist(Long id, String passportNumber) throws BusinessLogicException;
 
     void delete(User user) throws BusinessLogicException;
 
@@ -30,13 +37,8 @@ public interface UserService {
 
     List<User> list(ActivationStatus status) throws BusinessLogicException;
 
-    List<User> listByPartOfFirstName(String partOfFirstName, ActivationStatus status) throws BusinessLogicException;
+    List<User> listLike(User user)throws BusinessLogicException;
 
-    List<User> listByPartOfLastName(String partOfLastName, ActivationStatus status) throws BusinessLogicException;
-
-    List<User> listByPartOfAddress(String partOfAddress, ActivationStatus status) throws BusinessLogicException;
-
-    List<User> listByPartOfPassportNumber(String partOfPassportNumber, ActivationStatus status) throws BusinessLogicException;
-
+    List<User> listLike(User user, ActivationStatus status)throws BusinessLogicException;
 
 }

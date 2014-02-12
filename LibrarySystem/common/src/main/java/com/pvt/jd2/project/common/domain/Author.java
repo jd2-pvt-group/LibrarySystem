@@ -31,7 +31,7 @@ public class Author implements Serializable {
     public Author(){
     }
 
-    public void setId(Long integer) {
+    public void setId(Long id) {
         this.id = id;
     }
 

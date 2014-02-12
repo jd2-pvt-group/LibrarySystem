@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <!-- LOGIN WINDOW DEFINITION -->
+
+    <definition name="login_definition" template="/WEB-INF/pages/definitions/loginTemplate.jsp">
+        <put-attribute name="login_form"  value="/WEB-INF/pages/tiles/login/loginForm.jsp"/>
+    </definition>
+
+    <definition name="login_error_definition" extends="login_definition">
+        <put-attribute name="login_form"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <!-- STANDARD WINDOW DEFINITION -->
+
+    <definition name="standard_definition" template="/WEB-INF/pages/definitions/standardTemplate.jsp">
+        <put-attribute name="header"  value="/WEB-INF/pages/tiles/standard/standardHeader.jsp"/>
+        <put-attribute name="top_menu"  value="/WEB-INF/pages/tiles/standard/standardTopMenu.jsp"/>
+        <put-attribute name="footer"  value="/WEB-INF/pages/tiles/standard/standardFooter.jsp"/>
+    </definition>
+
+    <definition name="standard_definition_welcome" extends="standard_definition">
+        <put-attribute name="header"  value="/WEB-INF/pages/tiles/standard/standardHeader.jsp"/>
+        <put-attribute name="top_menu"  value="/WEB-INF/pages/tiles/standard/standardTopMenu.jsp"/>
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/standard/standardLeftMenu.jsp"/>
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/standard/standardWelcome.jsp"/>
+        <put-attribute name="footer"  value="/WEB-INF/pages/tiles/standard/standardFooter.jsp"/>
+    </definition>
+
+    <!-- USER MANAGEMENT DEFINITIONS -->
+
+    <definition name="user_management" extends="standard_definition">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/user_management/userLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="user_management_error" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="user_management_welcome" extends="user_management">
+         <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userWelcome.jsp"/>
+    </definition>
+
+    <definition name="user_management_info" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userInfo.jsp"/>
+    </definition>
+
+    <definition name="user_management_update" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userUpdate.jsp"/>
+    </definition>
+    <definition name="user_management_find" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userFind.jsp"/>
+    </definition>
+    <definition name="user_management_add" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userAdd.jsp"/>
+    </definition>
+    <definition name="user_management_list" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userList.jsp"/>
+    </definition>
+
+    <!-- ROLE MANAGEMENT DEFINITIONS -->
+
+    <definition name="role_management" extends="standard_definition">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/role_management/roleLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="role_management_welcome" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleWelcome.jsp"/>
+    </definition>
+
+    <definition name="role_management_add" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleAdd.jsp"/>
+    </definition>
+
+    <definition name="role_management_info" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleInfo.jsp"/>
+    </definition>
+
+    <definition name="role_management_update" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleUpdate.jsp"/>
+    </definition>
+
+    <definition name="role_management_list" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleList.jsp"/>
+    </definition>
+
+    <definition name="role_management_find" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleFind.jsp"/>
+    </definition>
+
+    <definition name="role_management_permissions" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/rolePermission.jsp"/>
+    </definition>
+
+    <definition name="role_management_add_permissions" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/role_management/roleAddPermission.jsp"/>
+    </definition>
+
+    <definition name="role_management_error" extends="role_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+
+    <!-- LIBRARY MANAGEMENT DEFINITIONS -->
+
+    <definition name="library_management" extends="standard_definition">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/libraryLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_management_welcome" extends="library_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/libraryWelcome.jsp"/>
+    </definition>
+
+    <definition name="library_management_error" extends="library_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <!-- LIBRARY BOOK MANAGEMENT DEFINITIONS -->
+
+    <!-- book exemplar -->
+
+    <definition name="library_book_management" extends="library_management_welcome">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/bookLeftMenu.jsp"/>
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/libraryWelcome.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management" extends="library_book_management">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/bookExemplar/bookExemplarLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management_error" extends="library_book_exemplar_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management_find" extends="library_book_exemplar_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookExemplar/bookExemplarFind.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management_list" extends="library_book_exemplar_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookExemplar/bookExemplarList.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management_add" extends="library_book_exemplar_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookExemplar/bookExemplarAdd.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management_info" extends="library_book_exemplar_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookExemplar/bookExemplarInfo.jsp"/>
+    </definition>
+
+    <definition name="library_book_exemplar_management_update" extends="library_book_exemplar_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookExemplar/bookExemplarUpdate.jsp"/>
+    </definition>
+
+    <!-- book type -->
+
+    <definition name="library_book_type_management" extends="library_book_management">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/bookType/bookTypeLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_book_type_management_add" extends="library_book_type_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookType/bookTypeAdd.jsp"/>
+    </definition>
+
+    <definition name="library_book_type_management_info" extends="library_book_type_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookType/bookTypeInfo.jsp"/>
+    </definition>
+
+    <definition name="library_book_type_management_error" extends="library_book_type_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="library_book_type_management_list" extends="library_book_type_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookType/bookTypeList.jsp"/>
+    </definition>
+
+    <definition name="library_book_type_management_find" extends="library_book_type_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookType/bookTypeFind.jsp"/>
+    </definition>
+
+    <definition name="library_book_type_management_update" extends="library_book_type_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookType/bookTypeUpdate.jsp"/>
+    </definition>
+
+    <!-- author -->
+
+    <definition name="library_author_management" extends="library_book_management">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/authors/authorsLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_author_management_error" extends="library_author_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="library_author_management_info" extends="library_author_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/authors/authorsInfo.jsp"/>
+    </definition>
+
+    <definition name="library_author_management_add" extends="library_author_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/authors/authorsAdd.jsp"/>
+    </definition>
+
+    <definition name="library_author_management_update" extends="library_author_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/authors/authorsUpdate.jsp"/>
+    </definition>
+
+    <definition name="library_author_management_find" extends="library_author_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/authors/authorsFind.jsp"/>
+    </definition>
+
+    <definition name="library_author_management_list" extends="library_author_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/authors/authorsList.jsp"/>
+    </definition>
+
+    <!-- book serial -->
+
+    <definition name="library_book_serial_management" extends="library_book_management">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/bookSerial/bookSerialLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_book_serial_management_error" extends="library_book_serial_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="library_book_serial_management_info" extends="library_book_serial_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookSerial/bookSerialInfo.jsp"/>
+    </definition>
+
+    <definition name="library_book_serial_management_add" extends="library_book_serial_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookSerial/bookSerialAdd.jsp"/>
+    </definition>
+
+    <definition name="library_book_serial_management_update" extends="library_book_serial_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookSerial/bookSerialUpdate.jsp"/>
+    </definition>
+
+    <definition name="library_book_serial_management_find" extends="library_book_serial_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookSerial/bookSerialFind.jsp"/>
+    </definition>
+
+    <definition name="library_book_serial_management_list" extends="library_book_serial_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/bookSerial/bookSerialList.jsp"/>
+    </definition>
+
+    <!-- genre -->
+
+    <definition name="library_genre_management" extends="library_book_management">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/genres/genresLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_genre_management_error" extends="library_genre_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="library_genre_management_info" extends="library_genre_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/genres/genresInfo.jsp"/>
+    </definition>
+
+    <definition name="library_genre_management_add" extends="library_genre_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/genres/genresAdd.jsp"/>
+    </definition>
+
+    <definition name="library_genre_management_update" extends="library_genre_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/genres/genresUpdate.jsp"/>
+    </definition>
+
+    <definition name="library_genre_management_find" extends="library_genre_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/genres/genresFind.jsp"/>
+    </definition>
+
+    <definition name="library_genre_management_list" extends="library_genre_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/genres/genresList.jsp"/>
+    </definition>
+
+    <!-- publisher -->
+
+    <definition name="library_publisher_management" extends="library_book_management">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_management/publisher/publisherLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="library_publisher_management_error" extends="library_publisher_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+    <definition name="library_publisher_management_info" extends="library_publisher_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/publisher/publisherInfo.jsp"/>
+    </definition>
+
+    <definition name="library_publisher_management_add" extends="library_publisher_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/publisher/publisherAdd.jsp"/>
+    </definition>
+
+    <definition name="library_publisher_management_update" extends="library_publisher_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/publisher/publisherUpdate.jsp"/>
+    </definition>
+
+    <definition name="library_publisher_management_find" extends="library_publisher_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/publisher/publisherFind.jsp"/>
+    </definition>
+
+    <definition name="library_publisher_management_list" extends="library_publisher_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/library_management/book_management/publisher/publisherList.jsp"/>
+    </definition>
+
+    <!-- LIBRARY BOOK ORDERING MANAGEMENT DEFINITIONS -->
+
+    <definition name="library_book_ordering_management" extends="library_management_welcome">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_ordering/bookOrderingLeftMenu.jsp"/>
+    </definition>
+
+    <!-- LIBRARY BOOK HISTORY MANAGEMENT DEFINITIONS -->
+
+    <definition name="library_book_history_management" extends="library_management_welcome">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/library_management/book_history/bookHistoryLeftMenu.jsp"/>
+
+    </definition>
+
+    <!-- PERSONAL MANAGEMENT DEFINITIONS -->
+
+    <definition name="personal_management" extends="standard_definition">
+        <put-attribute name="left_menu"  value="/WEB-INF/pages/tiles/personal_management/personalLeftMenu.jsp"/>
+    </definition>
+
+    <definition name="personal_management_welcome" extends="personal_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/personal_management/personalWelcome.jsp"/>
+    </definition>
+
+    <definition name="personal_management_userInfo" extends="personal_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userInfo.jsp"/>
+    </definition>
+
+    <definition name="personal_management_userUpdate" extends="personal_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userUpdate.jsp"/>
+    </definition>
+
+    <definition name="personal_management_error" extends="personal_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
+    </definition>
+
+</tiles-definitions>

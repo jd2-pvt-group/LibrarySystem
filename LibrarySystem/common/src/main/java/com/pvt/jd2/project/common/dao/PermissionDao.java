@@ -1,6 +1,7 @@
 package com.pvt.jd2.project.common.dao;
 
 import com.pvt.jd2.project.common.domain.Permission;
+import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public interface PermissionDao {
 
     List<Permission> list() throws DatabaseException;
 
-    List<Permission> listByPartOfCode(String partOfCode) throws DatabaseException;
+    List<Permission> listLike(Permission permission) throws DatabaseException;
 
-    List<Permission> listByPartOfDescription(String partOfDescription) throws DatabaseException;
+    List<Permission> listForRole(Role role) throws DatabaseException;
 
 }

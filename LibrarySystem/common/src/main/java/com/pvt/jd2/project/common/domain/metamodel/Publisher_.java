@@ -12,4 +12,8 @@ public interface Publisher_ {
     String NAME = "name";
     String ADDRESS = "address";
 
+    String BOOKS = "books";
+    String BOOK = "book";
+    String BOOK_ID = "book.id";
+
 }

@@ -6,7 +6,7 @@ package com.pvt.jd2.project.common.exceptions;
  * Date: 22.01.14
  * Time: 17:54
  */
-public class BusinessLogicException extends Exception {
+public class BusinessLogicException extends RuntimeException {
 
     public BusinessLogicException() {
     }
@@ -23,7 +23,4 @@ public class BusinessLogicException extends Exception {
         super(cause);
     }
 
-    public BusinessLogicException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

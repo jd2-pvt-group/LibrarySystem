@@ -22,8 +22,8 @@ public class Publisher implements Serializable {
     @Column(name="NAME")
     private String name;
 
-    @Column(name="DESCRIPTION")
-    private String description;
+    @Column(name="ADDRESS")
+    private String address;
 
     @OneToMany(mappedBy="publisher")
     private List<Book> books;
@@ -44,12 +44,12 @@ public class Publisher implements Serializable {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<Book> getBooks() {

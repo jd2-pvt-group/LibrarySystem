@@ -12,5 +12,9 @@ public interface Book_ {
     String ISBN = "isbn";
     String NAME = "name";
     String DESCRIPTION = "description";
+    String PUBLISHER = "publisher";
+    String BOOK_SERIAL = "bookSerial";
+    String AUTHORS = "authors";
+    String GENRES = "genres";
 
 }

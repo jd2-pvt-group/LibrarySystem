@@ -1,6 +1,7 @@
 package com.pvt.jd2.project.common.domain;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +14,8 @@ import java.util.List;
  * Time: 22:54
  */
 @Entity
-@Table(name="ROLE")
+@Table(name="ROLE",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"NAME"})})
 public class Role implements Serializable {
 
     @Id
@@ -27,14 +29,11 @@ public class Role implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name="ROLE_PERMISSION",
             joinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")},
             inverseJoinColumns={@JoinColumn(name="PERMISSION_ID", referencedColumnName = "ID")})
     private List<Permission> permissions;
-
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
 
     public Long getId() {
         return id;
@@ -68,14 +67,6 @@ public class Role implements Serializable {
         this.permissions = permissions;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,5 +82,14 @@ public class Role implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

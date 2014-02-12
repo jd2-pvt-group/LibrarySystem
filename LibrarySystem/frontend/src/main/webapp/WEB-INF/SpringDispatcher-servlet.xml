@@ -3,12 +3,30 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
+          p:definitions="/WEB-INF/tiles.xml"/>
+
+    <bean id="tilesViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.tiles2.TilesView"/>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages/messages"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+    </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/" />
@@ -16,14 +34,14 @@
     </bean>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/librarydb" />
-        <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/librarydb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="com.pvt.jd2.project.common.domain"/>
         <property name="hibernateProperties">
             <props>
@@ -35,37 +53,60 @@
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <context:component-scan base-package="com.pvt.jd2.project.front" />
+    <context:component-scan base-package="com.pvt.jd2.project.front"/>
 
-    <tx:annotation-driven  transaction-manager="transactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="addressDao" class="com.pvt.jd2.project.back.dao.AuthorDaoImpl"/>
-    <bean id="bookExemplarUserDao" class="com.pvt.jd2.project.back.dao.BookExemplarUserDaoImpl"/>
-    <bean id="bookExemplarDao" class="com.pvt.jd2.project.back.dao.BookExemplarDaoImpl"/>
-    <bean id="bookDao" class="com.pvt.jd2.project.back.dao.BookDaoImpl"/>
-    <bean id="bookSerialDao" class="com.pvt.jd2.project.back.dao.BookSerialDaoImpl"/>
-    <bean id="bookExemplarUserHistoryDao" class="com.pvt.jd2.project.back.dao.BookExemplarUserHistoryDaoImpl"/>
-    <bean id="genreDao" class="com.pvt.jd2.project.back.dao.GenreDaoImpl"/>
-    <bean id="globalSettingDao" class="com.pvt.jd2.project.back.dao.GlobalSettingDaoImpl"/>
-    <bean id="permissionDao" class="com.pvt.jd2.project.back.dao.PermissionDaoImpl"/>
-    <bean id="publisherDao" class="com.pvt.jd2.project.back.dao.PublisherDaoImpl"/>
-    <bean id="roleDao" class="com.pvt.jd2.project.back.dao.RoleDaoImpl"/>
-    <bean id="userDao" class="com.pvt.jd2.project.back.dao.UserDaoImpl"/>
+    <mvc:annotation-driven/>
 
-    <bean id="addressService" class="com.pvt.jd2.project.back.service.AuthorServiceImpl"/>
-    <bean id="bookExemplarUserService" class="com.pvt.jd2.project.back.service.BookExemplarUserServiceImpl"/>
-    <bean id="bookService" class="com.pvt.jd2.project.back.service.BookServiceImpl"/>
-    <bean id="bookExemplarService" class="com.pvt.jd2.project.back.service.BookExemplarServiceImpl"/>
-    <bean id="bookSerialService" class="com.pvt.jd2.project.back.service.BookSerialServiceImpl"/>
-    <bean id="bookExemplarUserHistoryService" class="com.pvt.jd2.project.back.service.BookExemplarUserHistoryServiceImpl"/>
-    <bean id="genreService" class="com.pvt.jd2.project.back.service.GenreServiceImpl"/>
-    <bean id="globalSettingService" class="com.pvt.jd2.project.back.service.GlobalSettingServiceImpl"/>
-    <bean id="permissionService" class="com.pvt.jd2.project.back.service.PermissionServiceImpl"/>
-    <bean id="publisherService" class="com.pvt.jd2.project.back.service.PublisherServiceImpl"/>
-    <bean id="roleService" class="com.pvt.jd2.project.back.service.RoleServiceImpl"/>
-    <bean id="userService" class="com.pvt.jd2.project.back.service.UserServiceImpl"/>
+    <mvc:resources location="/resources/" mapping="/resources/**" />
 
+    <bean id="authorDao" class="com.pvt.jd2.project.back.hibernate.dao.AuthorDaoImpl"/>
+    <bean id="bookExemplarUserDao" class="com.pvt.jd2.project.back.hibernate.dao.BookExemplarUserDaoImpl"/>
+    <bean id="bookExemplarDao" class="com.pvt.jd2.project.back.hibernate.dao.BookExemplarDaoImpl"/>
+    <bean id="bookDao" class="com.pvt.jd2.project.back.hibernate.dao.BookDaoImpl"/>
+    <bean id="bookSerialDao" class="com.pvt.jd2.project.back.hibernate.dao.BookSerialDaoImpl"/>
+    <bean id="bookExemplarUserHistoryDao" class="com.pvt.jd2.project.back.hibernate.dao.BookExemplarUserHistoryDaoImpl"/>
+    <bean id="genreDao" class="com.pvt.jd2.project.back.hibernate.dao.GenreDaoImpl"/>
+    <bean id="globalSettingDao" class="com.pvt.jd2.project.back.hibernate.dao.GlobalSettingDaoImpl"/>
+    <bean id="permissionDao" class="com.pvt.jd2.project.back.hibernate.dao.PermissionDaoImpl"/>
+    <bean id="publisherDao" class="com.pvt.jd2.project.back.hibernate.dao.PublisherDaoImpl"/>
+    <bean id="roleDao" class="com.pvt.jd2.project.back.hibernate.dao.RoleDaoImpl"/>
+    <bean id="userDao" class="com.pvt.jd2.project.back.hibernate.dao.UserDaoImpl"/>
+
+    <bean id="authorService" class="com.pvt.jd2.project.back.hibernate.service.AuthorServiceImpl"/>
+    <bean id="bookExemplarUserService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarUserServiceImpl"/>
+    <bean id="bookService" class="com.pvt.jd2.project.back.hibernate.service.BookServiceImpl"/>
+    <bean id="bookExemplarService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarServiceImpl"/>
+    <bean id="bookSerialService" class="com.pvt.jd2.project.back.hibernate.service.BookSerialServiceImpl"/>
+    <bean id="bookExemplarUserHistoryService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarUserHistoryServiceImpl"/>
+    <bean id="genreService" class="com.pvt.jd2.project.back.hibernate.service.GenreServiceImpl"/>
+    <bean id="globalSettingService" class="com.pvt.jd2.project.back.hibernate.service.GlobalSettingServiceImpl"/>
+    <bean id="permissionService" class="com.pvt.jd2.project.back.hibernate.service.PermissionServiceImpl"/>
+    <bean id="publisherService" class="com.pvt.jd2.project.back.hibernate.service.PublisherServiceImpl"/>
+    <bean id="roleService" class="com.pvt.jd2.project.back.hibernate.service.RoleServiceImpl"/>
+    <bean id="userService" class="com.pvt.jd2.project.back.hibernate.service.UserServiceImpl"/>
+
+    <bean id="loginValidator" class="com.pvt.jd2.project.front.validators.LoginFormValidator"/>
+
+    <bean id="bookExemplarValidator" class="com.pvt.jd2.project.front.validators.BookExemplarValidator"/>
+
+    <bean id="userValidator" class="com.pvt.jd2.project.front.validators.UserValidator"/>
+    <bean id="roleValidator" class="com.pvt.jd2.project.front.validators.RoleValidator"/>
+    <bean id="bookValidator" class="com.pvt.jd2.project.front.validators.BookValidator"/>
+    <bean id="bookSerialValidator" class="com.pvt.jd2.project.front.validators.BookSerialValidator"/>
+    <bean id="publisherValidator" class="com.pvt.jd2.project.front.validators.PublisherValidator"/>
+    <bean id="authorValidator" class="com.pvt.jd2.project.front.validators.AuthorValidator"/>
+    <bean id="genreValidator" class="com.pvt.jd2.project.front.validators.GenreValidator"/>
+
+    <bean id="findRoleValidator" class="com.pvt.jd2.project.front.validators.find.FindRoleValidator"/>
+    <bean id="findBookSerialValidator" class="com.pvt.jd2.project.front.validators.find.FindBookSerialValidator"/>
+    <bean id="findPublisherValidator" class="com.pvt.jd2.project.front.validators.find.FindPublisherValidator"/>
+    <bean id="findAuthorValidator" class="com.pvt.jd2.project.front.validators.find.FindAuthorValidator"/>
+    <bean id="findGenreValidator" class="com.pvt.jd2.project.front.validators.find.FindGenreValidator"/>
+    <bean id="findBookValidator" class="com.pvt.jd2.project.front.validators.find.FindBookValidator"/>
+    <bean id="findUserValidator" class="com.pvt.jd2.project.front.validators.find.FindUserValidator"/>
 </beans>

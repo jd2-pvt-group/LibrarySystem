@@ -20,6 +20,8 @@ public interface BookExemplarDao {
 
     void delete(BookExemplar bookExemplar) throws DatabaseException;
 
+    boolean exists(BookExemplarId id) throws DatabaseException;
+
     void activate(BookExemplar bookExemplar) throws DatabaseException;
 
     void deactivate(BookExemplar bookExemplar) throws DatabaseException;

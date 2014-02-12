@@ -6,7 +6,7 @@ package com.pvt.jd2.project.common.exceptions;
  * Date: 22.01.14
  * Time: 17:52
  */
-public class DatabaseException extends Exception {
+public class DatabaseException extends RuntimeException {
 
     public DatabaseException() {
     }
@@ -23,7 +23,4 @@ public class DatabaseException extends Exception {
         super(cause);
     }
 
-    public DatabaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }

@@ -18,6 +18,12 @@ public interface UserDao {
 
     void delete(User user) throws DatabaseException;
 
+    void update(User user) throws DatabaseException;
+
+    boolean isLoginExist(Long id, String login) throws DatabaseException;
+
+    boolean isPassportNumberExist(Long id, String passportNumber) throws DatabaseException;
+
     void activate(User user) throws DatabaseException;
 
     void deactivate(User user) throws DatabaseException;
@@ -30,12 +36,8 @@ public interface UserDao {
 
     List<User> list(ActivationStatus status) throws DatabaseException;
 
-    List<User> listByPartOfFirstName(String partOfFirstName, ActivationStatus status) throws DatabaseException;
+    List<User> listLike(User user)throws DatabaseException;
 
-    List<User> listByPartOfLastName(String partOfLastName, ActivationStatus status) throws DatabaseException;
-
-    List<User> listByPartOfAddress(String partOfAddress, ActivationStatus status) throws DatabaseException;
-
-    List<User> listByPartOfPassportNumber(String partOfPassportNumber, ActivationStatus status) throws DatabaseException;
+    List<User> listLike(User user, ActivationStatus status)throws DatabaseException;
 
 }

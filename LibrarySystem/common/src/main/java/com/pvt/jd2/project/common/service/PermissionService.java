@@ -1,9 +1,11 @@
 package com.pvt.jd2.project.common.service;
 
 import com.pvt.jd2.project.common.domain.Permission;
+import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,9 +25,11 @@ public interface PermissionService {
 
     List<Permission> list() throws BusinessLogicException;
 
-    List<Permission> listByPartOfCode(String partOfCode) throws BusinessLogicException;
+    List<Permission> listLike(Permission permission) throws BusinessLogicException;
 
-    List<Permission> listByPartOfDescription(String partOfDescription) throws BusinessLogicException;
+    List<Permission> listForRole(Role role) throws BusinessLogicException;
 
+    Set<Permission> listForRoles(List<Role> roles) throws BusinessLogicException;
 
+    List<Permission> listNotInRole(Role role) throws BusinessLogicException;
 }

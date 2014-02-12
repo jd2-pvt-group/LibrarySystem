@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.common.dao;
 
+import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.Genre;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 
@@ -17,12 +18,16 @@ public interface GenreDao {
 
     void delete(Genre genre) throws DatabaseException;
 
+    void update(Genre genre) throws DatabaseException;
+
+    boolean exists(Genre genre) throws DatabaseException;
+
     Genre findById(Long id) throws DatabaseException;
+
+    List<Genre> findFor(Book book) throws DatabaseException;
 
     List<Genre> list() throws DatabaseException;
 
-    List<Genre> listByPartOfName(String partOfName) throws DatabaseException;
-
-    List<Genre> listByPartOfDescription(String partOfDescription) throws DatabaseException;
+    List<Genre> listLike(Genre genre) throws DatabaseException;
 
 }

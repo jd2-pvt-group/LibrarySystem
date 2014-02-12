@@ -28,7 +28,7 @@ public class Book implements Serializable {
     @Column(name="DESCRIPTION")
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(name="BOOK_AUTHOR",
             joinColumns={@JoinColumn(name="BOOK_ID")},
             inverseJoinColumns={@JoinColumn(name="AUTHOR_ID")})
@@ -42,7 +42,7 @@ public class Book implements Serializable {
     @JoinColumn(name="PUBLISHER_ID")
     private Publisher publisher;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(name="BOOK_GENRE",
             joinColumns={@JoinColumn(name="BOOK_ID")},
             inverseJoinColumns={@JoinColumn(name="GENRE_ID")})
