@@ -34,6 +34,9 @@ public class Role implements Serializable {
             inverseJoinColumns={@JoinColumn(name="PERMISSION_ID", referencedColumnName = "ID")})
     private List<Permission> permissions;
 
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
+
     public Long getId() {
         return id;
     }
@@ -64,6 +67,14 @@ public class Role implements Serializable {
 
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     @Override

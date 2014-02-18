@@ -8,16 +8,16 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <li>
     <a href="${pageContext.request.contextPath}/management/addRole?fragments=content">
-        <s:message code="pages.roleManagement.addRole"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.roleManagement.addRole"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/listRoles?fragments=content">
-        <s:message code="pages.roleManagement.listRoles"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.roleManagement.listRoles"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findRole">
-        <s:message code="pages.roleManagement.findRole"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.roleManagement.findRole"/>
     </a>
 </li>

@@ -9,22 +9,22 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/addBookExemplar">
-        <s:message code="pages.libraryManagement.addBookExemplar"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.addBookExemplar"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/listBookExemplars">
-        <s:message code="pages.libraryManagement.listBookExemplar"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.listBookExemplar"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findBookExemplar">
-        <s:message code="pages.libraryManagement.findBookExemplar"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.findBookExemplar"/>
     </a>
 </li>
 <li><hr/></li>
 <li>
     <a href="${pageContext.request.contextPath}/management/bookManagement">
-        <s:message code="pages.libraryManagement.bookManagement.back"/>
+        <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.bookManagement.back"/>
     </a>
 </li>

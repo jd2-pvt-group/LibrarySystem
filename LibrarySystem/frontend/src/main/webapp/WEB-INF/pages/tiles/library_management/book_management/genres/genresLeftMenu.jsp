@@ -10,17 +10,17 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/addGenre">
-        <s:message code="pages.libraryManagement.addGenre"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.addGenre"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/listGenres">
-        <s:message code="pages.libraryManagement.listGenres"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.listGenres"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findGenre">
-        <s:message code="pages.libraryManagement.findGenre"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.findGenre"/>
     </a>
 </li>
 <c:choose>
@@ -28,7 +28,7 @@
         <li><hr/></li>
         <li>
             <a href="${pageContext.request.contextPath}/management/addBookType">
-                <s:message code="pages.libraryManagement.addBookType.actions.back"/>
+                <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.addBookType.actions.back"/>
             </a>
         </li>
     </c:when>
@@ -36,7 +36,7 @@
         <li><hr/></li>
         <li>
             <a href="${pageContext.request.contextPath}/management/bookManagement">
-                <s:message code="pages.libraryManagement.bookManagement.back"/>
+                <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.bookManagement.back"/>
             </a>
         </li>
     </c:otherwise>

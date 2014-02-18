@@ -9,37 +9,37 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/bookTypeManagement">
-        <s:message code="pages.libraryManagement.bookTypeManagement"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.bookTypeManagement"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/bookExemplarManagement">
-        <s:message code="pages.libraryManagement.bookExemplarManagement"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.bookExemplarManagement"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/bookSerialManagement">
-        <s:message code="pages.libraryManagement.bookSerialManagement"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.bookSerialManagement"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/genreManagement">
-        <s:message code="pages.libraryManagement.genreManagement"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.genreManagement"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/publisherManagement">
-        <s:message code="pages.libraryManagement.publisherManagement"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.publisherManagement"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/authorManagement">
-        <s:message code="pages.libraryManagement.authorManagement"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.authorManagement"/>
     </a>
 </li>
 <li><hr/></li>
 <li>
     <a href="${pageContext.request.contextPath}/management/libraryManagement">
-        <s:message code="pages.libraryManagement.backToLibraryManagement"/>
+        <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.backToLibraryManagement"/>
     </a>
 </li>

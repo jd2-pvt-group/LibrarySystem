@@ -10,17 +10,17 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/addBookSerial">
-        <s:message code="pages.libraryManagement.addBookSerial"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.addBookSerial"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/listBookSerials">
-        <s:message code="pages.libraryManagement.listBookSerials"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.listBookSerials"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findBookSerial">
-        <s:message code="pages.libraryManagement.findBookSerial"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.findBookSerial"/>
     </a>
 </li>
 <c:choose>
@@ -28,7 +28,7 @@
         <li><hr/></li>
         <li>
             <a href="${pageContext.request.contextPath}/management/addBookType">
-                <s:message code="pages.libraryManagement.addBookType.actions.back"/>
+                <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.addBookType.actions.back"/>
             </a>
         </li>
     </c:when>
@@ -36,7 +36,7 @@
         <li><hr/></li>
         <li>
             <a href="${pageContext.request.contextPath}/management/bookManagement">
-                <s:message code="pages.libraryManagement.bookManagement.back"/>
+                <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.bookManagement.back"/>
             </a>
         </li>
     </c:otherwise>

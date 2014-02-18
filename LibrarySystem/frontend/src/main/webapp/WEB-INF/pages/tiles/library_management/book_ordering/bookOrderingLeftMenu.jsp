@@ -9,17 +9,17 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/listAssigned">
-        <s:message code="pages.libraryManagement.listAssigned"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.listAssigned"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findAssigned">
-        <s:message code="pages.libraryManagement.findAssigned"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.findAssigned"/>
     </a>
 </li>
 <li><hr/></li>
 <li>
     <a href="${pageContext.request.contextPath}/management/libraryManagement">
-        <s:message code="pages.libraryManagement.backToLibraryManagement"/>
+        <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.backToLibraryManagement"/>
     </a>
 </li>

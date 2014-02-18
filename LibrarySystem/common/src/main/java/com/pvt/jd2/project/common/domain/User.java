@@ -43,7 +43,7 @@ public class User implements Serializable {
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
-    @OneToMany
+    @ManyToMany
     @JoinTable(name="USER_ROLE",
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName = "ID")},
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")})

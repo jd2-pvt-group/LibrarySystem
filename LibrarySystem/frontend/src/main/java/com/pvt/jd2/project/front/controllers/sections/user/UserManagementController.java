@@ -39,7 +39,7 @@ public class UserManagementController{
     @Autowired
     private FindUserValidator findUserValidator;
 
-    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String createUser(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                           BindingResult result,
                           @ModelAttribute(value = Attributes.SECTION) Sections section) {
@@ -85,22 +85,21 @@ public class UserManagementController{
     }
 
     @RequestMapping(value = "/foundUsers",method = RequestMethod.POST)
-    public String foundUsers(
-                          //   Model model,
-                             @ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
+    public String foundUsers(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                              BindingResult result,
-                           @ModelAttribute(value = Attributes.SECTION) Sections section,Model model) {
+                             @ModelAttribute(value = Attributes.SECTION) Sections section,Model model) {
         ValidationUtils.invokeValidator(findUserValidator, viewedUser, result);
         if(result.hasErrors()){
-                     return USER_MANAGEMENT_FIND;
+             return USER_MANAGEMENT_FIND;
         }
         try{
-            List<User>foundList = userService.listLike(viewedUser);
+            List<User> foundList = userService.listLike(viewedUser);
             model.addAttribute(Attributes.VIEWED_USERS,foundList);
+            return USER_MANAGEMENT_LIST;
         } catch (BusinessLogicException e) {
-            e.printStackTrace();
+            e.printStackTrace(); //TODO kill me
+            return USER_MANAGEMENT_ERROR;
         }
-        return USER_MANAGEMENT_LIST;
     }
 
     @RequestMapping(value = "/infoUser", method = RequestMethod.POST)
@@ -136,7 +135,6 @@ public class UserManagementController{
             if (result.hasErrors()){
                 return successUpdateUser(section);
             }
-            System.out.println(viewedUser);
             userService.update(viewedUser);
             return successInfoUser(section);
         }catch(BusinessLogicException e){
@@ -147,7 +145,6 @@ public class UserManagementController{
     private void updateModelWithUser(Long userId, Model model) throws BusinessLogicException {
         User viewedUser = userService.findById(userId);
         model.addAttribute(Attributes.VIEWED_USER, viewedUser);
-        System.out.println(viewedUser);
     }
 
 

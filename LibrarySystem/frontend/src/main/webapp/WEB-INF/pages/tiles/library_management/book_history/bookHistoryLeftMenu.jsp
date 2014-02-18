@@ -9,17 +9,17 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/listHistory">
-        <s:message code="pages.libraryManagement.listHistory"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.listHistory"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findHistory">
-        <s:message code="pages.libraryManagement.findHistory"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.libraryManagement.findHistory"/>
     </a>
 </li>
 <li><hr/></li>
 <li>
     <a href="${pageContext.request.contextPath}/management/libraryManagement">
-        <s:message code="pages.libraryManagement.backToLibraryManagement"/>
+        <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.backToLibraryManagement"/>
     </a>
 </li>

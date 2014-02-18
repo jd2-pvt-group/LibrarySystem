@@ -9,16 +9,16 @@
 
 <li>
     <a href="${pageContext.request.contextPath}/management/addUser">
-        <s:message code="pages.userManagement.addUser"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.userManagement.addUser"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/listUsers">
-        <s:message code="pages.userManagement.listUsers"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.userManagement.listUsers"/>
     </a>
 </li>
 <li>
     <a href="${pageContext.request.contextPath}/management/findUser">
-        <s:message code="pages.userManagement.findUser"/>
+        <i class="icon-chevron-right"></i> <s:message code="pages.userManagement.findUser"/>
     </a>
 </li>
