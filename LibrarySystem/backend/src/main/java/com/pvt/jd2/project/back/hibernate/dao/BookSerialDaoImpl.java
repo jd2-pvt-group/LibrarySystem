@@ -9,11 +9,13 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -111,13 +113,22 @@ public class BookSerialDaoImpl implements BookSerialDao{
     public List<BookSerial> listLike(BookSerial bookSerial) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            Disjunction or = Restrictions.disjunction();
+            boolean hasOperation = false;
             if (!bookSerial.getName().isEmpty()){
-                criteria.add(Restrictions.like(BookSerial_.NAME, bookSerial.getName(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(BookSerial_.NAME, bookSerial.getName(), MatchMode.ANYWHERE));
             }
             if (!bookSerial.getDescription().isEmpty()){
-                criteria.add(Restrictions.like(BookSerial_.DESCRIPTION, bookSerial.getDescription(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(BookSerial_.DESCRIPTION, bookSerial.getDescription(), MatchMode.ANYWHERE));
             }
-            return (List<BookSerial>)criteria.list();
+            if (hasOperation){
+                criteria.add(or);
+                return (List<BookSerial>)criteria.list();
+            }else{
+                return new ArrayList<BookSerial>(0);
+            }
         }catch(HibernateException e){
             throw new DatabaseException(e);
         }

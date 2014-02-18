@@ -15,7 +15,7 @@ public interface Parameters {
     String AUTHOR_ID = "author_id";
     String GENRE_ID = "genre_id";
     String BOOK_TYPE_ID = "bookType_id";
-    String BOOK_EXEMPLAR_LIBRARY_CODE = "bookExemplar_libraryCode";
+    String BOOK_EXEMPLAR_ID = "bookExemplar_id";
 
     String INFO_AUTHOR_ID = "infoAuthor_id";
     String DELETE_AUTHOR_ID = "deleteAuthor_id";
@@ -26,6 +26,7 @@ public interface Parameters {
     String APPLY_GENRE_ID = "applyGenre_id";
 
     String ON_PAGE = "onPage";
+    String ACTIVATION_STATUS = "activationStatus";
 
     String SELECTED_PERMISSIONS = "selectedPermissions";
 

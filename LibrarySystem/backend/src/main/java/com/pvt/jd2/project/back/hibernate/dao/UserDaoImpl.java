@@ -189,16 +189,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     private void updateCriteriaLike(Criteria criteria, User user){
-        if(!user.getFirstName().isEmpty()){
+        if(user.getFirstName()!=null&&!user.getFirstName().isEmpty()){
             criteria.add(Restrictions.like(User_.FIRST_NAME, user.getFirstName(), MatchMode.ANYWHERE));
         }
-        if(!user.getLastName().isEmpty()){
+        if(user.getLastName()!=null&&!user.getLastName().isEmpty()){
             criteria.add(Restrictions.like(User_.LAST_NAME, user.getLastName(), MatchMode.ANYWHERE));
         }
-        if(!user.getAddress().isEmpty()){
+        if(user.getLastName()!=null&&!user.getAddress().isEmpty()){
             criteria.add(Restrictions.like(User_.ADDRESS, user.getAddress(), MatchMode.ANYWHERE));
         }
-        if(!user.getPassportNumber().isEmpty()){
+        if(user.getLastName()!=null&&!user.getPassportNumber().isEmpty()){
             criteria.add(Restrictions.like(User_.PASS_NUMBER, user.getPassportNumber(), MatchMode.ANYWHERE));
         }
     }

@@ -15,6 +15,8 @@ import java.util.List;
     uniqueConstraints = {@UniqueConstraint(columnNames = {"LOGIN", "PASS_NUMBER"})})
 public class User implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue
     @Column(name="ID")
@@ -47,8 +49,8 @@ public class User implements Serializable {
             inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles;
 
-//    @OneToMany(mappedBy="user")
-//    private List<BookExemplarUser> bookUsers;
+    @OneToMany(mappedBy="user")
+    private List<BookExemplarUser> bookUsers;
 
     public Long getId() {
         return id;
@@ -122,13 +124,13 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-//    public List<BookExemplarUser> getBookUsers() {
-//        return bookUsers;
-//    }
-//
-//    public void setBookUsers(List<BookExemplarUser> bookUsers) {
-//        this.bookUsers = bookUsers;
-//    }
+    public List<BookExemplarUser> getBookUsers() {
+        return bookUsers;
+    }
+
+    public void setBookUsers(List<BookExemplarUser> bookUsers) {
+        this.bookUsers = bookUsers;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -152,7 +154,6 @@ public class User implements Serializable {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", passportNumber='" + passportNumber + '\'' +

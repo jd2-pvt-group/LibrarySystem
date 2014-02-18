@@ -3,7 +3,6 @@ package com.pvt.jd2.project.common.dao;
 import com.pvt.jd2.project.common.domain.ActivationStatus;
 import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.BookExemplar;
-import com.pvt.jd2.project.common.domain.BookExemplarId;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 
 import java.util.List;
@@ -20,16 +19,22 @@ public interface BookExemplarDao {
 
     void delete(BookExemplar bookExemplar) throws DatabaseException;
 
-    boolean exists(BookExemplarId id) throws DatabaseException;
+    void update(BookExemplar bookExemplar) throws DatabaseException;
+
+    boolean exists(BookExemplar bookExemplar) throws DatabaseException;
 
     void activate(BookExemplar bookExemplar) throws DatabaseException;
 
     void deactivate(BookExemplar bookExemplar) throws DatabaseException;
 
-    BookExemplar findByBookExemplarId(BookExemplarId bookExemplarId) throws DatabaseException;
+    BookExemplar findById(Long id) throws DatabaseException;
 
-    List<BookExemplar> listByBook(Book book, ActivationStatus status) throws DatabaseException;
+    List<BookExemplar> listBy(Book book) throws DatabaseException;
+
+    List<BookExemplar> listBy(Book book, ActivationStatus status) throws DatabaseException;
 
     List<BookExemplar> list(ActivationStatus status) throws DatabaseException;
+
+    List<BookExemplar> listLike(BookExemplar bookExemplar, ActivationStatus status) throws DatabaseException;
 
 }

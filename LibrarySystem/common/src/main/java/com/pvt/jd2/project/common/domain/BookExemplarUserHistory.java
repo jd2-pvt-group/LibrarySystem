@@ -14,18 +14,18 @@ import java.util.Date;
 @Table(name="BOOK_EXEMPLAR_USER_HISTORY")
 public class BookExemplarUserHistory implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue
     @Column(name="ID")
     private Long id;
 
-    @OneToOne
-    @JoinColumns(value = {
-        @JoinColumn(name = "BOOK_ID"),
-        @JoinColumn(name = "LIBRARY_CODE")})
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "BOOK_ID")
     private BookExemplar bookExemplar;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
 
@@ -114,5 +114,18 @@ public class BookExemplarUserHistory implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "BookExemplarUserHistory{" +
+                "id=" + id +
+                ", bookExemplar=" + bookExemplar +
+                ", user=" + user +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", isContinued=" + isContinued +
+                ", isInTime=" + isInTime +
+                '}';
     }
 }

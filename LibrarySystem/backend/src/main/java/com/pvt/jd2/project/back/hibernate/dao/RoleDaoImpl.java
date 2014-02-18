@@ -7,11 +7,13 @@ import com.pvt.jd2.project.common.domain.metamodel.Role_;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import org.hibernate.*;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,6 +53,9 @@ public class RoleDaoImpl implements RoleDao {
         try{
             Criteria criteria = createCriteria();
             criteria.add(Restrictions.eq(Role_.NAME, role.getName()));
+            if (role.getId() != null){
+                criteria.add(Restrictions.ne(Role_.ID, role.getId()));
+            }
             return criteria.uniqueResult() == null ? false : true;
         }catch (HibernateException e){
             throw new DatabaseException(e);
@@ -120,13 +125,22 @@ public class RoleDaoImpl implements RoleDao {
     public List<Role> listLike(Role role) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            Disjunction or = Restrictions.disjunction();
+            boolean hasOperation = false;
             if (!role.getName().isEmpty()){
-                criteria.add(Restrictions.like(Role_.NAME, role.getName(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Role_.NAME, role.getName(), MatchMode.ANYWHERE));
             }
             if (!role.getDescription().isEmpty()){
-                criteria.add(Restrictions.like(Role_.DESCRIPTION, role.getDescription(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Role_.DESCRIPTION, role.getDescription(), MatchMode.ANYWHERE));
             }
-            return (List<Role>)criteria.list();
+            if (hasOperation){
+                criteria.add(or);
+                return (List<Role>)criteria.list();
+            }else{
+                return new ArrayList<Role>(0);
+            }
         }catch(HibernateException e){
             throw new DatabaseException(e);
         }

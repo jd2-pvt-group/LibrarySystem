@@ -70,7 +70,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/", method = {RequestMethod.POST, RequestMethod.GET})
-    public String goToLoginPage(@ModelAttribute User user, BindingResult result) {
+    public String goToLoginPage(@ModelAttribute User user) {
         return TilesDefinitions.LOGIN_DEFINITION;
     }
 
@@ -86,7 +86,7 @@ public class LoginController {
         session.removeAttribute(Attributes.LOGGED_USER);
         session.removeAttribute(Attributes.LOGGED_PERMISSIONS);
 
-        session.removeAttribute(Attributes.VIEWED_BOOK_EXEMPLAR_FORM_BEAN_FLOW);
+        session.removeAttribute(Attributes.VIEWED_BOOK_EXEMPLAR_FLOW);
         session.removeAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW);
     }
 

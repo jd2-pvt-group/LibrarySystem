@@ -55,6 +55,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
+    public void update(Book book) throws BusinessLogicException {
+        try{
+            bookDao.update(book);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
+    }
+
+    @Override
+    @Transactional
     public boolean exists(Book book) throws BusinessLogicException {
         try{
             return bookDao.exists(book);

@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Table(name="GLOBAL_SETTING")
 public class GlobalSetting implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name="ID")
     @GeneratedValue
@@ -63,5 +65,14 @@ public class GlobalSetting implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "GlobalSetting{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

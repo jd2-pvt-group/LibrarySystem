@@ -19,19 +19,19 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(value = "/management")
 public class LibraryManagementController extends CommonLogic {
 
-    @RequestMapping(value = "/bookManagement", method = RequestMethod.POST)
+    @RequestMapping(value = "/bookManagement", method = RequestMethod.GET)
     public String bookManagement(Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.LIBRARY_MANAGEMENT);
         return TilesDefinitions.LIBRARY_BOOK_MANAGEMENT;
     }
 
-    @RequestMapping(value = "/bookOrderingManagement", method = RequestMethod.POST)
+    @RequestMapping(value = "/bookOrderingManagement", method = RequestMethod.GET)
     public String bookOrderingManagement(Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.LIBRARY_MANAGEMENT);
         return TilesDefinitions.LIBRARY_BOOK_ORDERING_MANAGEMENT;
     }
 
-    @RequestMapping(value = "/bookHistoryManagement", method = RequestMethod.POST)
+    @RequestMapping(value = "/bookHistoryManagement", method = RequestMethod.GET)
     public String bookHistoryManagement(Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.LIBRARY_MANAGEMENT);
         return TilesDefinitions.LIBRARY_BOOK_HISTORY_MANAGEMENT;

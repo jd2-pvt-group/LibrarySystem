@@ -6,31 +6,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<table>
-    <tr>
-        <td>
-            <form action="${pageContext.request.contextPath}/management/userManagement" method="POST">
-                <s:message code="pages.standard.top_menu.userManagement" var="userManagement"/>
-                <input type="submit" value="${userManagement}"/>
-            </form>
-        </td>
-        <td>
-            <form action="${pageContext.request.contextPath}/management/roleManagement" method="POST">
-                <s:message code="pages.standard.top_menu.roleManagement" var="roleManagement"/>
-                <input type="submit" value="${roleManagement}"/>
-            </form>
-        </td>
-        <td>
-            <form action="${pageContext.request.contextPath}/management/libraryManagement" method="POST">
-                <s:message code="pages.standard.top_menu.libraryManagement" var="libraryManagement"/>
-                <input type="submit" value="${libraryManagement}"/>
-            </form>
-        </td>
-        <td>
-            <form action="${pageContext.request.contextPath}/management/personalManagement" method="POST">
-                <s:message code="pages.standard.top_menu.personalManagement" var="personalManagement"/>
-                <input type="submit" value="${personalManagement}"/>
-            </form>
-        </td>
-    </tr>
-</table>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<li <c:if test="${sessionScope['section'] eq 'USER_MANAGEMENT'}">class="active"</c:if>>
+    <a href="${pageContext.request.contextPath}/management/userManagement">
+        <s:message code="pages.standard.top_menu.userManagement"/>
+    </a>
+</li>
+<li <c:if test="${sessionScope['section'] eq 'ROLE_MANAGEMENT'}">class="active"</c:if>>
+    <a href="${pageContext.request.contextPath}/management/roleManagement">
+        <s:message code="pages.standard.top_menu.roleManagement"/>
+    </a>
+</li>
+<li <c:if test="${sessionScope['section'] eq 'LIBRARY_MANAGEMENT'}">class="active"</c:if>>
+    <a href="${pageContext.request.contextPath}/management/libraryManagement">
+        <s:message code="pages.standard.top_menu.libraryManagement"/>
+    </a>
+</li>
+<li <c:if test="${sessionScope['section'] eq 'PERSONAL_MANAGEMENT'}">class="active"</c:if>>
+    <a href="${pageContext.request.contextPath}/management/personalManagement">
+        <s:message code="pages.standard.top_menu.personalManagement"/>
+    </a>
+</li>

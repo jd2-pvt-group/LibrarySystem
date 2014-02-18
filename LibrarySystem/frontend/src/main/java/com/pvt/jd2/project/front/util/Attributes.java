@@ -21,7 +21,7 @@ public interface Attributes {
     String VIEWED_PUBLISHER = "viewedPublisher";
     String VIEWED_AUTHOR = "viewedAuthor";
     String VIEWED_GENRE = "viewedGenre";
-    String VIEWED_BOOK_EXEMPLAR_FORM_BEAN = "viewedBookExemplarFormBean";
+    String VIEWED_BOOK_EXEMPLAR = "viewedBookExemplar";
 
     String VIEWED_USERS = "listViewedUser";
     String VIEWED_ROLES = "viewedRoles";
@@ -31,12 +31,13 @@ public interface Attributes {
     String VIEWED_AUTHORS = "viewedAuthors";
     String VIEWED_GENRES = "viewedGenres";
     String VIEWED_BOOK_TYPES = "viewedBookTypes";
-    String VIEWED_BOOK_EXEMPLAR_FORM_BEANS = "viewedBookExemplarFormBeans";
+    String VIEWED_BOOK_EXEMPLARS = "viewedBookExemplars";
 
     String INFO_STATUS = "infoStatus";
+    String ACTIVATION_STATUSES = "activationStatuses";
 
     //mixed-scope attributes (session & request - flow scope/managed by application)
-    String VIEWED_BOOK_EXEMPLAR_FORM_BEAN_FLOW = "viewedBookExemplarFormBeanFlow";
+    String VIEWED_BOOK_EXEMPLAR_FLOW = "viewedBookExemplarFlow";
     String VIEWED_BOOK_TYPE_FLOW = "viewedBookTypeFlow";
 
 }

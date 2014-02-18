@@ -11,38 +11,40 @@
 <html>
     <head>
         <title><s:message code="pages.standard.title"/></title>
+
+        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="${pageContext.request.contextPath}/resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+        <link href="${pageContext.request.contextPath}/resources/css/library.css" rel="stylesheet"/>
+
+
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.0.3.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library.js"></script>
 
-        <!-- bookExemplar, book, publisher, author, genre types -->
-        <script lang="text/javascript">
-
-            function beforeSubmit(action, actionName){
-                $(action).val(actionName);
-                return false;
-            }
-
-            function beforeSubmitAndSetValue(action, actionName, id, value){
-                $(id).val(value);
-                return beforeSubmit(action, actionName);
-            }
-
-        </script>
     </head>
     <body>
-        <table>
-            <tr>
-                <td colspan="2"><tiles:insertAttribute name="header"/></td>
-            </tr>
-            <tr>
-                <td colspan="2"><tiles:insertAttribute name="top_menu"/></td>
-            </tr>
-            <tr>
-                <td><tiles:insertAttribute name="left_menu"/></td>
-                <td><tiles:insertAttribute name="content"/></td>
-            </tr>
-            <tr>
-                <td colspan="2"><tiles:insertAttribute name="footer"/></td>
-            </tr>
-        </table>
+        <div class="header">
+            <div class="header_content">
+                <tiles:insertAttribute name="header"/>
+            </div>
+        </div>
+        <div class="tabbable top_menu">
+            <ul class="nav nav-tabs">
+                <tiles:insertAttribute name="top_menu"/>
+            </ul>
+        </div>
+        <div class="left_menu">
+            <ul class="nav nav-tabs nav-stacked left_menu_action">
+                <tiles:insertAttribute name="left_menu"/>
+            </ul>
+        </div>
+        <div class="content">
+            <tiles:insertAttribute name="content"/>
+        </div>
+        <div class="footer">
+            <div class="footer_content">
+                <tiles:insertAttribute name="footer"/>
+            </div>
+        </div>
     </body>
 </html>

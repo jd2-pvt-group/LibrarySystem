@@ -8,6 +8,6 @@ package com.pvt.jd2.project.common.domain;
  */
 public enum ActivationStatus {
 
-    ACTIVE, INACTIVE, ALL;
+    ACTIVE, INACTIVE, ALL, NONE;
 
 }

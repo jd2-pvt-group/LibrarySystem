@@ -1,5 +1,6 @@
 package com.pvt.jd2.project.front.controllers.sections;
 
+import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.service.UserService;
@@ -28,28 +29,30 @@ import javax.servlet.http.HttpSession;
 @SessionAttributes(value = Attributes.SECTION)
 public class ManagementController extends CommonLogic {
 
-    @RequestMapping(value = "/userManagement", method = RequestMethod.POST)
-    public String userManagement(Model model, HttpSession session){
+    @RequestMapping(value = "/userManagement", method = RequestMethod.GET)
+    public String userManagement(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
+                                 Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.USER_MANAGEMENT);
         removeSessionAttributes(session);
-        return TilesDefinitions.USER_MANAGEMENT_WELCOME;
+        return TilesDefinitions.USER_MANAGEMENT_FIND;
     }
 
-    @RequestMapping(value = "/roleManagement", method = RequestMethod.POST)
-    public String roleManagement(Model model, HttpSession session){
+    @RequestMapping(value = "/roleManagement", method = RequestMethod.GET)
+    public String roleManagement(@ModelAttribute(value = Attributes.VIEWED_ROLE) Role findRole,
+                                 Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.ROLE_MANAGEMENT);
         removeSessionAttributes(session);
-        return TilesDefinitions.ROLE_MANAGEMENT_WELCOME;
+        return TilesDefinitions.ROLE_MANAGEMENT_FIND;
     }
 
-    @RequestMapping(value = "/libraryManagement", method = RequestMethod.POST)
+    @RequestMapping(value = "/libraryManagement", method = RequestMethod.GET)
     public String libraryManagement(Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.LIBRARY_MANAGEMENT);
         removeSessionAttributes(session);
         return TilesDefinitions.LIBRARY_MANAGEMENT_WELCOME;
     }
 
-    @RequestMapping(value = "/personalManagement", method = RequestMethod.POST)
+    @RequestMapping(value = "/personalManagement", method = RequestMethod.GET)
     public String personalManagement(Model model, HttpSession session){
         model.addAttribute(Attributes.SECTION, Sections.PERSONAL_MANAGEMENT);
         removeSessionAttributes(session);

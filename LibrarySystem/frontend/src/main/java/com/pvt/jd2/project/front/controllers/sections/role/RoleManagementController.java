@@ -40,7 +40,7 @@ public class RoleManagementController {
     @Autowired
     private FindRoleValidator findRoleValidator;
 
-    @RequestMapping(value = "/addRole", method = RequestMethod.POST)
+    @RequestMapping(value = "/addRole", method = RequestMethod.GET)
     public String addRole(@ModelAttribute(value = Attributes.VIEWED_ROLE) Role viewedRole,
                           BindingResult result){
         return TilesDefinitions.ROLE_MANAGEMENT_ADD;
@@ -90,11 +90,12 @@ public class RoleManagementController {
     @RequestMapping(value = "/changeRole", method = RequestMethod.POST)
     public String changeRole(@ModelAttribute(value = Attributes.VIEWED_ROLE) Role viewedRole,
                              BindingResult result){
-        ValidationUtils.invokeValidator(roleValidator, viewedRole, result);
-        if (result.hasErrors()){
-            return TilesDefinitions.ROLE_MANAGEMENT_UPDATE;
-        }
         try{
+            ValidationUtils.invokeValidator(roleValidator, viewedRole, result);
+            if (result.hasErrors()){
+                return TilesDefinitions.ROLE_MANAGEMENT_UPDATE;
+            }
+
             Role existedRole = roleService.findByIdFull(viewedRole.getId());
             RoleDataComparator comparator = new RoleDataComparator();
             if (!comparator.compare(existedRole, viewedRole)){
@@ -108,7 +109,7 @@ public class RoleManagementController {
         }
     }
 
-    @RequestMapping(value = "/listRoles")
+    @RequestMapping(value = "/listRoles", method = RequestMethod.GET)
     public String listRoles(Model model){
         try{
             List<Role> roles = roleService.list();
@@ -120,9 +121,8 @@ public class RoleManagementController {
         }
     }
 
-    @RequestMapping(value = "/findRole", method = RequestMethod.POST)
-    public String findRole(@ModelAttribute(value = Attributes.VIEWED_ROLE) Role findRole,
-                           BindingResult result){
+    @RequestMapping(value = "/findRole", method = RequestMethod.GET)
+    public String findRole(@ModelAttribute(value = Attributes.VIEWED_ROLE) Role findRole){
         return TilesDefinitions.ROLE_MANAGEMENT_FIND;
     }
 

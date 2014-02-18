@@ -31,7 +31,7 @@ public class RoleValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, Role_.NAME, Messages.ROLE_INFO_NAME_IS_EMPTY);
         Role role = (Role)target;
         if (roleService.exists(role)){
-            errors.reject(Role_.NAME, Messages.ROLE_INFO_NAME_EXISTS);
+            errors.rejectValue(Role_.NAME, Messages.ROLE_INFO_NAME_EXISTS);
         }
     }
 }

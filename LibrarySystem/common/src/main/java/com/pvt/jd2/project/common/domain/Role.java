@@ -1,8 +1,5 @@
 package com.pvt.jd2.project.common.domain;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -17,6 +14,8 @@ import java.util.List;
 @Table(name="ROLE",
     uniqueConstraints = {@UniqueConstraint(columnNames = {"NAME"})})
 public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name="ID")

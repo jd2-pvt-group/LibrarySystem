@@ -19,6 +19,8 @@ public interface BookService {
 
     void delete(Book book) throws BusinessLogicException;
 
+    void update(Book book) throws BusinessLogicException;
+
     boolean exists(Book book) throws BusinessLogicException;
 
     Book findById(Long id) throws BusinessLogicException;

@@ -18,6 +18,8 @@ public interface BookDao {
 
     void delete(Book book) throws DatabaseException;
 
+    void update(Book book) throws DatabaseException;
+
     boolean exists(Book book) throws DatabaseException;
 
     Book findById(Long id) throws DatabaseException;

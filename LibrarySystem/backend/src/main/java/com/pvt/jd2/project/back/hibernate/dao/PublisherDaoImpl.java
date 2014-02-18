@@ -9,11 +9,13 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,6 +64,9 @@ public class PublisherDaoImpl implements PublisherDao {
     public boolean exists(Publisher publisher) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            if (publisher.getId() != null){
+                criteria.add(Restrictions.ne(Publisher_.ID, publisher.getId()));
+            }
             criteria.add(Restrictions.eq(Publisher_.NAME, publisher.getName()));
             return criteria.uniqueResult() == null ? false : true;
         }catch(HibernateException e){
@@ -111,13 +116,22 @@ public class PublisherDaoImpl implements PublisherDao {
     public List<Publisher> listLike(Publisher publisher) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            Disjunction or = Restrictions.disjunction();
+            boolean hasOperation = false;
             if (!publisher.getName().isEmpty()){
-                criteria.add(Restrictions.like(Publisher_.NAME, publisher.getName(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Publisher_.NAME, publisher.getName(), MatchMode.ANYWHERE));
             }
             if (!publisher.getAddress().isEmpty()){
-                criteria.add(Restrictions.like(Publisher_.ADDRESS, publisher.getAddress(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Publisher_.ADDRESS, publisher.getAddress(), MatchMode.ANYWHERE));
             }
-            return (List<Publisher>)criteria.list();
+            if (hasOperation){
+                criteria.add(or);
+                return (List<Publisher>)criteria.list();
+            }else{
+                return new ArrayList<Publisher>(0);
+            }
         }catch(HibernateException e){
             throw new DatabaseException(e);
         }

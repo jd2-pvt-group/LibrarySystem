@@ -8,27 +8,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<form:form action="${pageContext.request.contextPath}/login" method="POST" commandName="user">
-    <table>
-        <tr>
-            <td><form:label path="login"><s:message code="pages.loginForm.username"/></form:label></td>
-            <td><form:input path="login"/></td>
-        </tr>
-        <tr><td></td>
-            <td><form:errors path="login"/></td>
-        </tr>
-        <tr>
-            <td><form:label path="password"><s:message code="pages.loginForm.password"/></form:label></td>
-            <td><form:password path="password"/></td>
-        </tr>
-        <tr><td></td>
-            <td><form:errors path="password"/></td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <s:message code="pages.loginForm.submit" var="submit"/>
-                <input type="submit" value="${submit}">
-            </td>
-        </tr>
-    </table>
+
+<form:form cssClass="form-signin" action="${pageContext.request.contextPath}/login" method="POST" commandName="user">
+
+    <h3 class="form-signin-heading"><s:message code="pages.loginForm.title"/></h3>
+
+    <form:label path="login"><s:message code="pages.loginForm.username"/></form:label>
+    <form:input cssClass="input-block-level" path="login"/>
+    <form:errors cssClass="alert alert-error" path="login"/>
+    <br/><br/>
+    <form:label path="password"><s:message code="pages.loginForm.password"/></form:label>
+    <form:password cssClass="input-block-level" path="password"/>
+    <form:errors cssClass="alert alert-error" path="password"/>
+    <br/><br/>
+    <s:message code="pages.loginForm.submit" var="submit"/>
+    <button class="btn btn-large btn-primary" type="submit">${submit}</button>
+
 </form:form>

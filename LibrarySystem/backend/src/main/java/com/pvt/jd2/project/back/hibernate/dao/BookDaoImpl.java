@@ -5,12 +5,14 @@ import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.metamodel.Book_;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
 import org.hibernate.*;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,9 +48,22 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public void update(Book book) throws DatabaseException {
+        try{
+            Session session = sessionFactory.getCurrentSession();
+            session.update(book);
+        }catch(HibernateException e){
+            throw new DatabaseException(e);
+        }
+    }
+
+    @Override
     public boolean exists(Book book) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            if (book.getId() != null){
+                criteria.add(Restrictions.ne(Book_.ID, book.getId()));
+            }
             criteria.add(Restrictions.eq(Book_.ISBN, book.getIsbn()));
             return criteria.uniqueResult() == null ? false : true;
         }catch(HibernateException e){
@@ -110,16 +125,26 @@ public class BookDaoImpl implements BookDao {
     public List<Book> listLike(Book book) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            Disjunction or = Restrictions.disjunction();
+            boolean hasOperation = false;
             if (!book.getName().isEmpty()){
-                criteria.add(Restrictions.like(Book_.NAME, book.getName(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Book_.NAME, book.getName(), MatchMode.ANYWHERE));
             }
             if (!book.getDescription().isEmpty()){
-                criteria.add(Restrictions.like(Book_.DESCRIPTION, book.getDescription(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Book_.DESCRIPTION, book.getDescription(), MatchMode.ANYWHERE));
             }
             if (!book.getIsbn().isEmpty()){
-                criteria.add(Restrictions.like(Book_.ISBN, book.getIsbn(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Book_.ISBN, book.getIsbn(), MatchMode.ANYWHERE));
             }
-            return (List<Book>)criteria.list();
+            if (hasOperation){
+                criteria.add(or);
+                return (List<Book>)criteria.list();
+            }else{
+                return new ArrayList<Book>(0);
+            }
         }catch(HibernateException e){
             throw new DatabaseException(e);
         }

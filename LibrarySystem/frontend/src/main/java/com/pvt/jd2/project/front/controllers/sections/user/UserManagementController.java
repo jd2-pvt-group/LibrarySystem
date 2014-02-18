@@ -6,6 +6,7 @@ import com.pvt.jd2.project.common.service.UserService;
 import com.pvt.jd2.project.front.util.Attributes;
 import com.pvt.jd2.project.front.util.Parameters;
 import com.pvt.jd2.project.front.util.Sections;
+import com.pvt.jd2.project.front.util.TilesDefinitions;
 import com.pvt.jd2.project.front.validators.UserValidator;
 import com.pvt.jd2.project.front.validators.find.FindUserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class UserManagementController{
     @Autowired
     private FindUserValidator findUserValidator;
 
-    @RequestMapping(value = "/createUser")
+    @RequestMapping(value = "/createUser", method = RequestMethod.GET)
     public String createUser(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                           BindingResult result,
                           @ModelAttribute(value = Attributes.SECTION) Sections section) {
@@ -46,10 +47,10 @@ public class UserManagementController{
 
         try{
             if (result.hasErrors()){
-                return successUserAdd(section);
+                return USER_MANAGEMENT_ADD;
             }
             System.out.println(viewedUser);
-          //  userService.update(viewedUser);
+
             successUserCreate(section,viewedUser);
             return successUserAdd(section);
         }catch(BusinessLogicException e){
@@ -58,7 +59,7 @@ public class UserManagementController{
     }
 
 
-    @RequestMapping(value = "/addUser")
+    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     public String addUser(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                           BindingResult result,
                           @ModelAttribute(value = Attributes.SECTION) Sections section) {
@@ -66,14 +67,14 @@ public class UserManagementController{
         return successUserAdd(section);
     }
 
-    @RequestMapping(value = "/listUsers",method = RequestMethod.POST)
+    @RequestMapping(value = "/listUsers",method = RequestMethod.GET)
     public String listUsers(
             @ModelAttribute(value = Attributes.SECTION) Sections section, Model model){
         List<User> listViewedUser= null ;
         return successUsersList(section, listViewedUser,model );
     }
 
-    @RequestMapping(value = "/findUser",method = RequestMethod.POST)
+    @RequestMapping(value = "/findUser",method = RequestMethod.GET)
     public String findUser( @ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                            BindingResult result,
                            @ModelAttribute(value = Attributes.SECTION) Sections section) {
@@ -91,7 +92,7 @@ public class UserManagementController{
                            @ModelAttribute(value = Attributes.SECTION) Sections section,Model model) {
         ValidationUtils.invokeValidator(findUserValidator, viewedUser, result);
         if(result.hasErrors()){
-
+                     return USER_MANAGEMENT_FIND;
         }
         try{
             List<User>foundList = userService.listLike(viewedUser);

@@ -14,6 +14,8 @@ import java.util.List;
 @Table(name="BOOK_SERIAL")
 public class BookSerial implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name="ID")
     @GeneratedValue
@@ -75,5 +77,14 @@ public class BookSerial implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "BookSerial{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -13,21 +13,49 @@ import java.io.Serializable;
 @Table(name="BOOK_EXEMPLAR")
 public class BookExemplar implements Serializable {
 
-    @EmbeddedId
-    @AttributeOverrides(value = {
-    @AttributeOverride(name="bookId", column = @Column(name="BOOK_ID")),
-    @AttributeOverride(name="libraryCode", column = @Column(name="LIBRARY_CODE"))})
-    private BookExemplarId id;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private Long id;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "BOOK_ID")
+    private Book book;
+
+    @Column(name = "LIBRARY_CODE")
+    private String libraryCode;
 
     @Column(name="IS_ACTIVE")
     private boolean isActive;
 
-    public BookExemplarId getId() {
+    public BookExemplar(){
+        book = new Book();
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(BookExemplarId id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public String getLibraryCode() {
+        return libraryCode;
+    }
+
+    public void setLibraryCode(String libraryCode) {
+        this.libraryCode = libraryCode;
     }
 
     public boolean isActive() {
@@ -45,13 +73,27 @@ public class BookExemplar implements Serializable {
 
         BookExemplar that = (BookExemplar) o;
 
+        if (book != null ? !book.equals(that.book) : that.book != null) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (libraryCode != null ? !libraryCode.equals(that.libraryCode) : that.libraryCode != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (book != null ? book.hashCode() : 0);
+        result = 31 * result + (libraryCode != null ? libraryCode.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "BookExemplar{" +
+                "id=" + id +
+                ", libraryCode='" + libraryCode + '\'' +
+                ", isActive=" + isActive +
+                '}';
     }
 }

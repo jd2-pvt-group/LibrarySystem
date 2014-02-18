@@ -14,6 +14,8 @@ import java.util.List;
 @Table(name="BOOK")
 public class Book implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name="ID")
     @GeneratedValue
@@ -47,6 +49,10 @@ public class Book implements Serializable {
             joinColumns={@JoinColumn(name="BOOK_ID")},
             inverseJoinColumns={@JoinColumn(name="GENRE_ID")})
     private List<Genre> genres;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookExemplar> bookExemplars;
+
 
     public Long getId() {
         return id;
@@ -112,6 +118,14 @@ public class Book implements Serializable {
         this.genres = genres;
     }
 
+    public List<BookExemplar> getBookExemplars() {
+        return bookExemplars;
+    }
+
+    public void setBookExemplars(List<BookExemplar> bookExemplars) {
+        this.bookExemplars = bookExemplars;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,5 +141,15 @@ public class Book implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -14,6 +14,8 @@ import java.util.List;
 @Table(name="PUBLISHER")
 public class Publisher implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name="ID")
     @GeneratedValue
@@ -75,5 +77,14 @@ public class Publisher implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

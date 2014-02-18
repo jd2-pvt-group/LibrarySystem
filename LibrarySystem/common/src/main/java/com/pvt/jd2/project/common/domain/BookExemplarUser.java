@@ -14,19 +14,18 @@ import java.util.Date;
 @Table(name="BOOK_EXEMPLAR_USER")
 public class BookExemplarUser implements Serializable {
 
-    @EmbeddedId
-    @AttributeOverrides(value = {
-            @AttributeOverride(name="bookId", column = @Column(name="BOOK_ID")),
-            @AttributeOverride(name="libraryCode", column = @Column(name="LIBRARY_CODE"))})
-    private BookExemplarId id;
+    private static final long serialVersionUID = 1L;
 
-    @OneToOne
-    @JoinColumns(value = {
-    @JoinColumn(name = "BOOK_ID"),
-    @JoinColumn(name = "LIBRARY_CODE")})
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private Long id;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "BOOK_ID")
     private BookExemplar bookExemplar;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
 
@@ -41,11 +40,11 @@ public class BookExemplarUser implements Serializable {
     @Column(name="IS_CONTINUED")
     private boolean isContinued;
 
-    public BookExemplarId getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BookExemplarId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -104,5 +103,17 @@ public class BookExemplarUser implements Serializable {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "BookExemplarUser{" +
+                "id=" + id +
+                ", bookExemplar=" + bookExemplar +
+                ", user=" + user +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", isContinued=" + isContinued +
+                '}';
     }
 }

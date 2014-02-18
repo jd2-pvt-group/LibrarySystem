@@ -52,4 +52,7 @@ public interface Messages {
     String GENRE_NAME_EXISTS = "pages.libraryManagement.addGenre.error.nameExists";
     String GENRE_FIELDS_ARE_EMPTY = "pages.libraryManagement.findGenre.error.emptyFields";
 
+    String BOOK_EXEMPLAR_FIELDS_ARE_EMPTY = "pages.libraryManagement.findBookExemplar.errors.emptyFields";
+    String BOOK_EXEMPLAR_LIBRARY_CODE_INCORRECT_FORMAT = "pages.libraryManagement.findBookExemplar.errors.libraryCodeIncorrectFormat";
+
 }

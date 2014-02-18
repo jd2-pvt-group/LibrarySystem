@@ -9,11 +9,13 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,6 +64,9 @@ public class GenreDaoImpl implements GenreDao {
     public boolean exists(Genre genre) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            if (genre.getId() != null){
+                criteria.add(Restrictions.ne(Genre_.ID, genre.getId()));
+            }
             criteria.add(Restrictions.eq(Genre_.NAME, genre.getName()));
             return criteria.uniqueResult() == null ? false : true;
         }catch(HibernateException e){
@@ -110,13 +115,22 @@ public class GenreDaoImpl implements GenreDao {
     public List<Genre> listLike(Genre genre) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();
+            Disjunction or = Restrictions.disjunction();
+            boolean hasOperation = false;
             if (!genre.getName().isEmpty()){
-                criteria.add(Restrictions.like(Genre_.NAME, genre.getName(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Genre_.NAME, genre.getName(), MatchMode.ANYWHERE));
             }
             if (!genre.getDescription().isEmpty()){
-                criteria.add(Restrictions.like(Genre_.DESCRIPTION, genre.getDescription(), MatchMode.ANYWHERE));
+                hasOperation = true;
+                or.add(Restrictions.like(Genre_.DESCRIPTION, genre.getDescription(), MatchMode.ANYWHERE));
             }
-            return (List<Genre>)criteria.list();
+            if (hasOperation){
+                criteria.add(or);
+                return (List<Genre>)criteria.list();
+            }else{
+                return new ArrayList<Genre>(0);
+            }
         }catch(HibernateException e){
             throw new DatabaseException(e);
         }
