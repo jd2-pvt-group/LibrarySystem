@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserDao {
 
-    void create(User user) throws DatabaseException;
+   User create(User user) throws DatabaseException;
 
     void delete(User user) throws DatabaseException;
 

@@ -68,7 +68,7 @@
     <c:choose>
         <c:when test="${infoStatus eq 'BOOK_SERIAL'}">
             <hr/>
-            <h3 class="well title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.bookSerial"/></h3>
+            <h3 class="well well-small title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.bookSerial"/></h3>
             <table class="table">
                 <tbody>
                     <c:choose>
@@ -91,7 +91,7 @@
         </c:when>
         <c:when test="${infoStatus eq 'PUBLISHER'}">
             <hr/>
-            <h3 class="well title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.publisher"/></h3>
+            <h3 class="well well-small title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.publisher"/></h3>
             <table class="table">
                 <tbody>
                     <tr>
@@ -107,7 +107,7 @@
         </c:when>
         <c:when test="${infoStatus eq 'AUTHORS'}">
             <hr/>
-            <h3 class="well title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.authors"/></h3>
+            <h3 class="well well-small title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.authors"/></h3>
             <table class="table">
                 <thead>
                     <tr>
@@ -127,7 +127,7 @@
         </c:when>
         <c:when test="${infoStatus eq 'GENRES'}">
             <hr/>
-            <h3 class="well title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.genres"/></h3>
+            <h3 class="well well-small title"><s:message code="pages.libraryManagement.infoBookType.additionalInfo.genres"/></h3>
             <table class="table">
                 <thead>
                     <tr>

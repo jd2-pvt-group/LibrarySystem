@@ -212,18 +212,20 @@ public class AuthorManagementController {
                 Author author = authorService.findById(Long.valueOf(infoAuthorId));
                 model.addAttribute(Attributes.VIEWED_AUTHOR, author);
             }
-            return gotTo(onPage);
+            return gotTo(onPage, model, viewedBookType);
         }catch(BusinessLogicException e){
             return TilesDefinitions.LIBRARY_AUTHOR_MANAGEMENT_ERROR;
         }
     }
 
-    private String gotTo(String onPage) {
+    private String gotTo(String onPage, Model model, Book viewedBookType) {
         NavigateOnPage page = NavigateOnPage.valueOf(onPage);
         switch(page){
             case INFO:
                 return TilesDefinitions.LIBRARY_AUTHOR_MANAGEMENT_INFO;
             case LIST:
+                List<Author> authors = authorService.listWithout(viewedBookType.getAuthors());
+                model.addAttribute(Attributes.VIEWED_AUTHORS, authors);
                 return TilesDefinitions.LIBRARY_AUTHOR_MANAGEMENT_LIST;
             case ADD:
                 return TilesDefinitions.LIBRARY_AUTHOR_MANAGEMENT_ADD;

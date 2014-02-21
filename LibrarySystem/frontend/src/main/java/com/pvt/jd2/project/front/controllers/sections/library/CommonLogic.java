@@ -37,7 +37,7 @@ public class CommonLogic {
                 return TilesDefinitions.LIBRARY_BOOK_SERIAL_MANAGEMENT_FIND;
             case SELECT_GENRES:
                 model.addAttribute(Attributes.VIEWED_GENRE, new Genre());
-                return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT;
+                return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_FIND;
         }
         return null;
     }
@@ -46,4 +46,12 @@ public class CommonLogic {
         return ActivationStatus.values();
     }
 
+
+    protected String getBookAction(String bookAddAction, Model model){
+        if ((bookAddAction == null) || bookAddAction.isEmpty()){
+            return null;
+        }
+        BookActionType action = BookActionType.valueOf(bookAddAction);
+        return selectCommonTilesDefinition(action, model);
+    }
 }

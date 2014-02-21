@@ -28,6 +28,8 @@ public interface GenreDao {
 
     List<Genre> list() throws DatabaseException;
 
+    List<Genre> listWithout(List<Genre> genres) throws DatabaseException;
+
     List<Genre> listLike(Genre genre) throws DatabaseException;
 
 }

@@ -18,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -33,6 +30,9 @@ import java.util.List;
  * Time: 10:54
  */
 @Controller
+@SessionAttributes(value = {
+        Attributes.VIEWED_BOOK_TYPE_FLOW
+})
 @RequestMapping(value = "/management")
 public class GenreManagementController {
 
@@ -66,12 +66,14 @@ public class GenreManagementController {
     }
 
     @RequestMapping(value = "/listGenres", method = RequestMethod.GET)
-    public String listOfAuthors(HttpSession session,
+    public String listOfGenres(HttpSession session,
                                 Model model){
-        List<Genre> genres = genreService.list();
+        List<Genre> genres = null;
         Book viewedBookType = (Book)session.getAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW);
-        if ((viewedBookType != null) && (viewedBookType.getGenres() != null)){
-            genres.removeAll(viewedBookType.getGenres());
+        if (viewedBookType != null){
+            genres = genreService.listWithout(viewedBookType.getGenres());
+        }else{
+            genres = genreService.list();
         }
         model.addAttribute(Attributes.VIEWED_GENRES, genres);
         return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_LIST;
@@ -99,7 +101,7 @@ public class GenreManagementController {
     }
 
     @RequestMapping(value = "/deleteGenre", method = RequestMethod.POST)
-    public String deleteAuthor(@RequestParam(value = Parameters.GENRE_ID) String genreId,
+    public String deleteGenre(@RequestParam(value = Parameters.GENRE_ID) String genreId,
                                Model model){
         try{
             Genre genre = genreService.findById(Long.valueOf(genreId));
@@ -118,7 +120,7 @@ public class GenreManagementController {
     }
 
     @RequestMapping(value = "/foundGenres", method = RequestMethod.POST)
-    private String findAuthor(HttpSession session,
+    private String findGenre(HttpSession session,
                               @ModelAttribute(value = Attributes.VIEWED_GENRE) Genre formBean,
                               BindingResult result,
                               Model model) {
@@ -144,7 +146,7 @@ public class GenreManagementController {
     }
 
     @RequestMapping(value = "/infoGenre", method = RequestMethod.POST)
-    public String infoAuthor(@RequestParam(value = Parameters.GENRE_ID) String genreId,
+    public String infoGenre(@RequestParam(value = Parameters.GENRE_ID) String genreId,
                              Model model) {
         try{
             Genre genre = genreService.findById(Long.valueOf(genreId));
@@ -156,7 +158,7 @@ public class GenreManagementController {
     }
 
     @RequestMapping(value = "/updateGenre", method = RequestMethod.POST)
-    public String updateAuthor(@RequestParam(value = Parameters.GENRE_ID) String genreId, Model model){
+    public String updateGenre(@RequestParam(value = Parameters.GENRE_ID) String genreId, Model model){
         try{
             Genre genre = genreService.findById(Long.valueOf(genreId));
             model.addAttribute(Attributes.VIEWED_GENRE, genre);
@@ -167,7 +169,7 @@ public class GenreManagementController {
     }
 
     @RequestMapping(value = "/changeGenre", method = RequestMethod.POST)
-    public String changeAuthor(HttpSession session,
+    public String changeGenre(HttpSession session,
                                @ModelAttribute(value = Attributes.VIEWED_GENRE) Genre genre,
                                BindingResult result) {
         try{
@@ -214,18 +216,20 @@ public class GenreManagementController {
                 Genre genre = genreService.findById(Long.valueOf(infoGenreId));
                 model.addAttribute(Attributes.VIEWED_GENRE, genre);
             }
-            return gotTo(onPage);
+            return gotTo(onPage, model, viewedBookType);
         }catch(BusinessLogicException e){
             return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_ERROR;
         }
     }
 
-    private String gotTo(String onPage) {
+    private String gotTo(String onPage, Model model, Book viewBookType) {
         NavigateOnPage page = NavigateOnPage.valueOf(onPage);
         switch(page){
             case INFO:
                 return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_INFO;
             case LIST:
+                List<Genre> genres = genreService.listWithout(viewBookType.getGenres());
+                model.addAttribute(Attributes.VIEWED_GENRES, genres);
                 return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_LIST;
             case ADD:
                 return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_ADD;

@@ -28,6 +28,8 @@ public interface GenreService {
 
     List<Genre> list() throws BusinessLogicException;
 
+    List<Genre> listWithout(List<Genre> genres) throws BusinessLogicException;
+
     List<Genre> listLike(Genre genre) throws BusinessLogicException;
 
 }

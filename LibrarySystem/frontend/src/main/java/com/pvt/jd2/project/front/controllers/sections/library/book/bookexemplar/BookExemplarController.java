@@ -67,6 +67,10 @@ public class BookExemplarController extends CommonLogic {
     public String addNewBook(@ModelAttribute(value = Attributes.VIEWED_BOOK_EXEMPLAR_FLOW) BookExemplar bookExemplar,
                              Model model, BindingResult result, HttpSession session,
                              @RequestParam(value = Parameters.BOOK_ADD_ACTION) String bookAddAction){
+        String commonAction = getBookAction(bookAddAction, model);
+        if (commonAction != null){
+            return commonAction;
+        }
         try{
             return performCreationOfNewBook(bookExemplar, bookAddAction, result, model, session);
         }catch(BusinessLogicException e){
@@ -82,11 +86,6 @@ public class BookExemplarController extends CommonLogic {
     private String performCreationOfNewBook(BookExemplar bookExemplar,
                                 String bookAddAction, BindingResult result,
                                 Model model, HttpSession session) throws BusinessLogicException {
-        BookActionType action = BookActionType.valueOf(bookAddAction);
-        String commonAction = selectCommonTilesDefinition(action, model);
-        if (commonAction != null){
-            return commonAction;
-        }
         ValidationUtils.invokeValidator(bookExemplarValidator, bookExemplar, result);
         if (result.hasErrors()){
             return TilesDefinitions.LIBRARY_BOOK_EXEMPLAR_MANAGEMENT_ADD;
@@ -207,8 +206,8 @@ public class BookExemplarController extends CommonLogic {
     @RequestMapping(value = "/foundBookExemplars", method = RequestMethod.POST)
     public String foundBookExemplar(@ModelAttribute(value = Attributes.ACTIVATION_STATUSES) ActivationStatus[] statuses,
                                     @ModelAttribute(value = Attributes.VIEWED_BOOK_EXEMPLAR) FindBookExemplar formBean,
-                                    BindingResult result, Model model){
-
+                                    BindingResult result, Model model,
+                                    @RequestParam(value = Parameters.BOOK_ADD_ACTION) String bookAddAction){
         try{
             ValidationUtils.invokeValidator(findBookExemplarValidator, formBean, result);
             if (result.hasErrors()){

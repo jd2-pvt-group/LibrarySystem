@@ -147,6 +147,6 @@
             </tbody>
         </table>
         <s:message code="pages.libraryManagement.addBook.save" var="saveBookExemplar"/>
-        <button class="btn btn-primary" type="submit" onclick="beforeSubmit('#actionId','SAVE_BOOK');">${saveBookExemplar}</button>
+        <button class="btn btn-primary" type="submit">${saveBookExemplar}</button>
     </form:form>
 </div>

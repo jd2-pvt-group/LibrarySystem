@@ -1,7 +1,9 @@
 package com.pvt.jd2.project.front.controllers.sections.user;
 
+import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
+import com.pvt.jd2.project.common.service.RoleService;
 import com.pvt.jd2.project.common.service.UserService;
 import com.pvt.jd2.project.front.util.Attributes;
 import com.pvt.jd2.project.front.util.Parameters;
@@ -35,13 +37,40 @@ public class UserManagementController{
     private UserService userService;
 
     @Autowired
+    private RoleService roleService;
+
+    @Autowired
     private UserValidator userValidator;
     @Autowired
     private FindUserValidator findUserValidator;
 
+
+
+    @RequestMapping(value = "/addRoleUser", method = RequestMethod.POST)
+    public String addRolesUser(@RequestParam(value = Parameters.USER_ID) String userId,
+
+                             Model model,
+                             @ModelAttribute(value = Attributes.SECTION) Sections section) {
+
+
+        try{
+
+
+            List <Role> roleList = roleService.list();
+
+            model.addAttribute(Attributes. VIEWED_ROLES, roleList);
+
+            return USER_MANAGEMENT_ADD_ROLE;
+
+        }catch(BusinessLogicException e){
+            return error(section, e);
+        }
+    }
+
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public String createUser(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                           BindingResult result,
+                          Model model,
                           @ModelAttribute(value = Attributes.SECTION) Sections section) {
       ValidationUtils.invokeValidator(userValidator, viewedUser, result);
 
@@ -51,8 +80,8 @@ public class UserManagementController{
             }
             System.out.println(viewedUser);
 
-            successUserCreate(section,viewedUser);
-            return successUserAdd(section);
+           return successUserCreate(section,viewedUser,model);
+
         }catch(BusinessLogicException e){
             return error(section, e);
         }
@@ -144,7 +173,10 @@ public class UserManagementController{
 
     private void updateModelWithUser(Long userId, Model model) throws BusinessLogicException {
         User viewedUser = userService.findById(userId);
+        List <Role> roleList = roleService.listForUser(viewedUser);
         model.addAttribute(Attributes.VIEWED_USER, viewedUser);
+        model.addAttribute(Attributes. VIEWED_ROLES, roleList);
+
     }
 
 
@@ -156,12 +188,13 @@ public class UserManagementController{
                 return USER_MANAGEMENT_INFO;
         }
     }
-    private String successUserCreate(Sections section,User user) throws BusinessLogicException {
+    private String successUserCreate(Sections section,User user,Model model) throws BusinessLogicException {
         switch (section){
             case USER_MANAGEMENT:
                 user.setActive(true);
-                userService.create(user);
-                return USER_MANAGEMENT_ADD;
+          user = userService.create(user);
+                updateModelWithUser(user.getId(),model);
+                return USER_MANAGEMENT_INFO;
             default:
                 return USER_MANAGEMENT_INFO;
         }

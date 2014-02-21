@@ -26,11 +26,16 @@ public class ApplyListAuthorAction extends AbstractAuthorAction {
     @Override
     public String perform(HttpSession session, Model model, String[] authorIds) {
         Book viewedBookType = getViewedBookType(session);
-        if ((viewedBookType != null) && (authorIds != null)){
+        if (authorIds != null){
             List<Author> authors = getAuthorsFrom(viewedBookType);
             return performFor(authors, model, authorIds);
         }else{
-            List<Author> allAuthors = authorService.list();
+            List<Author> allAuthors = null;
+            if (viewedBookType != null){
+                allAuthors = authorService.listWithout(viewedBookType.getAuthors());
+            }else{
+                allAuthors = authorService.list();
+            }
             model.addAttribute(Attributes.VIEWED_AUTHORS, allAuthors);
         }
         return TilesDefinitions.LIBRARY_AUTHOR_MANAGEMENT_LIST;
@@ -44,8 +49,7 @@ public class ApplyListAuthorAction extends AbstractAuthorAction {
                     authors.add(tmpAuthor);
                 }
             }
-            List<Author> allAuthors = authorService.list();
-            allAuthors.removeAll(authors);
+            List<Author> allAuthors = authorService.listWithout(authors);
             model.addAttribute(Attributes.VIEWED_AUTHORS, allAuthors);
             return TilesDefinitions.LIBRARY_AUTHOR_MANAGEMENT_LIST;
         }catch(BusinessLogicException e){

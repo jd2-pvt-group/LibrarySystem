@@ -30,6 +30,8 @@ public interface AuthorService {
 
     List<Author> list() throws BusinessLogicException;
 
+    List<Author> listWithout(List<Author> authors) throws BusinessLogicException;
+
     List<Author> listLike(Author author) throws BusinessLogicException;
 
 }

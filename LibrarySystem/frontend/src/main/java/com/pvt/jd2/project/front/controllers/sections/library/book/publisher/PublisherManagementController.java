@@ -74,7 +74,11 @@ public class PublisherManagementController {
                                 @RequestParam(value = Parameters.PUBLISHER_ID) String publisherId) {
         Publisher publisher = publisherService.findById(Long.valueOf(publisherId));
         viewedBookType.setPublisher(publisher);
-        return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
+        if (viewedBookType.getId() == null){
+            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
+        }else{
+            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_UPDATE;
+        }
     }
 
     @RequestMapping(value = "/deletePublisher", method = RequestMethod.POST)

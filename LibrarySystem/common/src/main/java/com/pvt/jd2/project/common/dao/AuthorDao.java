@@ -24,6 +24,8 @@ public interface AuthorDao {
 
     List<Author> list() throws DatabaseException;
 
+    List<Author> listWithout(List<Author> authors) throws DatabaseException;
+
     Author findById(Long id) throws DatabaseException;
 
     List<Author> listLike(Author author) throws DatabaseException;

@@ -96,6 +96,16 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     @Transactional
+    public List<Genre> listWithout(List<Genre> genres) throws BusinessLogicException {
+        try{
+            return genreDao.listWithout(genres);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
+    }
+
+    @Override
+    @Transactional
     public List<Genre> listLike(Genre genre) throws BusinessLogicException {
         try{
             return genreDao.listLike(genre);

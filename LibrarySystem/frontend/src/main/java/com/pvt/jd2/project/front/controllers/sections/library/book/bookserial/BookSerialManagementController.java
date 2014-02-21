@@ -74,7 +74,11 @@ public class BookSerialManagementController {
                                 @RequestParam(value = Parameters.BOOK_SERIAL_ID) String bookSerialId) {
         BookSerial bookSerial = bookSerialService.findById(Long.valueOf(bookSerialId));
         viewedBookType.setBookSerial(bookSerial);
-        return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
+        if (viewedBookType.getId() == null){
+            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
+        }else{
+            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_UPDATE;
+        }
     }
 
     @RequestMapping(value = "/deleteBookSerial", method = RequestMethod.POST)

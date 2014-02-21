@@ -88,6 +88,22 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
+    public List<Author> listWithout(List<Author> authors) throws DatabaseException {
+        try {
+            Criteria criteria = createCriteria();
+            if (authors != null){
+                for(Author author : authors){
+                    criteria.add(Restrictions.ne(Author_.ID, author.getId()));
+                }
+            }
+            List<Author> list = (List<Author>) criteria.list();
+            return list;
+        } catch (HibernateException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    @Override
     public Author findById(Long id) throws DatabaseException {
         try {
             Session session = sessionFactory.getCurrentSession();

@@ -62,6 +62,9 @@
         <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userList.jsp"/>
     </definition>
 
+    <definition name="user_management_add_role" extends="user_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/addRoles.jsp"/>
+    </definition>
     <!-- ROLE MANAGEMENT DEFINITIONS -->
 
     <definition name="role_management" extends="standard_definition">

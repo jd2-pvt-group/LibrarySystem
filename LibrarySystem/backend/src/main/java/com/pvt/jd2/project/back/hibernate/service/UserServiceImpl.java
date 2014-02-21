@@ -26,9 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void create(User user) throws BusinessLogicException {
+    public User create(User user) throws BusinessLogicException {
         try{
-            userDao.create(user);
+          return  userDao.create(user);
         }catch(DatabaseException e){
             throw new BusinessLogicException(e);
         }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    void create(User user) throws BusinessLogicException;
+    User create(User user) throws BusinessLogicException;
 
     void update(User user) throws BusinessLogicException;
 

@@ -25,6 +25,7 @@ public interface TilesDefinitions {
     String USER_MANAGEMENT_LIST = "user_management_list";
     String USER_MANAGEMENT_FIND = "user_management_find";
     String USER_MANAGEMENT_ERROR = "user_management_error";
+    String USER_MANAGEMENT_ADD_ROLE = "user_management_add_role";
 
     // personal management pages
     String PERSONAL_MANAGEMENT_SETTINGS = "personal_management_settings";

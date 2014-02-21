@@ -126,6 +126,6 @@
             </tbody>
         </table>
         <s:message code="pages.libraryManagement.addBookType.actions.save" var="saveBookType"/>
-        <button class="btn btn-primary" type="submit" onclick="beforeSubmit('#actionId','SAVE_BOOK_TYPE');">${saveBookType}</button>
+        <button class="btn btn-primary" type="submit">${saveBookType}</button>
     </form:form>
 </div>

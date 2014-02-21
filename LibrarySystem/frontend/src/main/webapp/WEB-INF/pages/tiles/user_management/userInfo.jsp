@@ -47,4 +47,38 @@
         <s:message code="pages.userManagement.infoUser.update" var="updateInfo"/>
         <button class="btn btn-primary" type="submit">${updateInfo}</button>
     </form>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td><s:message code="pages.userManagement.infoUser.Roles"/>:</td>
+
+        </tr>
+        <c:forEach var="role" items="${viewedRoles}">
+            <tr>
+                <td>${role.name}</td>
+
+
+
+                <td>${role.description}</td>
+
+
+
+
+            <td>
+            <form:form action="${pageContext.request.contextPath}/management/deleteUsersRole" method="POST">
+                <input type="hidden" name="role" value="${role}"/>
+                <s:message code="pages.userManagement.infoUser.Roles.delete" var="remove"/>
+                <button class="btn btn-primary" type="submit">${remove}</button>
+            </form:form>
+            </td>
+        </c:forEach>
+
+        </tbody>
+    </table>
+    <form action="${pageContext.request.contextPath}/management/addRoleUser" method="POST">
+        <input type="hidden" name="user_id" value="${viewedUser.id}"/>
+        <s:message code="pages.userManagement.infoUser.Roles.addRole" var="addRole"/>
+        <button class="btn btn-primary" type="submit">${addRole}</button>
+    </form>
 </div>

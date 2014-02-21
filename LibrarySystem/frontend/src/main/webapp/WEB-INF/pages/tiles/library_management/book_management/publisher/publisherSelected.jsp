@@ -10,7 +10,7 @@
 <c:if test="${not empty sessionScope['viewedBookTypeFlow'] and not empty sessionScope['viewedBookTypeFlow'].publisher}">
     <div class="data_content">
         <hr/>
-        <h3 class="well title"><s:message code="pages.libraryManagement.infoPublisher.selectPublisher"/></h3>
+        <h3 class="well well-small title"><s:message code="pages.libraryManagement.infoPublisher.selectPublisher"/></h3>
         <table class="table">
             <tbody>
                 <tr>

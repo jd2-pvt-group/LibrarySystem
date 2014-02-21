@@ -112,6 +112,21 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
+    public List<Genre> listWithout(List<Genre> genres) throws DatabaseException {
+        try{
+            Criteria criteria = createCriteria();
+            if (genres != null){
+                for(Genre genre : genres){
+                    criteria.add(Restrictions.ne(Genre_.ID, genre.getId()));
+                }
+            }
+            return (List<Genre>)criteria.list();
+        }catch(HibernateException e){
+            throw new DatabaseException(e);
+        }
+    }
+
+    @Override
     public List<Genre> listLike(Genre genre) throws DatabaseException {
         try{
             Criteria criteria = createCriteria();

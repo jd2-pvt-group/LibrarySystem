@@ -28,7 +28,6 @@ import java.util.List;
  * Time: 9:22
  */
 @Controller
-@SessionAttributes(value = {Attributes.VIEWED_BOOK_TYPE_FLOW})
 @RequestMapping(value = "/management")
 public class BookTypeManagementController extends CommonLogic {
 
@@ -54,13 +53,17 @@ public class BookTypeManagementController extends CommonLogic {
     private GenreService genreService;
 
     @ModelAttribute(value = Attributes.VIEWED_BOOK_TYPE_FLOW)
-    public Book buildViewedBookType(){
-        return new Book();
+    public Book buildViewedBookType(HttpSession session){
+        Book book = (Book)session.getAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW);
+        if (book == null){
+            book = new Book();
+            session.setAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW, book);
+        }
+        return book;
     }
 
     @RequestMapping(value = "/addBookType", method = RequestMethod.GET)
-    public String createBookType(@ModelAttribute(value = Attributes.VIEWED_BOOK_TYPE_FLOW) Book viewedBookType,
-                                 BindingResult result) {
+    public String createBookType(@ModelAttribute(value = Attributes.VIEWED_BOOK_TYPE_FLOW) Book viewedBookType) {
         return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
     }
 
@@ -68,6 +71,10 @@ public class BookTypeManagementController extends CommonLogic {
     public String createNewBookType(@ModelAttribute(value = Attributes.VIEWED_BOOK_TYPE_FLOW) Book viewedBookType,
                                     BindingResult result, Model model, HttpSession session,
                                     @RequestParam(value = Parameters.BOOK_ADD_ACTION) String bookAddAction) {
+        String commonAction = getBookAction(bookAddAction, model);
+        if (commonAction != null){
+            return commonAction;
+        }
         try{
             return creationOfNewBook(viewedBookType, result,
                     model, session, bookAddAction);
@@ -78,11 +85,6 @@ public class BookTypeManagementController extends CommonLogic {
 
     private String creationOfNewBook(Book viewedBookType, BindingResult result,
                                      Model model, HttpSession session, String bookAddAction) throws BusinessLogicException {
-        BookActionType action = BookActionType.valueOf(bookAddAction);
-        String commonAction = selectCommonTilesDefinition(action, model);
-        if (commonAction != null){
-            return commonAction;
-        }
         ValidationUtils.invokeValidator(bookValidator, viewedBookType, result);
         if (result.hasErrors()){
             return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
@@ -212,10 +214,12 @@ public class BookTypeManagementController extends CommonLogic {
     }
 
     @RequestMapping(value = "/updateBookType", method = RequestMethod.POST)
-    public String updateBookType(Model model, @RequestParam(value = Parameters.BOOK_TYPE_ID) String bookTypeId){
+    public String updateBookType(Model model, HttpSession session,
+                                 @RequestParam(value = Parameters.BOOK_TYPE_ID) String bookTypeId){
         try{
             Book book = bookService.findByIdFull(Long.valueOf(bookTypeId));
             model.addAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW, book);
+            session.setAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW, book);
             return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_UPDATE;
         }catch(BusinessLogicException e){
             return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ERROR;
@@ -224,12 +228,17 @@ public class BookTypeManagementController extends CommonLogic {
 
     @RequestMapping(value = "/changeBookType", method = RequestMethod.POST)
     public String changeBookType(@ModelAttribute(value = Attributes.VIEWED_BOOK_TYPE_FLOW) Book book,
-                                 BindingResult result, Model model){
-        ValidationUtils.invokeValidator(bookValidator, book, result);
-        if (result.hasErrors()) {
-            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_UPDATE;
+                                 BindingResult result, Model model,
+                                 @RequestParam(value = Parameters.BOOK_ADD_ACTION) String bookAddAction){
+        String commonAction = getBookAction(bookAddAction, model);
+        if (commonAction != null){
+            return commonAction;
         }
         try{
+            ValidationUtils.invokeValidator(bookValidator, book, result);
+            if (result.hasErrors()) {
+                return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_UPDATE;
+            }
             bookService.update(book);
             model.addAttribute(Attributes.VIEWED_BOOK_TYPE, book);
             return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_INFO;
@@ -237,4 +246,15 @@ public class BookTypeManagementController extends CommonLogic {
             return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ERROR;
         }
     }
+
+    @RequestMapping(value = "/backToBookType", method = RequestMethod.GET)
+    public String backToBookType(@ModelAttribute(value = Attributes.VIEWED_BOOK_TYPE_FLOW) Book book){
+        if (book.getId() == null){
+            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_ADD;
+        }else{
+            return TilesDefinitions.LIBRARY_BOOK_TYPE_MANAGEMENT_UPDATE;
+        }
+    }
+
+
 }

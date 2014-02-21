@@ -28,11 +28,16 @@ public class ApplyListGenreAction extends AbstractGenreAction {
     @Override
     public String perform(HttpSession session, Model model, String[] ids) {
         Book viewedBookType = getViewedBookType(session);
-        if ((viewedBookType != null) && (ids != null)){
+        if (ids != null){
             List<Genre> genres = getGenresFrom(viewedBookType);
             return performFor(genres, model, ids);
         }else{
-            List<Genre> allGenres = genreService.list();
+            List<Genre> allGenres = null;
+            if (viewedBookType != null){
+                allGenres = genreService.listWithout(viewedBookType.getGenres());
+            }else{
+                allGenres = genreService.list();
+            }
             model.addAttribute(Attributes.VIEWED_GENRES, allGenres);
         }
         return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_LIST;
@@ -46,8 +51,7 @@ public class ApplyListGenreAction extends AbstractGenreAction {
                     genres.add(tmpGenre);
                 }
             }
-            List<Genre> allGenres = genreService.list();
-            allGenres.removeAll(genres);
+            List<Genre> allGenres = genreService.listWithout(genres);
             model.addAttribute(Attributes.VIEWED_GENRES, allGenres);
             return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_LIST;
         }catch(BusinessLogicException e){

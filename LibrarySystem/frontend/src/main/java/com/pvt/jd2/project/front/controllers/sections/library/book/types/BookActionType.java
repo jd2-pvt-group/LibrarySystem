@@ -8,7 +8,6 @@ package com.pvt.jd2.project.front.controllers.sections.library.book.types;
  */
 public enum BookActionType {
 
-    SAVE_BOOK, SAVE_BOOK_TYPE,
     SELECT_GENRES,
     SELECT_AUTHORS, SELECT_PUBLISHER,
     SELECT_BOOK_SERIAL, SELECT_ISBN;

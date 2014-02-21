@@ -1,9 +1,8 @@
 package com.pvt.jd2.project.front.actions.genre;
 
-import com.pvt.jd2.project.common.domain.Author;
+import com.pvt.jd2.project.common.domain.Book;
 import com.pvt.jd2.project.common.domain.Genre;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
-import com.pvt.jd2.project.common.service.AuthorService;
 import com.pvt.jd2.project.common.service.GenreService;
 import com.pvt.jd2.project.front.util.Attributes;
 import com.pvt.jd2.project.front.util.TilesDefinitions;
@@ -34,7 +33,13 @@ public class DeleteGenreAction extends AbstractGenreAction {
                     genreService.delete(tmpGenre);
                 }
             }
-            List<Genre> genres = genreService.list();
+            Book bookType = (Book)session.getAttribute(Attributes.VIEWED_BOOK_TYPE_FLOW);
+            List<Genre> genres = null;
+            if (bookType != null){
+                genres = genreService.listWithout(bookType.getGenres());
+            }else{
+                genres = genreService.list();
+            }
             model.addAttribute(Attributes.VIEWED_GENRES, genres);
             return TilesDefinitions.LIBRARY_GENRE_MANAGEMENT_LIST;
         }catch(BusinessLogicException e){

@@ -32,10 +32,11 @@ public class UserDaoImpl implements UserDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void create(User user) throws DatabaseException {
+    public User create(User user) throws DatabaseException {
         try{
             Session session = sessionFactory.getCurrentSession();
             session.persist(user);
+            return user;
         }catch(HibernateException e){
             throw new DatabaseException(e);
         }

@@ -27,7 +27,7 @@
     <c:when test="${not empty sessionScope['viewedBookTypeFlow']}">
         <li><hr/></li>
         <li>
-            <a href="${pageContext.request.contextPath}/management/addBookType">
+            <a href="${pageContext.request.contextPath}/management/backToBookType">
                 <i class="icon-chevron-left"></i> <s:message code="pages.libraryManagement.addBookType.actions.back"/>
             </a>
         </li>

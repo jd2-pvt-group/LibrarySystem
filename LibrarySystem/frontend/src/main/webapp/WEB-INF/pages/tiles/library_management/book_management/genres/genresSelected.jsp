@@ -11,7 +11,7 @@
 <c:if test="${not empty sessionScope['viewedBookTypeFlow'] and not empty sessionScope['viewedBookTypeFlow'].genres}">
     <div class="data_content">
         <hr/>
-        <h3 class="well title"><s:message code="pages.libraryManagement.infoGenre.selectGenres"/></h3>
+        <h3 class="well well-small title"><s:message code="pages.libraryManagement.infoGenre.selectGenres"/></h3>
         <table class="table">
             <thead>
                 <tr>

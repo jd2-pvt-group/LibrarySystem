@@ -98,6 +98,16 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     @Transactional
+    public List<Author> listWithout(List<Author> authors) throws BusinessLogicException {
+        try{
+            return authorDao.listWithout(authors);
+        }catch(DatabaseException e){
+            throw new BusinessLogicException(e);
+        }
+    }
+
+    @Override
+    @Transactional
     public List<Author> listLike(Author author) throws BusinessLogicException {
         try{
             return authorDao.listLike(author);

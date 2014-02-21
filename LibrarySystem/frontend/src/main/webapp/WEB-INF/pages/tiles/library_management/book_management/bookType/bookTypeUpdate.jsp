@@ -19,6 +19,7 @@
 <div class="data_content">
     <h3 class="well title"><s:message code="pages.libraryManagement.addBookType.title"/></h3>
     <form:form action="${pageContext.request.contextPath}/management/changeBookType" method="POST" commandName="viewedBookTypeFlow">
+        <input type="hidden" id="actionId" name="bookAddAction"/>
         <table class="table">
             <tbody>
                 <tr>
