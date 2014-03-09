@@ -6,6 +6,7 @@ import com.pvt.jd2.project.common.domain.metamodel.Genre_;
 import com.pvt.jd2.project.common.domain.metamodel.Publisher_;
 import com.pvt.jd2.project.common.service.GenreService;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -17,7 +18,7 @@ import org.springframework.validation.Validator;
  * Date: 09.02.14
  * Time: 15:09
  */
-public class GenreValidator implements Validator {
+public class GenreValidator extends GenericValidator<Genre> {
 
     @Autowired
     private GenreService genreService;

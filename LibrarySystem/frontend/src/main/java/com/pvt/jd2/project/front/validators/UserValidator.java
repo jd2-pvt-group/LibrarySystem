@@ -2,13 +2,12 @@ package com.pvt.jd2.project.front.validators;
 
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.domain.metamodel.User_;
-import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.service.UserService;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +15,7 @@ import org.springframework.validation.Validator;
  * Date: 31.01.14
  * Time: 9:34
  */
-public class UserValidator implements Validator {
+public class UserValidator extends GenericValidator<User> {
 
     @Autowired
     private UserService userService;

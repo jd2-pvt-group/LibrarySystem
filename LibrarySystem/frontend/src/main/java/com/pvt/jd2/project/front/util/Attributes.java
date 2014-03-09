@@ -14,6 +14,9 @@ public interface Attributes {
     String LOGGED_PERMISSIONS = "loggedPermissions";
 
     // request attributes
+    String LOGIN_FORM = "loginForm";
+    String LANGUAGES = "languages";
+
     String VIEWED_USER = "viewedUser";
     String VIEWED_ROLE = "viewedRole";
     String VIEWED_BOOK_TYPE = "viewedBookType";

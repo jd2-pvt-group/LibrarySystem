@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/librarydb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.pvt.jd2.project.common.domain"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.connection.pool_size">50</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <context:component-scan base-package="com.pvt.jd2.project.front"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="authorDao" class="com.pvt.jd2.project.back.hibernate.dao.AuthorDaoImpl"/>
+    <bean id="bookExemplarUserDao" class="com.pvt.jd2.project.back.hibernate.dao.BookExemplarUserDaoImpl"/>
+    <bean id="bookExemplarDao" class="com.pvt.jd2.project.back.hibernate.dao.BookExemplarDaoImpl"/>
+    <bean id="bookDao" class="com.pvt.jd2.project.back.hibernate.dao.BookDaoImpl"/>
+    <bean id="bookSerialDao" class="com.pvt.jd2.project.back.hibernate.dao.BookSerialDaoImpl"/>
+    <bean id="bookExemplarUserHistoryDao" class="com.pvt.jd2.project.back.hibernate.dao.BookExemplarUserHistoryDaoImpl"/>
+    <bean id="genreDao" class="com.pvt.jd2.project.back.hibernate.dao.GenreDaoImpl"/>
+    <bean id="globalSettingDao" class="com.pvt.jd2.project.back.hibernate.dao.GlobalSettingDaoImpl"/>
+    <bean id="permissionDao" class="com.pvt.jd2.project.back.hibernate.dao.PermissionDaoImpl"/>
+    <bean id="publisherDao" class="com.pvt.jd2.project.back.hibernate.dao.PublisherDaoImpl"/>
+    <bean id="roleDao" class="com.pvt.jd2.project.back.hibernate.dao.RoleDaoImpl"/>
+    <bean id="userDao" class="com.pvt.jd2.project.back.hibernate.dao.UserDaoImpl"/>
+    <bean id="languageDao" class="com.pvt.jd2.project.back.hibernate.dao.LanguageDaoImpl"/>
+    <bean id="messageDao" class="com.pvt.jd2.project.back.hibernate.dao.MessageDaoImpl"/>
+
+    <bean id="authorService" class="com.pvt.jd2.project.back.hibernate.service.AuthorServiceImpl"/>
+    <bean id="bookExemplarUserService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarUserServiceImpl"/>
+    <bean id="bookService" class="com.pvt.jd2.project.back.hibernate.service.BookServiceImpl"/>
+    <bean id="bookExemplarService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarServiceImpl"/>
+    <bean id="bookSerialService" class="com.pvt.jd2.project.back.hibernate.service.BookSerialServiceImpl"/>
+    <bean id="bookExemplarUserHistoryService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarUserHistoryServiceImpl"/>
+    <bean id="genreService" class="com.pvt.jd2.project.back.hibernate.service.GenreServiceImpl"/>
+    <bean id="globalSettingService" class="com.pvt.jd2.project.back.hibernate.service.GlobalSettingServiceImpl"/>
+    <bean id="permissionService" class="com.pvt.jd2.project.back.hibernate.service.PermissionServiceImpl"/>
+    <bean id="publisherService" class="com.pvt.jd2.project.back.hibernate.service.PublisherServiceImpl"/>
+    <bean id="roleService" class="com.pvt.jd2.project.back.hibernate.service.RoleServiceImpl"/>
+    <bean id="userService" class="com.pvt.jd2.project.back.hibernate.service.UserServiceImpl"/>
+    <bean id="languageService" class="com.pvt.jd2.project.back.hibernate.service.LanguageServiceImpl"/>
+    <bean id="messageService" class="com.pvt.jd2.project.back.hibernate.service.MessageServiceImpl"/>
+
+</beans>

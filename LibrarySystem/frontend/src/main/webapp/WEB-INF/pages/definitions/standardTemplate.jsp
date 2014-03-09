@@ -16,7 +16,6 @@
         <link href="${pageContext.request.contextPath}/resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
         <link href="${pageContext.request.contextPath}/resources/css/library.css" rel="stylesheet"/>
 
-
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.0.3.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library.js"></script>

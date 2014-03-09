@@ -1,12 +1,10 @@
 package com.pvt.jd2.project.front.validators.find;
 
 import com.pvt.jd2.project.common.domain.ActivationStatus;
-import com.pvt.jd2.project.common.domain.BookExemplar;
-import com.pvt.jd2.project.common.domain.metamodel.BookExemplar_;
 import com.pvt.jd2.project.front.formbeans.FindBookExemplar;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +12,7 @@ import org.springframework.validation.Validator;
  * Date: 14.02.14
  * Time: 20:34
  */
-public class FindBookExemplarValidator implements Validator {
+public class FindBookExemplarValidator extends GenericValidator<FindBookExemplar> {
 
     @Override
     public boolean supports(Class<?> clazz) {

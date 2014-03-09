@@ -124,6 +124,8 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
+
+
     public List<BookExemplarUser> getBookUsers() {
         return bookUsers;
     }

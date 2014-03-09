@@ -4,10 +4,10 @@ import com.pvt.jd2.project.common.domain.Author;
 import com.pvt.jd2.project.common.domain.metamodel.Author_;
 import com.pvt.jd2.project.common.service.AuthorService;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +15,7 @@ import org.springframework.validation.Validator;
  * Date: 08.02.14
  * Time: 2:53
  */
-public class AuthorValidator implements Validator {
+public class AuthorValidator extends GenericValidator<Author> {
 
     @Autowired
     private AuthorService authorService;

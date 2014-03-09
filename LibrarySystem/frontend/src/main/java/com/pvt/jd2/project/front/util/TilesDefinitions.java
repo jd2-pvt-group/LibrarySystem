@@ -29,6 +29,7 @@ public interface TilesDefinitions {
 
     // personal management pages
     String PERSONAL_MANAGEMENT_SETTINGS = "personal_management_settings";
+    String PERSONAL_MANAGEMENT_SETTINGS_UPDATE = "personal_management_settings_update";
     String PERSONAL_MANAGEMENT_USER_INFO = "personal_management_userInfo";
     String PERSONAL_MANAGEMENT_USER_UPDATE = "personal_management_userUpdate";
     String PERSONAL_MANAGEMENT_ERROR = "personal_management_error";

@@ -1,6 +1,7 @@
 package com.pvt.jd2.project.common.service;
 
 import com.pvt.jd2.project.common.domain.ActivationStatus;
+import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
@@ -40,5 +41,7 @@ public interface UserService {
     List<User> listLike(User user)throws BusinessLogicException;
 
     List<User> listLike(User user, ActivationStatus status)throws BusinessLogicException;
+    List <Role>addRoles(Long idUser, List<Role>rolesList)throws BusinessLogicException;
+    List <Role>removeRole(Long idUser, Role role)throws BusinessLogicException;
 
 }

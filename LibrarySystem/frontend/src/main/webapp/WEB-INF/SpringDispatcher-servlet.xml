@@ -16,24 +16,20 @@
           class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"
           p:definitions="/WEB-INF/tiles.xml"/>
 
-<!--
-    <bean id="tilesViewResolver"
-          class="org.springframework.js.ajax.AjaxUrlBasedViewResolver"
-          p:viewClass="org.springframework.js.ajax.tiles2.AjaxTilesView"/>
-    -->
-
     <bean id="tilesViewResolver"
           class="org.springframework.web.servlet.view.UrlBasedViewResolver"
           p:viewClass="org.springframework.web.servlet.view.tiles2.TilesView"/>
 
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:messages/messages"/>
-        <property name="defaultEncoding" value="UTF-8"/>
-    </bean>
+    <bean id="messageSource" class="com.pvt.jd2.project.front.support.DatabaseResourceBundle"/>
 
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="en"/>
     </bean>
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+              p:paramName="lang"/>
+    </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/" />
@@ -83,6 +79,8 @@
     <bean id="publisherDao" class="com.pvt.jd2.project.back.hibernate.dao.PublisherDaoImpl"/>
     <bean id="roleDao" class="com.pvt.jd2.project.back.hibernate.dao.RoleDaoImpl"/>
     <bean id="userDao" class="com.pvt.jd2.project.back.hibernate.dao.UserDaoImpl"/>
+    <bean id="languageDao" class="com.pvt.jd2.project.back.hibernate.dao.LanguageDaoImpl"/>
+    <bean id="messageDao" class="com.pvt.jd2.project.back.hibernate.dao.MessageDaoImpl"/>
 
     <bean id="authorService" class="com.pvt.jd2.project.back.hibernate.service.AuthorServiceImpl"/>
     <bean id="bookExemplarUserService" class="com.pvt.jd2.project.back.hibernate.service.BookExemplarUserServiceImpl"/>
@@ -96,6 +94,8 @@
     <bean id="publisherService" class="com.pvt.jd2.project.back.hibernate.service.PublisherServiceImpl"/>
     <bean id="roleService" class="com.pvt.jd2.project.back.hibernate.service.RoleServiceImpl"/>
     <bean id="userService" class="com.pvt.jd2.project.back.hibernate.service.UserServiceImpl"/>
+    <bean id="languageService" class="com.pvt.jd2.project.back.hibernate.service.LanguageServiceImpl"/>
+    <bean id="messageService" class="com.pvt.jd2.project.back.hibernate.service.MessageServiceImpl"/>
 
     <bean id="loginValidator" class="com.pvt.jd2.project.front.validators.LoginFormValidator"/>
 

@@ -3,8 +3,8 @@ package com.pvt.jd2.project.front.validators.find;
 import com.pvt.jd2.project.common.domain.BookSerial;
 import com.pvt.jd2.project.common.domain.metamodel.BookSerial_;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
  * Date: 06.02.14
  * Time: 6:25
  */
-public class FindBookSerialValidator implements Validator {
+public class FindBookSerialValidator extends GenericValidator<BookSerial> {
 
     @Override
     public boolean supports(Class<?> clazz) {

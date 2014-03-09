@@ -340,6 +340,14 @@
         <put-attribute name="content"  value="/WEB-INF/pages/tiles/user_management/userUpdate.jsp"/>
     </definition>
 
+    <definition name="personal_management_settings" extends="personal_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/personal_management/personalSettings.jsp"/>
+    </definition>
+
+    <definition name="personal_management_settings_update" extends="personal_management">
+        <put-attribute name="content"  value="/WEB-INF/pages/tiles/personal_management/updatePersonalSettings.jsp"/>
+    </definition>
+
     <definition name="personal_management_error" extends="personal_management">
         <put-attribute name="content"  value="/WEB-INF/pages/tiles/error.jsp"/>
     </definition>

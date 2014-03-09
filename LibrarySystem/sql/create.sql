@@ -3,7 +3,7 @@
 -- Server version:               5.5.35 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2014-02-14 14:47:19
+-- Date/time:                    2014-03-02 05:05:14
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -11,11 +11,13 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 -- Dumping database structure for librarydb
+DROP DATABASE IF EXISTS `librarydb`;
 CREATE DATABASE IF NOT EXISTS `librarydb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `librarydb`;
 
 
 -- Dumping structure for table librarydb.author
+DROP TABLE IF EXISTS `author`;
 CREATE TABLE IF NOT EXISTS `author` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `FIRST_NAME` varchar(50) NOT NULL,
@@ -27,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `author` (
 
 
 -- Dumping structure for table librarydb.book
+DROP TABLE IF EXISTS `book`;
 CREATE TABLE IF NOT EXISTS `book` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `ISBN` varchar(50) NOT NULL,
@@ -46,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `book` (
 
 
 -- Dumping structure for table librarydb.book_author
+DROP TABLE IF EXISTS `book_author`;
 CREATE TABLE IF NOT EXISTS `book_author` (
   `BOOK_ID` int(10) NOT NULL,
   `AUTHOR_ID` int(10) NOT NULL,
@@ -59,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `book_author` (
 
 
 -- Dumping structure for table librarydb.book_exemplar
+DROP TABLE IF EXISTS `book_exemplar`;
 CREATE TABLE IF NOT EXISTS `book_exemplar` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `BOOK_ID` int(10) NOT NULL,
@@ -73,6 +78,7 @@ CREATE TABLE IF NOT EXISTS `book_exemplar` (
 
 
 -- Dumping structure for table librarydb.book_exemplar_user
+DROP TABLE IF EXISTS `book_exemplar_user`;
 CREATE TABLE IF NOT EXISTS `book_exemplar_user` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `BOOK_EXEMPLAR_ID` int(10) NOT NULL,
@@ -91,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `book_exemplar_user` (
 
 
 -- Dumping structure for table librarydb.book_exemplar_user_history
+DROP TABLE IF EXISTS `book_exemplar_user_history`;
 CREATE TABLE IF NOT EXISTS `book_exemplar_user_history` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `BOOK_EXEMPLAR_ID` int(10) NOT NULL,
@@ -110,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `book_exemplar_user_history` (
 
 
 -- Dumping structure for table librarydb.book_genre
+DROP TABLE IF EXISTS `book_genre`;
 CREATE TABLE IF NOT EXISTS `book_genre` (
   `BOOK_ID` int(10) NOT NULL,
   `GENRE_ID` int(10) NOT NULL,
@@ -123,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `book_genre` (
 
 
 -- Dumping structure for table librarydb.book_serial
+DROP TABLE IF EXISTS `book_serial`;
 CREATE TABLE IF NOT EXISTS `book_serial` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(100) NOT NULL,
@@ -135,6 +144,7 @@ CREATE TABLE IF NOT EXISTS `book_serial` (
 
 
 -- Dumping structure for table librarydb.genre
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE IF NOT EXISTS `genre` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(100) NOT NULL,
@@ -147,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `genre` (
 
 
 -- Dumping structure for table librarydb.global_setting
+DROP TABLE IF EXISTS `global_setting`;
 CREATE TABLE IF NOT EXISTS `global_setting` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) DEFAULT NULL,
@@ -157,7 +168,37 @@ CREATE TABLE IF NOT EXISTS `global_setting` (
 -- Data exporting was unselected.
 
 
+-- Dumping structure for table librarydb.language
+DROP TABLE IF EXISTS `language`;
+CREATE TABLE IF NOT EXISTS `language` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `SHORT_NAME` varchar(2) NOT NULL,
+  `NAME` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `SHORT_NAME` (`SHORT_NAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
+-- Dumping structure for table librarydb.message
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
+  `CODE` varchar(255) NOT NULL,
+  `LANGUAGE_ID` int(10) NOT NULL,
+  `MESSAGE` varchar(500) NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `CODE_LANGUAGE_ID` (`CODE`,`LANGUAGE_ID`),
+  KEY `FK_M_LANGUAGE` (`LANGUAGE_ID`),
+  CONSTRAINT `FK_M_LANGUAGE` FOREIGN KEY (`LANGUAGE_ID`) REFERENCES `language` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Data exporting was unselected.
+
+
 -- Dumping structure for table librarydb.permission
+DROP TABLE IF EXISTS `permission`;
 CREATE TABLE IF NOT EXISTS `permission` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `CODE` varchar(100) NOT NULL,
@@ -170,6 +211,7 @@ CREATE TABLE IF NOT EXISTS `permission` (
 
 
 -- Dumping structure for table librarydb.publisher
+DROP TABLE IF EXISTS `publisher`;
 CREATE TABLE IF NOT EXISTS `publisher` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
@@ -182,6 +224,7 @@ CREATE TABLE IF NOT EXISTS `publisher` (
 
 
 -- Dumping structure for table librarydb.role
+DROP TABLE IF EXISTS `role`;
 CREATE TABLE IF NOT EXISTS `role` (
   `ID` bigint(10) NOT NULL AUTO_INCREMENT,
   `NAME` varchar(50) NOT NULL,
@@ -194,6 +237,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 
 
 -- Dumping structure for table librarydb.role_permission
+DROP TABLE IF EXISTS `role_permission`;
 CREATE TABLE IF NOT EXISTS `role_permission` (
   `ROLE_ID` bigint(10) NOT NULL,
   `PERMISSION_ID` int(10) NOT NULL,
@@ -208,6 +252,7 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
 
 
 -- Dumping structure for table librarydb.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `LOGIN` varchar(50) NOT NULL,
@@ -226,6 +271,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 
 -- Dumping structure for table librarydb.user_role
+DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
   `USER_ID` int(10) NOT NULL,
   `ROLE_ID` bigint(10) NOT NULL,

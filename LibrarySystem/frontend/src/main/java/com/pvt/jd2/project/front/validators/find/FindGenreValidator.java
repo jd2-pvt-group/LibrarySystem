@@ -3,8 +3,8 @@ package com.pvt.jd2.project.front.validators.find;
 import com.pvt.jd2.project.common.domain.Genre;
 import com.pvt.jd2.project.common.domain.metamodel.Genre_;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,8 +12,7 @@ import org.springframework.validation.Validator;
  * Date: 09.02.14
  * Time: 22:33
  */
-public class FindGenreValidator implements Validator {
-
+public class FindGenreValidator extends GenericValidator<Genre> {
 
     @Override
     public boolean supports(Class<?> clazz) {

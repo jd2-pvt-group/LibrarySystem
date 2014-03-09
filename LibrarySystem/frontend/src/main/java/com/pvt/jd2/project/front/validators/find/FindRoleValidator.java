@@ -3,8 +3,8 @@ package com.pvt.jd2.project.front.validators.find;
 import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.domain.metamodel.Role_;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
  * Date: 02.02.14
  * Time: 3:05
  */
-public class FindRoleValidator implements Validator {
+public class FindRoleValidator extends GenericValidator<Role> {
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -26,4 +26,5 @@ public class FindRoleValidator implements Validator {
             errors.rejectValue(Role_.NAME, Messages.ROLE_FIND_FIELDS_ARE_EMPTY);
         }
     }
+
 }

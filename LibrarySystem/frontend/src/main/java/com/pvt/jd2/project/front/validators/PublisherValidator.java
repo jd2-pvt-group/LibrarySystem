@@ -4,10 +4,10 @@ import com.pvt.jd2.project.common.domain.Publisher;
 import com.pvt.jd2.project.common.domain.metamodel.Publisher_;
 import com.pvt.jd2.project.common.service.PublisherService;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +15,7 @@ import org.springframework.validation.Validator;
  * Date: 07.02.14
  * Time: 23:58
  */
-public class PublisherValidator implements Validator {
+public class PublisherValidator extends GenericValidator<Publisher> {
 
     @Autowired
     private PublisherService publisherService;

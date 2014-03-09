@@ -13,11 +13,11 @@ import com.pvt.jd2.project.front.util.Parameters;
 import com.pvt.jd2.project.front.util.TilesDefinitions;
 import com.pvt.jd2.project.front.validators.AuthorValidator;
 import com.pvt.jd2.project.front.validators.find.FindAuthorValidator;
+import com.pvt.jd2.project.front.validators.generic.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;

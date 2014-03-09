@@ -4,10 +4,10 @@ import com.pvt.jd2.project.common.domain.BookExemplar;
 import com.pvt.jd2.project.common.domain.metamodel.BookExemplar_;
 import com.pvt.jd2.project.common.service.BookExemplarService;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +15,7 @@ import org.springframework.validation.Validator;
  * Date: 04.02.14
  * Time: 8:47
  */
-public class BookExemplarValidator implements Validator {
+public class BookExemplarValidator extends GenericValidator<BookExemplar> {
 
     @Autowired
     private BookExemplarService bookExemplarService;

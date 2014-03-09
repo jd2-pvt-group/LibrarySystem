@@ -2,13 +2,15 @@ package com.pvt.jd2.project.front.validators.find;
 
 import com.pvt.jd2.project.common.domain.metamodel.User_;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import com.pvt.jd2.project.common.domain.User;
 /**
  * Created by Admin on 2/11/14.
  */
-public class FindUserValidator implements Validator {
+public class FindUserValidator extends GenericValidator<User> {
+
     @Override
     public boolean supports(Class<?> aClass) {
         return User.class.equals(aClass);

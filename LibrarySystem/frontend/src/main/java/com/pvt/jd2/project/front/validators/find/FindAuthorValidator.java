@@ -3,8 +3,8 @@ package com.pvt.jd2.project.front.validators.find;
 import com.pvt.jd2.project.common.domain.Author;
 import com.pvt.jd2.project.common.domain.metamodel.Author_;
 import com.pvt.jd2.project.front.util.Messages;
+import com.pvt.jd2.project.front.validators.generic.GenericValidator;
 import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +12,7 @@ import org.springframework.validation.Validator;
  * Date: 08.02.14
  * Time: 3:35
  */
-public class FindAuthorValidator implements Validator {
+public class FindAuthorValidator extends GenericValidator<Author> {
 
     @Override
     public boolean supports(Class<?> clazz) {
