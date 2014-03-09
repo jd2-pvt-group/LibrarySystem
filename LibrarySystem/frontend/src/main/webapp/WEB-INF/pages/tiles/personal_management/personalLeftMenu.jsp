@@ -6,7 +6,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-
 <li>
     <a href="${pageContext.request.contextPath}/management/personalListAssigned">
         <i class="icon-chevron-right"></i> <s:message code="pages.personManagement.listAssigned"/>
@@ -23,7 +22,10 @@
     </a>
 </li>
 <li>
-    <a href="${pageContext.request.contextPath}/management/infoUser?user_id=${sessionScope['loggedUser'].id}">
+    <a href="javascript:void(0);" onclick="submitForm('#userInfo');">
         <i class="icon-chevron-right"></i> <s:message code="pages.personManagement.infoUser"/>
     </a>
 </li>
+<form id="userInfo" action="${pageContext.request.contextPath}/management/infoUser" method="POST">
+    <input type="hidden" name="user_id" value="${sessionScope['loggedUser'].id}"/>
+</form>

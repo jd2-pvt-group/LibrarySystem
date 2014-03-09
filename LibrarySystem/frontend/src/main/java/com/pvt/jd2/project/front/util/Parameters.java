@@ -9,7 +9,10 @@ package com.pvt.jd2.project.front.util;
 public interface Parameters {
 
     String USER_ID = "user_id";
+
     String ROLE_ID = "role_id";
+    String SELECTED_ROLES = "selectedRoles";
+
     String BOOK_SERIAL_ID = "bookSerial_id";
     String PUBLISHER_ID = "publisher_id";
     String AUTHOR_ID = "author_id";

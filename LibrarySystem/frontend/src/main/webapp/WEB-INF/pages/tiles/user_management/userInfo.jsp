@@ -66,11 +66,12 @@
 
 
             <td>
-            <form:form action="${pageContext.request.contextPath}/management/deleteUsersRole" method="POST">
-                <input type="hidden" name="role" value="${role}"/>
+            <form action="${pageContext.request.contextPath}/management/deleteUsersRole" method="POST">
+                <input type="hidden" name="role_id" value="${role.id}"/>
+                <input type="hidden" name="user_id" value="${viewedUser.id}"/>
                 <s:message code="pages.userManagement.infoUser.Roles.delete" var="remove"/>
                 <button class="btn btn-primary" type="submit">${remove}</button>
-            </form:form>
+            </form>
             </td>
         </c:forEach>
 

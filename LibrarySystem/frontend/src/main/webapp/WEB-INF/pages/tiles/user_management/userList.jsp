@@ -26,8 +26,8 @@
             <tbody>
                 <c:forEach var="user" items="${listViewedUser}">
                     <tr>
-                        <td>${user.login}</td>
-                        <td>${user.firstName}</td>
+                         <td>${user.login}</td>
+                         <td>${user.firstName}</td>
                         <td>${user.lastName}</td>
                         <td>${user.passportNumber}</td>
                         <td>${user.active}</td>

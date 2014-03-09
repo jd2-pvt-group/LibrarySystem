@@ -8,16 +8,16 @@ import com.pvt.jd2.project.common.service.UserService;
 import com.pvt.jd2.project.front.util.Attributes;
 import com.pvt.jd2.project.front.util.Parameters;
 import com.pvt.jd2.project.front.util.Sections;
-import com.pvt.jd2.project.front.util.TilesDefinitions;
 import com.pvt.jd2.project.front.validators.UserValidator;
 import com.pvt.jd2.project.front.validators.find.FindUserValidator;
+import com.pvt.jd2.project.front.validators.generic.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.pvt.jd2.project.front.util.TilesDefinitions.*;
@@ -45,23 +45,58 @@ public class UserManagementController{
     private FindUserValidator findUserValidator;
 
 
+    @RequestMapping(value = "/deleteUsersRole", method = RequestMethod.POST)
+    public String deleteUsersRole(@RequestParam(value = Parameters.ROLE_ID)String roleId,
+                                  @RequestParam(value = Parameters.USER_ID) String userId,
+                                 Model model,
+                                 @ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
+                                 @ModelAttribute(value = Attributes.SECTION) Sections section) {
+        try{
+            Role role = roleService.findById(Long.valueOf(roleId));
+            userService.removeRole(Long.valueOf(userId),role);
+            updateModelWithUser(Long.valueOf(userId),model);
+            return    successInfoUser(section);
+        }catch(BusinessLogicException e){
+            return error(section, e);
+        }
+
+    }
+
+
+
+    @RequestMapping(value = "/addRolesToUser", method = RequestMethod.POST)
+    public String addRolesToUser(@RequestParam(value = Parameters.SELECTED_ROLES, required = false)String[]  selectedRoleId,
+                                 @RequestParam(value = Parameters.USER_ID) String userId,
+                                 Model model,
+                                 @ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
+                                 @ModelAttribute(value = Attributes.SECTION) Sections section) {
+        try{
+            if((selectedRoleId != null) && (selectedRoleId.length>0)){
+                List<Role> roleList= new ArrayList<Role>();
+                for(String roleId:selectedRoleId){
+                    roleList.add(roleService.findById(Long.valueOf(roleId)));
+
+                }
+                userService.addRoles(Long.valueOf(userId),roleList);
+            }
+            updateModelWithUser(Long.valueOf(userId),model);
+            return    successInfoUser(section);
+        }catch(BusinessLogicException e){
+            return error(section, e);
+        }
+    }
 
     @RequestMapping(value = "/addRoleUser", method = RequestMethod.POST)
     public String addRolesUser(@RequestParam(value = Parameters.USER_ID) String userId,
-
-                             Model model,
-                             @ModelAttribute(value = Attributes.SECTION) Sections section) {
-
-
+                               Model model,
+                               @ModelAttribute(value = Attributes.SECTION) Sections section) {
         try{
 
 
             List <Role> roleList = roleService.list();
-
             model.addAttribute(Attributes. VIEWED_ROLES, roleList);
-
-            return USER_MANAGEMENT_ADD_ROLE;
-
+            model.addAttribute(Attributes. VIEWED_USER,userService.findById(Long.valueOf(userId)));
+            return ROLE_MANAGEMENT_LIST;
         }catch(BusinessLogicException e){
             return error(section, e);
         }
@@ -72,16 +107,13 @@ public class UserManagementController{
                           BindingResult result,
                           Model model,
                           @ModelAttribute(value = Attributes.SECTION) Sections section) {
-      ValidationUtils.invokeValidator(userValidator, viewedUser, result);
-
+        ValidationUtils.invokeValidator(userValidator, viewedUser, result);
         try{
             if (result.hasErrors()){
                 return USER_MANAGEMENT_ADD;
             }
             System.out.println(viewedUser);
-
            return successUserCreate(section,viewedUser,model);
-
         }catch(BusinessLogicException e){
             return error(section, e);
         }
@@ -92,7 +124,6 @@ public class UserManagementController{
     public String addUser(@ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                           BindingResult result,
                           @ModelAttribute(value = Attributes.SECTION) Sections section) {
-
         return successUserAdd(section);
     }
 
@@ -107,10 +138,8 @@ public class UserManagementController{
     public String findUser( @ModelAttribute(value = Attributes.VIEWED_USER) User viewedUser,
                            BindingResult result,
                            @ModelAttribute(value = Attributes.SECTION) Sections section) {
-
-          //  updateModelWithUser(Long.valueOf(userId), model);
-            return successUserFind(section);
-
+        //  updateModelWithUser(Long.valueOf(userId), model);
+        return successUserFind(section);
     }
 
     @RequestMapping(value = "/foundUsers",method = RequestMethod.POST)

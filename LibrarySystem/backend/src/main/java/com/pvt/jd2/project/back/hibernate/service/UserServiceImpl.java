@@ -2,6 +2,7 @@ package com.pvt.jd2.project.back.hibernate.service;
 
 import com.pvt.jd2.project.common.dao.UserDao;
 import com.pvt.jd2.project.common.domain.ActivationStatus;
+import com.pvt.jd2.project.common.domain.Role;
 import com.pvt.jd2.project.common.domain.User;
 import com.pvt.jd2.project.common.exceptions.BusinessLogicException;
 import com.pvt.jd2.project.common.exceptions.DatabaseException;
@@ -155,5 +156,30 @@ public class UserServiceImpl implements UserService {
             throw new BusinessLogicException(e);
         }
     }
+
+    @Override
+    @Transactional
+    public List<Role> addRoles(Long id, List<Role> roles)throws BusinessLogicException {
+        List<Role> roleList=userDao.findById(id).getRoles();
+        for(Role role:roles){
+            if(!roleList.contains(role))
+            {
+                roleList.add(role);
+            }
+
+
+        }
+        return roleList;
+    }
+
+    @Override
+    @Transactional
+    public List<Role> removeRole(Long id, Role role) throws BusinessLogicException {
+        User user =userDao.findById(id);
+        List<Role> roleList=user.getRoles();
+        roleList.remove(role);
+        return roleList;
+    }
+
 
 }
